@@ -1,0 +1,96 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! URXVT
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! URxvt color scheme:
+! Background and foreground
+URxvt*background: #000000
+URxvt*foreground: #FFFFFF
+! Black
+URxvt*color0  : #2E3436
+URxvt*color8  : #555753
+! Red
+URxvt*color1  : #CC0000
+URxvt*color9  : #EF2929
+! Green
+URxvt*color2  : #4E9A06
+URxvt*color10 : #8AE234
+! Yellow
+URxvt*color3  : #C4A000
+URxvt*color11 : #FCE94F
+! Blue
+URxvt*color4  : #3465A4
+URxvt*color12 : #729FCF
+! Magenta
+URxvt*color5  : #75507B
+URxvt*color13 : #AD7FA8
+! Cyan
+URxvt*color6  : #06989A
+URxvt*color14 : #34E2E2
+! White
+URxvt*color7  : #D3D7CF
+URxvt*color15 : #EEEEEC
+
+
+! False transparency:
+!URxvt*transparent: true
+!URxvt*shading: 20
+
+! True transparency:
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0200/da00
+
+! Terminal name:
+URxvt*termName: rxvt-256color
+
+
+! URxvt fonts:
+URxvt*font: xft:monospace:pixelsize=11
+URxvt*boldFont: xft:monospace:bold:pixelsize=11
+URxvt*letterSpace: -1
+
+!URxvt.font: xft:bitstream vera sans mono:size=7:antialias=true
+!URxvt.boldFont: xft:bitstream vera sans mono:bold:size=7:antialias=true
+!URxvt*letterSpace: -1
+
+!URxvt*font: -misc-fixed-medium-r-normal--10-100-75-75-c-60-iso10646-1 
+!URxvt*boldFont: -misc-fixed-medium-r-normal--10-100-75-75-c-60-iso10646-1
+
+!URxvt*font: xft:Terminus:pixelsize=10
+!URxvt*boldFont: xft:Terminus:bold:pixelsize=10
+
+
+! Bind Ctrl+{H,J,K,L} to change font size
+URxvt.keysym.C-S-H: command:\033]710;xft:Monospace:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=10\007
+URxvt.keysym.C-S-J: command:\033]710;xft:Monospace:pixelsize=11\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=11\007
+URxvt.keysym.C-S-K: command:\033]710;xft:Monospace:pixelsize=13\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=13\007
+URxvt.keysym.C-S-L: command:\033]710;xft:Monospace:pixelsize=15\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=15\007
+
+! Little hack for something I don't remember:
+!URxvt*keysym.Control-Up:   \033[1;5A
+!URxvt*keysym.Control-Down:    \033[1;5B
+!URxvt*keysym.Control-Left:    \033[1;5D
+!URxvt*keysym.Control-Right:    \033[1;5C
+
+
+! URxvt extensions:
+URxvt*perl-lib:            /usr/lib/urxvt/perl/
+URxvt*perl-ext-common:  default,matcher
+
+! Enabling clickable links:
+URxvt*urlLauncher: firefox
+URxvt*matcher.button: 1
+
+! URxvt scrolling options and cursor style:
+URxvt*saveLines: 20000
+URxvt*scrollstyle: plain
+URxvt*scrollBar: true
+URxvt*scrollBar_right: true
+URxvt*cursorBlink: true
+URxvt*cursorUnderline: false
+
+! Don't scroll when I try to read some pages before
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+
