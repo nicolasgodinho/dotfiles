@@ -1,12 +1,27 @@
-# My dotfiles
+Nicolas' dotfiles
+=================
 
-## Bash configuration
 
-`TODO`
+Installation
+------------
 
-## Vim configuration contents
+    # Let's be safe and clone the repository inside a dedicated directory
+    git clone --recursive https://github.com/nicolasgodinho/dotfiles.git ~/DOTFILES
 
-- Custom Vim configuration
+    # Symlinks from the repository files to the home directory
+    ln -s ~/DOTFILES/{.bashrc,.Xdefaults,.vimrc,.vim} ~
+
+
+Bash configuration contents
+---------------------------
+
+FIXME
+
+
+Vim configuration contents
+--------------------------
+
+- tom Vim configuration
 - `pathogen` for managing Vim plugins (https://github.com/tpope/vim-pathogen)
 - `ctrlp` for searching files in project easily ()
 - `lightline` for having a nice (and lightweight!) status line in Vim
@@ -14,7 +29,9 @@
 - `rainbow_parentheses` to help identify closing brackets
 - `indent-guides` to help during re-identation of Python code
 
-## tmux configuration
 
-`TODO`
+tmux configuration contents
+---------------------------
+
+FIXME
 
