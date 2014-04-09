@@ -50,8 +50,12 @@ set laststatus=2
 " Consider the keys : and ; as the same in normal mode.
 nnoremap ; :
 
-" Automatic indentation
+" Automatic indentation and copy the preivous identation on autoindenting
 set autoindent
+set copyindent
+
+" Press <F2> to prevent the identation mess issue when pasting code
+set pastetoggle=<F2>
 
 " Get rid from the archaic Vi compatibility
 set nocompatible
