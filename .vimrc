@@ -117,6 +117,10 @@ set showmatch
 " Awesome select-search-and-replace trick in visual mode
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
+" More intuitive new split placing
+set splitbelow
+set splitright
+
 " Move around windows easily
 map <C-h> <C-w>h
 map <C-j> <C-w>j
