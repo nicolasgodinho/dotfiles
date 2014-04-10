@@ -219,3 +219,5 @@ let g:lightline = {
 
 " Rainbow Parentheses <https://github.com/kien/rainbow_parentheses.vim>
 
+" Vim-GitGutter <https://github.com/airblade/vim-gitgutter>
+
