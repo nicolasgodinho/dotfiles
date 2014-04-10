@@ -105,8 +105,8 @@ set ffs=unix,dos,mac
 " Highlight search
 set hlsearch
 
-" Press F4 to toggle highlighting on/off, and show current value.
-noremap <F4> :set hlsearch! hlsearch?<CR>
+" Press F3 to toggle highlighting on/off, and show current value.
+noremap <F3> :set hlsearch! hlsearch?<CR>
 
 " Incremental Search
 set is
