@@ -47,7 +47,7 @@ URxvt*termName: rxvt-256color
 ! URxvt fonts:
 URxvt*font: xft:monospace:pixelsize=11
 URxvt*boldFont: xft:monospace:bold:pixelsize=11
-URxvt*letterSpace: -1
+!URxvt*letterSpace: -1
 
 !URxvt.font: xft:bitstream vera sans mono:size=7:antialias=true
 !URxvt.boldFont: xft:bitstream vera sans mono:bold:size=7:antialias=true
