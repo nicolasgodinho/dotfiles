@@ -10,7 +10,7 @@ Installation
 git clone --recursive https://github.com/nicolasgodinho/dotfiles.git ~/DOTFILES
 
 # Symlinks from the repository files to the home directory
-ln -s ~/DOTFILES/{.bashrc,.Xdefaults,.vimrc,.vim} ~
+ln -s ~/DOTFILES/{.bashrc,.Xdefaults,.tmux.conf,.vimrc,.vim} ~
 ```
 
 Bash configuration contents
