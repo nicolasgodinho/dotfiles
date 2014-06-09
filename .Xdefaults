@@ -59,12 +59,14 @@ URxvt*boldFont: xft:monospace:bold:pixelsize=11
 !URxvt*font: xft:Terminus:pixelsize=10
 !URxvt*boldFont: xft:Terminus:bold:pixelsize=10
 
+URxvt*font: xft:Dina:pixelsize=10
+URxvt*boldFont: xft:Dina:bold:pixelsize=10
 
 ! Bind Ctrl+{H,J,K,L} to change font size
-URxvt.keysym.C-S-H: command:\033]710;xft:Monospace:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=10\007
-URxvt.keysym.C-S-J: command:\033]710;xft:Monospace:pixelsize=11\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=11\007
+URxvt.keysym.C-S-H: command:\033]710;xft:Dina:pixelsize=8\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=8\007
+URxvt.keysym.C-S-J: command:\033]710;xft:Dina:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=10\007
 URxvt.keysym.C-S-K: command:\033]710;xft:Monospace:pixelsize=13\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=13\007
-URxvt.keysym.C-S-L: command:\033]710;xft:Monospace:pixelsize=15\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=15\007
+URxvt.keysym.C-S-L: command:\033]710;xft:Monospace:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=18\007
 
 ! Little hack for something I don't remember:
 !URxvt*keysym.Control-Up:   \033[1;5A
