@@ -14,6 +14,9 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -l'
 
+# Tmux in 256 colors
+alias tmux="tmux -2"
+
 export EDITOR="vim"
 
 # when available:
