@@ -75,6 +75,9 @@ URxvt.keysym.C-S-L: command:\033]710;xft:Monospace:pixelsize=15\007\033]711;%s%d
 ! URxvt urgency hint on terminal bell
 URxvt*urgentOnBell: true
 
+! Save the Amazon: do not print anything if I ever mistype "PrintScreen" key.
+URxvt*print-pipe: "cat > /dev/null"
+
 ! URxvt extensions:
 URxvt*perl-lib:            /usr/lib/urxvt/perl/
 URxvt*perl-ext-common:  default,matcher
