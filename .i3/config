@@ -168,7 +168,7 @@ exec --no-startup-id volumeicon
 ## AUTOSTART
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id xscreensaver -no-splash
-exec --no-startup-id dunst
+exec --no-startup-id dunst -config ~/.dunstrc
 
 ## XSCREENSAVER
 bindsym Control+mod1+Delete exec --no-startup-id xscreensaver-command -lock
