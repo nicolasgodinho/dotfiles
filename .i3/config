@@ -21,7 +21,8 @@ new_window 1pixel
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
-font pango:Monospace 7
+#font pango:Dina 5
+font pango:Cure 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
