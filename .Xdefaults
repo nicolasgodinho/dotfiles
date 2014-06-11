@@ -41,7 +41,7 @@ URxvt*depth: 32
 URxvt*background: rgba:0000/0000/0200/da00
 
 ! Terminal name:
-URxvt*termName: rxvt-256color
+URxvt*termName: xterm-256color
 
 
 ! URxvt fonts:
