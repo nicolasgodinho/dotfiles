@@ -72,7 +72,6 @@ set softtabstop=4
 
 " Text width set to 79 chars but without forcing the text wrapping
 set textwidth=79
-set nowrap
 set formatoptions-=t
 
 " Easier formatting of paragraphs
@@ -134,6 +133,16 @@ map <C-l> <C-w>l
 " Move around tabs easily
 map <C-n> <ESC>:tabprevious<CR>
 map <C-m> <ESC>:tabnext<CR>
+
+" I prefer to navigate through 'visual' lines than hard lines
+map <silent> <Up> gk
+imap <silent> <Up> <C-o>gk
+map <silent> <Down> gj
+imap <silent> <Down> <C-o>gj
+map <silent> <home> g<home>
+imap <silent> <home> <C-o>g<home>
+map <silent> <End> g<End>
+imap <silent> <End> <C-o>g<End>
 
 
 """"""""""""""
