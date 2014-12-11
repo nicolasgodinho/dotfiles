@@ -11,6 +11,7 @@ git clone --recursive https://github.com/nicolasgodinho/dotfiles.git ~/DOTFILES
 
 # Symlinks from the repository files to the home directory
 ln -s ~/DOTFILES/{.bashrc,.Xdefaults,.tmux.conf,.vimrc,.vim} ~
+ln -s ~/DOTFILES/.config/dunst ~/.config
 ```
 
 Bash configuration contents
