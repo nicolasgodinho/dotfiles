@@ -150,7 +150,7 @@ imap <silent> <End> <C-o>g<End>
 """"""""""""""
 
 " Font for GVim
-set guifont=Inconsolata\ 12
+set guifont=Dina\ 8
 
 " Use CTRL-S for saving, also in Insert mode (GVim)
 noremap <C-S> :update<CR>
