@@ -216,6 +216,8 @@ endif
 execute pathogen#infect()
 
 " NERDTree <https://github.com/scrooloose/nerdtree>
+" Toggle NERDTree with F1
+nmap <F1> :NERDTreeToggle<CR>
 
 " VIM Lightline <https://github.com/itchyny/lightline.vim>
 let g:lightline = {
