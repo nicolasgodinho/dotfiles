@@ -193,6 +193,12 @@ nmap <S-Down> V
 nmap <S-Left> v
 nmap <S-Right> v
 
+" Change GVim appearance easily to adapt screen or context
+nmap <F11> :set guifont=Dina\ 6<CR>:colorscheme molokai<CR>
+nmap <S-F11> :set guifont=Dina\ 8<CR>:colorscheme molokai<CR>
+nmap <F12> :set guifont=Dina\ 10<CR>:colorscheme molokai<CR>
+nmap <S-F12> :set guifont=Inconsolata\ 14<CR>:colorscheme molokai<CR>
+
 
 """""""""""""
 " TMUX HACK "
