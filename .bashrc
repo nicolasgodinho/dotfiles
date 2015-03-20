@@ -135,3 +135,7 @@ unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht bldblk bldred bldg
 #    exec tmux
 #fi
 
+# The basic requirements for Golang development
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
