@@ -5,41 +5,62 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+# Checking that `uname` is well present in the system. If not, abandon
+# everything.
+if [ ! -f /usr/bin/uname ]
+then
+    echo "Can't find \`uname\' to probe the operating system." >&2
+    echo "Leaving the bash environment untouched." >&2
+    return
+fi
 
-PS1='[\u@\h \W]\$ '
+# Probing the operating system and setting the proper configuration
+kernel=$(/usr/bin/uname)
+if [ "$kernel" = "Linux" ] && [ -x /usr/bin/sed ] && [ -f /etc/os-release ]
+then
+    distro=$(/usr/bin/sed -n "s/^ID=\(.*\)/\1/p" /etc/os-release)
+else
+    distro=
+fi
+case "$kernel:$distro" in
+    Linux: | Linux:arch | Linux:void)
+        aliasls="ls --color=auto"
+        git_prompt_sh="/usr/share/git/git-prompt.sh"
+        ;;
 
-# Some more `ls` aliases
+    Linux:ubuntu)
+        aliasls="ls --color=auto"
+        git_prompt_sh="/usr/lib/git-core/git-sh-prompt"
+        ;;
+
+    FreeBSD:)
+        aliasls="ls -G"
+        git_prompt_sh="/usr/local/share/git-core/contrib/completion/git-prompt.sh"
+        ;;
+
+    OpenBSD:)
+        if [ -f /usr/local/bin/colorls ]
+        then
+            aliasls="colorls"
+        else
+            aliasls="ls"
+        fi
+        git_prompt_sh="/usr/local/share/git-core/contrib/completion/git-prompt.sh"
+        ;;
+
+    Darwin:)
+        aliasls="ls -G"
+        git_prompt_sh="/opt/local/share/git/git-prompt.sh"
+        ;;
+esac
+
+# Setting the common `ls' aliases
+alias ls=$aliasls
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -l'
 
-# Tmux in 256 colors
-alias tmux="tmux -2"
-
-export EDITOR="vim"
-
-# when available:
-if [ -f /usr/bin/grc ]
-then
-    alias ping="grc --colour=auto ping"
-    alias traceroute="grc --colour=auto traceroute"
-    alias make="grc --colour=auto make" # broke kernel compilation once
-    alias diff="grc --colour=auto diff"
-    alias cvs="grc --colour=auto cvs"
-    alias netstat="grc --colour=auto netstat"
-fi
-
-# Search history with PgUp/PgDown
-bind '"\e[5~": history-search-backward'
-bind '"\e[6~": history-search-forward'
-
-# Just a test.
-#PS1="\u@\h:\w\$(git branch&>/dev/null && echo -n ' (' && git branch 2>/dev/null | grep '^*' | colrm 1 2 && echo -n ')')\$ "
-
-# Colors!
-
-# Regular
+# Defining the color variables
 txtblk='\[\e[0;30m\]' # Black
 txtred='\[\e[0;31m\]' # Red
 txtgrn='\[\e[0;32m\]' # Green
@@ -48,94 +69,97 @@ txtblu='\[\e[0;34m\]' # Blue
 txtpur='\[\e[0;35m\]' # Purple
 txtcyn='\[\e[0;36m\]' # Cyan
 txtwht='\[\e[0;37m\]' # White
+bldblk='\[\e[1;30m\]' # Bold Black
+bldred='\[\e[1;31m\]' # Bold Red
+bldgrn='\[\e[1;32m\]' # Bold Green
+bldylw='\[\e[1;33m\]' # Bold Yellow
+bldblu='\[\e[1;34m\]' # Bold Blue
+bldpur='\[\e[1;35m\]' # Bold Purple
+bldcyn='\[\e[1;36m\]' # Bold Cyan
+bldwht='\[\e[1;37m\]' # Bold White
+unkblk='\[\e[4;30m\]' # Underlined Black
+undred='\[\e[4;31m\]' # Underlined Red
+undgrn='\[\e[4;32m\]' # Underlined Green
+undylw='\[\e[4;33m\]' # Underlined Yellow
+undblu='\[\e[4;34m\]' # Underlined Blue
+undpur='\[\e[4;35m\]' # Underlined Purple
+undcyn='\[\e[4;36m\]' # Underlined Cyan
+undwht='\[\e[4;37m\]' # Underlined White
+bakblk='\[\e[40m\]'   # Background in Black
+bakred='\[\e[41m\]'   # Background in Red
+bakgrn='\[\e[42m\]'   # Background in Green
+bakylw='\[\e[43m\]'   # Background in Yellow
+bakblu='\[\e[44m\]'   # Background in Blue
+bakpur='\[\e[45m\]'   # Background in Purple
+bakcyn='\[\e[46m\]'   # Background in Cyan
+bakwht='\[\e[47m\]'   # Background in White
+txtrst='\[\e[0m\]'    # Text Reset
 
-# Bold
-bldblk='\[\e[1;30m\]' # Black
-bldred='\[\e[1;31m\]' # Red
-bldgrn='\[\e[1;32m\]' # Green
-bldylw='\[\e[1;33m\]' # Yellow
-bldblu='\[\e[1;34m\]' # Blue
-bldpur='\[\e[1;35m\]' # Purple
-bldcyn='\[\e[1;36m\]' # Cyan
-bldwht='\[\e[1;37m\]' # White
-
-# Underline
-unkblk='\[\e[4;30m\]' # Black
-undred='\[\e[4;31m\]' # Red
-undgrn='\[\e[4;32m\]' # Green
-undylw='\[\e[4;33m\]' # Yellow
-undblu='\[\e[4;34m\]' # Blue
-undpur='\[\e[4;35m\]' # Purple
-undcyn='\[\e[4;36m\]' # Cyan
-undwht='\[\e[4;37m\]' # White
-
-# Background
-bakblk='\[\e[40m\]' # Black
-bakred='\[\e[41m\]' # Red
-bakgrn='\[\e[42m\]' # Green
-bakylw='\[\e[43m\]' # Yellow
-bakblu='\[\e[44m\]' # Blue
-bakpur='\[\e[45m\]' # Purple
-bakcyn='\[\e[46m\]' # Cyan
-bakwht='\[\e[47m\]' # White
-txtrst='\[\e[0m\]'  # Text Reset
-
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]
+# Probe the capability to display colors in the shell (seems to work only in
+# Linux and Mac OS X)...
+# Source: the Debian's default bashrc file.
+if [ -x /usr/bin/tput ] && (/usr/bin/tput setaf 1 >&/dev/null)
 then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+elif [[ $kernel =~ .*BSD ]]
+then
+    # Enforce the color if we are on *BSD since the above test does not seem to
+    # work.
+    # FIXME: Investigate the appropriate code for probing the terminal
+    # capabilities on *BSDs.
+    color_prompt=yes
+else
+    color_prompt=no
 fi
 
 # Source the git bash helper function for __git_ps1
-if [ -e /usr/share/git/git-prompt.sh ]
+if [ -e "$git_prompt_sh" ]
 then
-    source /usr/share/git/git-prompt.sh
-fi
-
-if [ "$color_prompt" = yes ]
-then
-    #PS1="$bldgrn\u$bldwht@$bldpur\h$bldwht:$bldblu\w$bldylw\$(__git_ps1 ' (%s)')$txtrst\$ "
-    PS1="$bldblk[\t] $bldgrn\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$ "
-    #PS1="$bldblk[\t] $bldgrn\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\$ "
+    source $git_prompt_sh
+    git_prompt=yes
 else
-    PS1="\u@\h:\w\$(__git_ps1 ' (%s)')\$ "
-    #PS1="\u@\h:\w\$ "
+    git_prompt=no
 fi
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;\u@\h: \w\$(__git_ps1 ' (%s)')\a\]$PS1"
-    #PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+# Setting the prompt.
+case "$color_prompt:$git_prompt" in
+    yes:yes)
+        PS1="$bldblk[\t] $bldgrn\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$ "
+        ;;
+    yes:no)
+        PS1="$bldblk[\t] $bldgrn\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\$ "
+        ;;
+    no:yes)
+        PS1="\u@\h:\w\$(__git_ps1 ' (%s)')\$ "
+        ;;
+    no:no)
+        PS1="\u@\h:\w\$ "
+        ;;
 esac
 
-unset force_color_prompt color_prompt
+# Unsetting the different variables used in this bashrc, since we don't want
+# them exported in every shell.
+unset kernel distro git_prompt_sh aliasls color_prompt
+unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht bldblik bldred \
+      bldgrn bldylw bldblu bldpur bldcyn bldwht unkblk undred undgrn undylw  \
+      undblu undpur undcyn undwht bakblk bakred bakgrn bakylw bakblu bakpur  \
+      bakcyn bakwht txtrst
 
-unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht bldblk bldred bldgrn bldylw bldblu bldpur bldcyn bldwht unkblk undred undgrn undylw undblu undpur undcyn undwht bakblk bakred bakgrn bakylw bakblu bakpur bakcyn bakwht txtrst
+# Tmux in 256 colors
+alias tmux="tmux -2"
 
-
-# TMUX BY DEFAULT
-#if [[ ! $TERM =~ screen ]]
-#then
-#    exec tmux
-#fi
+# Search history with PgUp/PgDown
+bind '"\e[5~": history-search-backward'
+bind '"\e[6~": history-search-forward'
 
 # The basic requirements for Golang development
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+GOPATH=$HOME/go
+PATH=$PATH:$GOPATH/bin
+
+# Vim is my favourite editor
+EDITOR="vim"
+
 
