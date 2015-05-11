@@ -125,13 +125,21 @@ else
     git_prompt=no
 fi
 
+# Display the username underlined and in red if I am root.
+if [ "$USER" = "root" ]
+then
+    user_color=$undred
+else
+    user_color=$bldgrn
+fi
+
 # Setting the prompt.
 case "$color_prompt:$git_prompt" in
     yes:yes)
-        PS1="$bldblk[\t] $bldgrn\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$ "
         ;;
     yes:no)
-        PS1="$bldblk[\t] $bldgrn\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\$ "
         ;;
     no:yes)
         PS1="\u@\h:\w\$(__git_ps1 ' (%s)')\$ "
