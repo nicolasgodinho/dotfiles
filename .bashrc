@@ -18,19 +18,20 @@ fi
 kernel=$(/usr/bin/uname)
 if [ "$kernel" = "Linux" ] && [ -x /usr/bin/sed ] && [ -f /etc/os-release ]
 then
-    distro=$(/usr/bin/sed -n "s/^ID=\(.*\)/\1/p" /etc/os-release)
+    eval $(/usr/bin/sed -n -e "/^\s*ID=/p" /etc/os-release |
+           /usr/bin/sed "s/ID/distro/")
 else
     distro=
 fi
 case "$kernel:$distro" in
-    Linux: | Linux:arch | Linux:void)
-        aliasls="ls --color=auto"
-        git_prompt_sh="/usr/share/git/git-prompt.sh"
-        ;;
-
     Linux:ubuntu)
         aliasls="ls --color=auto"
         git_prompt_sh="/usr/lib/git-core/git-sh-prompt"
+        ;;
+
+    Linux:void | Linux:arch | Linux:*)
+        aliasls="ls --color=auto"
+        git_prompt_sh="/usr/share/git/git-prompt.sh"
         ;;
 
     FreeBSD:)
