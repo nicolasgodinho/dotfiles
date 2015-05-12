@@ -117,6 +117,10 @@ set smartcase
 " Show matching braces
 set showmatch
 
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+" Source: http://stackoverflow.com/questions/2600783
+cmap w!! w !sudo tee > /dev/null %
+
 " Awesome select-search-and-replace trick in visual mode
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
