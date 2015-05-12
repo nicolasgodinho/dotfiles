@@ -133,19 +133,29 @@ else
     user_color=$bldgrn
 fi
 
+# Function to display the exit code
+__exitcode_ps1()
+{
+    local exit_code=$?
+    if [ "$exit_code" -ne 0 -a -x /usr/bin/printf -a -n "$1" ]
+    then
+        /usr/bin/printf "$1" $exit_code
+    fi
+}
+
 # Setting the prompt.
 case "$color_prompt:$git_prompt" in
     yes:yes)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     yes:no)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     no:yes)
-        PS1="\u@\h:\w\$(__git_ps1 ' (%s)')\\$ "
+        PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\$(__git_ps1 ' (%s)')\\$ "
         ;;
     no:no)
-        PS1="\u@\h:\w\\$ "
+        PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\\$ "
         ;;
 esac
 
