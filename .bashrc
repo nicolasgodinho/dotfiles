@@ -178,10 +178,10 @@ bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
 
 # The basic requirements for Golang development
-GOPATH=$HOME/go
-PATH=$PATH:$GOPATH/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Vim is my favourite editor
-EDITOR="vim"
+export EDITOR="vim"
 
 
