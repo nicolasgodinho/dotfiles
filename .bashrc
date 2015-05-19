@@ -5,7 +5,7 @@
 
 # Checking that `uname` is well present in the system. If not, abandon
 # everything.
-if [ ! -f /usr/bin/uname ]
+if (! command -v uname >/dev/null 2>&1)
 then
     echo "bashrc: Can't find \`uname' to probe the operating system." >&2
     echo "bashrc: Leaving the bash environment untouched." >&2
@@ -13,11 +13,11 @@ then
 fi
 
 # Probing the operating system and setting the proper configuration
-kernel=$(/usr/bin/uname)
-if [ "$kernel" = "Linux" ] && [ -x /usr/bin/sed ] && [ -f /etc/os-release ]
+kernel=$(uname)
+if [ "$kernel" = "Linux" ] && [ -f /etc/os-release ] &&
+   (command -v sed >/dev/null 2>&1)
 then
-    eval $(/usr/bin/sed -n -e "/^\s*ID=/p" /etc/os-release |
-           /usr/bin/sed "s/ID/distro/")
+    eval $(sed -n -e "/^\s*ID=/p" /etc/os-release | sed "s/ID/distro/")
 else
     distro=
 fi
@@ -38,7 +38,7 @@ case "$kernel:$distro" in
         ;;
 
     OpenBSD:)
-        if [ -f /usr/local/bin/colorls ]
+        if (command -v colorls >/dev/null 2>&1)
         then
             aliasls="colorls"
         else
@@ -97,7 +97,7 @@ txtrst='\[\e[0m\]'    # Text Reset
 # Probe the capability to display colors in the shell (seems to work only in
 # Linux and Mac OS X)...
 # Source: the Debian's default bashrc file.
-if [ -x /usr/bin/tput ] && (/usr/bin/tput setaf 1 >&/dev/null)
+if (command -v tput >/dev/null 2>&1) && (tput setaf 1 >/dev/null 2>&1)
 then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
@@ -135,9 +135,9 @@ fi
 __exitcode_ps1()
 {
     local exit_code=$?
-    if [ "$exit_code" -ne 0 -a -x /usr/bin/printf -a -n "$1" ]
+    if [ "$exit_code" -ne 0 -a -n "$1" ] && (command -v printf >/dev/null 2>&1)
     then
-        /usr/bin/printf "$1" $exit_code
+        printf "$1" $exit_code
     fi
 }
 
