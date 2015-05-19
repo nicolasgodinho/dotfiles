@@ -1,16 +1,14 @@
-#
-# ~/.bashrc
-#
+#!/bin/bash
 
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything.
 [[ $- != *i* ]] && return
 
 # Checking that `uname` is well present in the system. If not, abandon
 # everything.
 if [ ! -f /usr/bin/uname ]
 then
-    echo "Can't find \`uname\' to probe the operating system." >&2
-    echo "Leaving the bash environment untouched." >&2
+    echo "bashrc: Can't find \`uname' to probe the operating system." >&2
+    echo "bashrc: Leaving the bash environment untouched." >&2
     return
 fi
 
