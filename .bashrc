@@ -27,6 +27,11 @@ case "$kernel:$distro" in
         git_prompt_sh="/usr/lib/git-core/git-sh-prompt"
         ;;
 
+    Linux:debian)
+        aliasls="ls --color=auto"
+        git_prompt_sh="/etc/bash_completion.d/git"
+        ;;
+
     Linux:void | Linux:arch | Linux:*)
         aliasls="ls --color=auto"
         git_prompt_sh="/usr/share/git/git-prompt.sh"
