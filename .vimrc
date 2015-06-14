@@ -234,11 +234,7 @@ let g:lightline = {
     \ 'colorscheme': 'powerline',
 \ }
 
-" ctrlp.vim <https://github.com/kien/ctrlp.vim>
-
 " Vim Indent Guides <https://github.com/nathanaelkane/vim-indent-guides>
-
-" Rainbow Parentheses <https://github.com/kien/rainbow_parentheses.vim>
 
 " Vim-GitGutter <https://github.com/airblade/vim-gitgutter>
 
