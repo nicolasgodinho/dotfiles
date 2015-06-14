@@ -66,9 +66,10 @@ set backspace=2
 " Tabulation behavior: 4 spaces and never a tab character
 set expandtab
 set shiftround
-set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+" But displays tabulation as 8 spaces long
+set tabstop=8
 
 " Text width set to 79 chars but without forcing the text wrapping
 set textwidth=79
