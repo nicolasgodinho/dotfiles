@@ -50,7 +50,7 @@ set laststatus=2
 " Consider the keys : and ; as the same in normal mode.
 nnoremap ; :
 
-" Automatic indentation and copy the preivous identation on autoindenting
+" Automatic indentation and copy the previous identation on autoindenting
 set autoindent
 set copyindent
 
@@ -122,8 +122,11 @@ set showmatch
 " Source: http://stackoverflow.com/questions/2600783
 cmap w!! w !sudo tee > /dev/null %
 
-" Awesome select-search-and-replace trick in visual mode
+" Awesome select-search-and-replace trick in visual mode:
+" Replace on demand (`c') in the current buffer:
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+" Replace in all opened buffers (neither asking for replace nor saving buffers)
+vnoremap <C-A-r> "hy:bufdo! %s/<C-r>h//ge<left><left><left>
 
 " More intuitive new split placing
 set splitbelow
