@@ -181,6 +181,12 @@ bind '"\e[6~": history-search-forward'
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# Include Luarocks local environment
+if (command -v luarocks >/dev/null 2>&1)
+then
+    eval $(luarocks path --bin)
+fi
+
 # Vim is my favourite editor
 export EDITOR="vim"
 
