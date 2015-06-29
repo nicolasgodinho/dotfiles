@@ -155,19 +155,22 @@ bar {
         status_command i3status
 }
 
-
 # Move workspace around screens
 bindsym $mod+m move workspace to output left
 
-
-## Screensaver with i3lock and suspend with pm-suspend (from pm-utils)
+# Screen locking with i3lock
 bindsym Control+mod1+Delete exec --no-startup-id i3lock -c 000000
-bindsym Control+Shift+mod1+Delete exec --no-startup-id i3lock -c 000000 | sudo pm-suspend
 
-## Volume control in traybar
+# Screen lockand and suspend
+# (zzz for VoidLinux and OpenBSD, pm-suspend for the rest)
+bindsym Control+Shift+mod1+Delete exec --no-startup-id i3lock -c 000000 | sudo zzz
+#bindsym Control+Shift+mod1+Delete exec --no-startup-id i3lock -c 000000 | sudo pm-suspend
+
+# Volume control in traybar
 exec --no-startup-id volumeicon
 
-## Autostart nitrogen and dunst (notification manager)
+# Start nitrogen (X11 wallpaper setter)
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id dunst -config ~/.config/dunstrc
 
+# Start dunst (notification manager)
+exec --no-startup-id dunst -config ~/.config/dunstrc
