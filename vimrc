@@ -160,6 +160,13 @@ imap <silent> <End> <C-o>g<End>
 " Font for GVim
 set guifont=Dina\ 8
 
+" Bind Shift+Insert to paste command when in GVim
+" Source: http://superuser.com/questions/322947/
+if has("gui_running")
+    map <silent> <S-Insert> "+p
+    imap <silent> <S-Insert> <Esc>"+pa
+endif
+
 " Use CTRL-S for saving, also in Insert mode (GVim)
 noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
