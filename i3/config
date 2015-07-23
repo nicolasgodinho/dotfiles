@@ -161,7 +161,7 @@ bindsym $mod+m move workspace to output left
 # Screen locking with i3lock
 bindsym Control+mod1+Delete exec --no-startup-id i3lock -c 000000
 
-# Screen lockand and suspend
+# Screen lock and suspend
 # (zzz for VoidLinux and OpenBSD, pm-suspend for the rest)
 bindsym Control+Shift+mod1+Delete exec --no-startup-id i3lock -c 000000 | sudo zzz
 #bindsym Control+Shift+mod1+Delete exec --no-startup-id i3lock -c 000000 | sudo pm-suspend

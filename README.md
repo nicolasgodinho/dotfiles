@@ -26,6 +26,7 @@ Installation
     ln -s ~/DOTFILES/vimrc ~/.vimrc
     mkdir ~/.config
     ln -s ~/DOTFILES/config/dunst ~/.config
+    ln -s ~/DOTFILES/config/fontconfig ~/.config
 
 
 Requirements
@@ -34,6 +35,10 @@ Requirements
 - Fonts (mainly for i3wm, graphical terminals):
     - [Dina](https://www.donationcoder.com/Software/Jibz/Dina/)
     - [Artwiz fonts](http://artwizaleczapka.sourceforge.net/)
+    - [GNU FreeFont](https://www.gnu.org/software/freefont/): containing
+      FreeSans, FreeSerif and FreeMono which are free (as in speech and beer)
+      replacement fonts for (respectively) **Helvetica**, **Times** and
+      **Courier**.
 
 - Programs (for i3wm integration):
     - [Dunst](http://knopwob.org/dunst/index.html): a lightweight
