@@ -3,8 +3,9 @@
 # If not running interactively, don't do anything.
 [[ $- != *i* ]] && return
 
-# Source global profile settings
+# Source global definitions
 [ -f /etc/profile ] && . /etc/profile
+[ -f /etc/bash/bashrc ] && . /etc/bash/bashrc
 
 # Checking that `uname` is well present in the system. If not, abandon
 # everything.
@@ -192,5 +193,3 @@ fi
 
 # Vim is my favourite editor
 export EDITOR="vim"
-
-
