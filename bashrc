@@ -5,7 +5,9 @@
 
 # Source global definitions
 [ -f /etc/profile ] && . /etc/profile
-[ -f /etc/bash/bashrc ] && . /etc/bash/bashrc
+
+# I want to keep the vanilla ls colors. (VoidLinux)
+unset LS_COLORS
 
 # Checking that `uname` is well present in the system. If not, abandon
 # everything.
