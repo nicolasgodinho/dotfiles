@@ -173,6 +173,7 @@ vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
 " GVim GUI customization
+set guioptions+=c  " Dialogs
 set guioptions-=m  " Menu bar
 set guioptions-=T  " Toolbar
 set guioptions-=r  " Right-hand scroll bar
