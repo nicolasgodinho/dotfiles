@@ -6,6 +6,9 @@
 # Source global definitions
 [ -f /etc/profile ] && . /etc/profile
 
+# No clobber
+set -o noclobber
+
 # I want to keep the vanilla ls colors. (VoidLinux)
 unset LS_COLORS
 
