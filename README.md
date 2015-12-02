@@ -27,6 +27,7 @@ Installation
     mkdir ~/.config
     ln -s ~/DOTFILES/config/dunst ~/.config
     ln -s ~/DOTFILES/config/fontconfig ~/.config
+    ln -s ~/DOTFILES/config/awesome ~/.config
 
 
 Requirements
