@@ -169,7 +169,8 @@ bar {
 }
 
 # Move workspace around screens
-bindsym $mod+m move workspace to output left
+bindsym $mod+m move workspace to output right
+bindsym $mod+Shift+m move workspace to output left
 
 # Screen locking with i3lock
 bindsym Control+mod1+Delete exec --no-startup-id i3lock -c 000000
