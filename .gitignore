@@ -1,0 +1,9 @@
+# Classical temporary files
+*~
+*.swp
+*.swo
+
+# Only commit GnuPG configuration and nothing else!
+gnupg/*
+!gnupg/gpg.conf
+!gnupg/gpg-agent.conf
