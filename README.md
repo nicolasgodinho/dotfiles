@@ -28,6 +28,8 @@ Installation
     ln -s ~/DOTFILES/config/dunst ~/.config
     ln -s ~/DOTFILES/config/fontconfig ~/.config
     ln -s ~/DOTFILES/config/awesome ~/.config
+    mkdir ~/.gnupg
+    ln -s ~/DOTFILES/gnupg ~/.gnupg
 
 
 Requirements
