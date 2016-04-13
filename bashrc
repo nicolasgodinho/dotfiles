@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # If not running interactively, don't do anything.
-[[ $- != *i* ]] && return
+[[ "$-" != *i* ]] && return
 
-# Source global definitions
-[ -f /etc/profile ] && . /etc/profile
+# Source global definitions in priority if existing
+[[ -f /etc/profile ]] && source /etc/profile
 
-# No clobber
+# No clobber files while redirecting outputs
 set -o noclobber
 
 # I want to keep the vanilla ls colors. (VoidLinux)
@@ -14,46 +14,34 @@ unset LS_COLORS
 
 # Checking that `uname` is well present in the system. If not, abandon
 # everything.
-if (! command -v uname >/dev/null 2>&1)
-then
-    echo "bashrc: Can't find \`uname' to probe the operating system." >&2
+if ! command -v uname &>/dev/null; then
+    echo "bashrc: Can't find 'uname' to probe the operating system." >&2
     echo "bashrc: Leaving the bash environment untouched." >&2
     return
 fi
 
 # Probing the operating system and setting the proper configuration
-kernel=$(uname)
-if [ "$kernel" = "Linux" ] && [ -f /etc/os-release ] &&
-   (command -v sed >/dev/null 2>&1)
-then
-    eval $(sed -n -e "/^\s*ID=/p" /etc/os-release | sed "s/ID/distro/")
-else
-    distro=
+kernel="$(uname -s)"
+if [[ "$kernel" == "Linux" && -f /etc/os-release ]] && command -v sed &>/dev/null; then
+    distro="$(sed -n "s/^\s*ID=['\"]\?\([a-zA-Z0-9_\-]\+\)['\"]\?/\1/p" /etc/os-release | sed -n 1p)"
 fi
-case "$kernel:$distro" in
-    Linux:ubuntu)
-        aliasls="ls --color=auto"
-        git_prompt_sh="/usr/lib/git-core/git-sh-prompt"
+case "$kernel" in
+    'Linux')
+        aliasls="ls --color=auto --group-directories-first"
+        case "${distro:-}" in
+            'ubuntu') git_prompt_sh="/usr/lib/git-core/git-sh-prompt" ;;
+            'debian') git_prompt_sh="/etc/bash_completion.d/git" ;;
+            *)        git_prompt_sh="/usr/share/git/git-prompt.sh" ;;
+        esac
         ;;
 
-    Linux:debian)
-        aliasls="ls --color=auto"
-        git_prompt_sh="/etc/bash_completion.d/git"
-        ;;
-
-    Linux:void | Linux:arch | Linux:*)
-        aliasls="ls --color=auto"
-        git_prompt_sh="/usr/share/git/git-prompt.sh"
-        ;;
-
-    FreeBSD:)
+    'FreeBSD')
         aliasls="ls -G"
         git_prompt_sh="/usr/local/share/git-core/contrib/completion/git-prompt.sh"
         ;;
 
-    OpenBSD:)
-        if (command -v colorls >/dev/null 2>&1)
-        then
+    'OpenBSD')
+        if (command -v colorls &>/dev/null); then
             aliasls="colorls"
         else
             aliasls="ls"
@@ -61,19 +49,22 @@ case "$kernel:$distro" in
         git_prompt_sh="/usr/local/share/git-core/contrib/completion/git-prompt.sh"
         ;;
 
-    Darwin:)
+    'Darwin')
         aliasls="ls -G"
         git_prompt_sh="/opt/local/share/git/git-prompt.sh"
         ;;
 esac
 
 # Setting the common `ls' aliases
-alias ls=$aliasls
+# LC_COLLATE=C enables the file sort to follow ASCII code numbers of letters.
+alias ls="LC_COLLATE=C ${aliasls:-ls}"
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -l'
 
 # Defining the color variables
+# The enclosing escaped brackets \[ \] are important to Bash: they enable Bash
+# not to count these special ANSI color codes as characters printed on screen.
 txtblk='\[\e[0;30m\]' # Black
 txtred='\[\e[0;31m\]' # Red
 txtgrn='\[\e[0;32m\]' # Green
@@ -111,68 +102,63 @@ txtrst='\[\e[0m\]'    # Text Reset
 # Probe the capability to display colors in the shell (seems to work only in
 # Linux and Mac OS X)...
 # Source: the Debian's default bashrc file.
-if (command -v tput >/dev/null 2>&1) && (tput setaf 1 >/dev/null 2>&1)
-then
+if (command -v tput &>/dev/null) && (tput setaf 1 &>/dev/null); then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
-elif [[ $kernel =~ .*BSD ]]
-then
+    color_prompt=y
+elif [[ $kernel =~ .*BSD ]]; then
     # Enforce the color if we are on *BSD since the above test does not seem to
     # work.
     # FIXME: Investigate the appropriate code for probing the terminal
     # capabilities on *BSDs.
-    color_prompt=yes
+    color_prompt=y
 else
-    color_prompt=no
+    color_prompt=n
 fi
 
 # Source the git bash helper function for __git_ps1
-if [ -e "$git_prompt_sh" ]
-then
+if [[ -e "$git_prompt_sh" ]]; then
     source $git_prompt_sh
-    git_prompt=yes
+    git_prompt=y
 else
-    git_prompt=no
+    git_prompt=n
 fi
 
 # Display the username underlined and in red if I am root.
-if [ "$USER" = "root" ]
-then
-    user_color=$undred
+if [[ "$EUID" == 0 ]]; then
+    user_color="$undred"
 else
-    user_color=$bldgrn
+    user_color="$bldgrn"
 fi
 
 # Function to display the exit code
 __exitcode_ps1()
 {
-    local exit_code=$?
-    if [ "$exit_code" -ne 0 -a -n "$1" ] && (command -v printf >/dev/null 2>&1)
-    then
-        printf "$1" $exit_code
+    local exit_code="$?"
+    if [[ "$exit_code" != 0 && -n "$1" ]]; then
+        printf "$1" "$exit_code"
     fi
 }
 
 # Setting the prompt.
 case "$color_prompt:$git_prompt" in
-    yes:yes)
+    y:y)
         PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
-    yes:no)
+    y:n)
         PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
-    no:yes)
+    n:y)
         PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\$(__git_ps1 ' (%s)')\\$ "
         ;;
-    no:no)
+    n:n)
         PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\\$ "
         ;;
 esac
 
 # Unsetting the different variables used in this bashrc, since we don't want
-# them exported in every shell.
+# them polluting every Bash shell.
 unset kernel distro git_prompt_sh aliasls color_prompt
 unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht bldblik bldred \
       bldgrn bldylw bldblu bldpur bldcyn bldwht unkblk undred undgrn undylw  \
@@ -187,12 +173,11 @@ bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
 
 # The basic requirements for Golang development
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
 # Include Luarocks local environment
-if (command -v luarocks >/dev/null 2>&1)
-then
+if command -v luarocks &>/dev/null; then
     eval $(luarocks path --bin)
 fi
 
