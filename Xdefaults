@@ -2,7 +2,7 @@
 !  X11 terminals common settings (xterm, *rxvt)  !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Terminal name:
+! Terminal name enforced (to enable the 256 colors):
 *termName: xterm-256color
 
 ! Colorscheme inspired from gnome-terminal
@@ -40,6 +40,9 @@ URxvt*foreground: #FFFFFF
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !  RXVT-Unicode (urxvt) settings  !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Terminal name enforced (for the 256 colors):
+URxvt*termName: rxvt-unicode-256color
 
 ! Terminal transparency (false transparency, does not need an X compositor):
 URxvt*transparent: true
