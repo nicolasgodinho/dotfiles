@@ -1,7 +1,8 @@
--------------------------------
---  "Zenburn" awesome theme  --
---    By Adrian C. (anrxc)   --
--------------------------------
+----------------------------------------------------------------------
+--  Nicolas' Awesome theme                                          --
+--                                                                  --
+--  Derived work from "Zenburn" Awesome theme by Adrian C. (anrxc)  --
+----------------------------------------------------------------------
 
 -- Alternative icon sets and widget icons:
 --  * http://awesome.naquadah.org/wiki/Nice_Icons
@@ -10,28 +11,36 @@ local theme_path = os.getenv("HOME") .. "/.config/awesome/theme"
 
 -- {{{ Main
 theme = {}
-theme.wallpaper = theme_path .. "/zenburn-background.png"
+theme.wallpaper = theme_path .. "/background.jpg"
 theme.useless_gap_width = 10
 -- }}}
 
 -- {{{ Styles
-theme.font      = "Dina 6"
+theme.font      = "glisp 8"
 
 -- {{{ Colors
-theme.fg_normal  = "#DCDCCC"
-theme.fg_focus   = "#F0DFAF"
-theme.fg_urgent  = "#CC9393"
-theme.bg_normal  = "#3F3F3F"
-theme.bg_focus   = "#1E2320"
-theme.bg_urgent  = "#3F3F3F"
-theme.bg_systray = theme.bg_normal
+
+theme.fg_normal = "#BBBBBB"
+theme.bg_normal = "#252525"
+theme.fg_focus  = "#90B9FF"
+theme.bg_focus  = "#111111"
+theme.fg_urgent = "#222222"
+theme.bg_urgent = "#EEEEEE"
+
+--theme.fg_normal  = "#DCDCDC"
+--theme.fg_focus   = "#F0F0F0"
+--theme.fg_urgent  = "#CC3018"
+--theme.bg_normal  = "#4A4A4A"
+--theme.bg_focus   = "#1B1B1B"
+--theme.bg_urgent  = "#B0B0B0"
+--theme.bg_systray = "#202020"
 -- }}}
 
 -- {{{ Borders
 theme.border_width  = 2
-theme.border_normal = "#3F3F3F"
-theme.border_focus  = "#6F6F6F"
-theme.border_marked = "#CC9393"
+theme.border_normal = "#4A4A4A"
+theme.border_focus  = "#00325E"
+theme.border_marked = "#FFC600"
 -- }}}
 
 -- {{{ Titlebars
@@ -47,6 +56,8 @@ theme.titlebar_bg_normal = "#3F3F3F"
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- Example:
 --theme.taglist_bg_focus = "#CC9393"
+theme.taglist_bg_focus = "#303030"
+theme.tasklist_bg_normal = "#404040"
 -- }}}
 
 -- {{{ Widgets

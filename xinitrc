@@ -21,5 +21,5 @@ command -v compton >/dev/null 2>&1 && compton -b
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
-exec i3
+exec awesome
 
