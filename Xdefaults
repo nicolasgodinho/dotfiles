@@ -45,12 +45,11 @@ URxvt*foreground: #FFFFFF
 URxvt*termName: rxvt-unicode-256color
 
 ! Terminal transparency (false transparency, does not need an X compositor):
-URxvt*transparent: true
-URxvt*shading: 20
-! True transparency (only works if an X compositor is running):
-! NB: Comment out the above false transparency property to make it work.
-!URxvt*depth: 32
-!URxvt*background: rgba:0000/0000/0000/da00
+!URxvt*transparent: true
+!URxvt*shading: 20
+! True transparency (only works if an X compositor is running (e.g. Compton)):
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0000/da00
 
 ! Fonts:
 URxvt*font: xft:Dina:pixelsize=10

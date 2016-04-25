@@ -14,6 +14,9 @@ fi
 # Do not beep
 xset b off
 
+# Start X compositor daemonized (if existing in PATH)
+command -v compton >/dev/null 2>&1 && compton -b
+
 # exec gnome-session
 # exec startkde
 # exec startxfce4
