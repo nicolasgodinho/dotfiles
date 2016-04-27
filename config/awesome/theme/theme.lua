@@ -39,7 +39,7 @@ theme.bg_urgent = "#EEEEEE"
 -- {{{ Borders
 theme.border_width  = 2
 theme.border_normal = "#4A4A4A"
-theme.border_focus  = "#00325E"
+theme.border_focus  = "#20529E"
 theme.border_marked = "#FFC600"
 -- }}}
 

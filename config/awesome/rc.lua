@@ -218,8 +218,30 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    -- I don't like the vanilla behavior of the arrow keys. Implementing mine:
+    --awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
+    --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey,           }, "Left",
+        function ()
+            awful.client.focus.byidx(-1)
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey,           }, "Right",
+        function ()
+            awful.client.focus.byidx( 1)
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey, "Shift"   }, "Left",   function () awful.client.swap.byidx(-1) end),
+    awful.key({ modkey, "Shift"   }, "Right",  function () awful.client.swap.byidx( 1) end),
+    awful.key({ modkey, "Control" }, "Left",   function () awful.screen.focus_relative(-1) end),
+    awful.key({ modkey, "Control" }, "Right",  function () awful.screen.focus_relative( 1) end),
+    awful.key({ modkey, "Mod1"    }, "Right" , function () awful.tag.incmwfact( 0.05)    end),
+    awful.key({ modkey, "Mod1"    }, "Left",   function () awful.tag.incmwfact(-0.05)    end),
+    awful.key({ modkey, "Mod1", "Control" }, "Left",   function () awful.tag.incnmaster( 1)      end),
+    awful.key({ modkey, "Mod1", "Control" }, "Right" , function () awful.tag.incnmaster(-1)      end),
+    awful.key({ modkey, "Mod1"    }, "Up",     function () awful.tag.incncol( 1)         end),
+    awful.key({ modkey, "Mod1"    }, "Down",   function () awful.tag.incncol(-1)         end),
+
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
@@ -232,6 +254,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
+    -- The main menu is useless.
     --awful.key({ modkey,           }, "w", function () mymainmenu:show() end),
 
     -- Layout manipulation
@@ -275,7 +298,13 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+
+    -- Screenlocker ('#119' is the Delete key)
+    awful.key({ "Control", "Mod1" }, "#119", function () awful.util.spawn("xtrlock") end),
+    awful.key({ "Control", "Mod1", "Mod4" }, "#119", function () awful.util.spawn("xtrlock -b") end),
+    awful.key({ "Control", "Mod1", "Shift" }, "#119", function () awful.util.spawn_with_shell("xtrlock -b | sudo pm-suspend") end)
+
 )
 
 clientkeys = awful.util.table.join(
@@ -285,7 +314,9 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
-    --[[  NOT NEEDED
+    -- I dont't like the minimized windows. I prefer to control this only by
+    -- mouse.
+    --[[
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
@@ -297,7 +328,11 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
-        end)
+        end),
+
+    -- These keybidings are there to make Arrow keys bindings coherent.
+    awful.key({ modkey, "Shift", "Control" }, "Left", awful.client.movetoscreen),
+    awful.key({ modkey, "Shift", "Control" }, "Right", awful.client.movetoscreen)
 )
 
 -- Bind all key numbers to tags.
