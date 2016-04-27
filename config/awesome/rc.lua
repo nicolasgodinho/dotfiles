@@ -11,6 +11,20 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+--- {{{ Naughty (notification library)
+naughty.config.defaults.timeout          = 5
+naughty.config.defaults.screen           = screen.count() or 1
+naughty.config.defaults.position         = "top_right"
+naughty.config.defaults.margin           = 4
+naughty.config.defaults.gap              = 4
+naughty.config.defaults.ontop            = true
+naughty.config.defaults.font             = beautiful.font or "Dina 8"
+naughty.config.defaults.icon             = nil
+naughty.config.defaults.icon_size        = 80
+naughty.config.defaults.border_width     = 1
+naughty.config.defaults.hover_timeout    = nil
+--- }}}
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
