@@ -13,3 +13,6 @@
 [submodule "vim-plugins/vim-go"]
 	path = vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule "awesomewm-plugins/sharedtags"]
+	path = config/awesome/sharedtags
+	url = https://github.com/Drauthius/awesome-sharedtags

@@ -11,6 +11,10 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+-- {{{ Local extensions
+local sharedtags = require("sharedtags")
+-- }}}
+
 --- {{{ Naughty (notification library)
 naughty.config.defaults.timeout          = 5
 naughty.config.defaults.screen           = screen.count() or 1
@@ -107,15 +111,18 @@ end
 -- }}}
 
 -- {{{ Tags
--- Define a tag table which hold all screen tags.
-tags = {
-    names = { 'www', 'vim', 'term1', 'term2', 'misc', 'vm', 'mails', 'music', 'sysadm', }
-}
-for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag(tags.names, s, layouts[1])
-    --tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
-end
+-- Define a tag table shared among all screens.
+local tags = sharedtags({
+    { name = 'www', layout = layouts[1] },
+    { name = 'vim', layout = layouts[1] },
+    { name = 'term1', layout = layouts[1] },
+    { name = 'term2', layout = layouts[1] },
+    { name =  'misc', layout = layouts[1] },
+    { name =  'vm', layout = layouts[1] },
+    { name =  'mails', layout = layouts[1] },
+    { name =  'music', layout = layouts[1] },
+    { name =  'sysadm', layout = layouts[1] }
+})
 -- }}}
 
 -- {{{ Menu
@@ -238,7 +245,7 @@ end
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewprev),
     awful.button({ }, 5, awful.tag.viewnext)
 ))
@@ -249,7 +256,7 @@ globalkeys = awful.util.table.join(
     -- I don't like the vanilla behavior of the arrow keys. Implementing mine:
     --awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Left",
+    awful.key({ modkey,           }, "Left",  setìỳ
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
@@ -371,26 +378,24 @@ for i = 1, 10 do
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        local screen = mouse.screen
-                        local tag = awful.tag.gettags(screen)[i]
-                        if tag then
-                           awful.tag.viewonly(tag)
-                        end
+                      local tag = tags[i]
+                      if tag then
+                         sharedtags.viewonly(tag)
+                      end
                   end),
         -- Toggle tag.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
-                      local screen = mouse.screen
-                      local tag = awful.tag.gettags(screen)[i]
+                      local tag = tags[i]
                       if tag then
-                         awful.tag.viewtoggle(tag)
+                         sharedtags.viewtoggle(tag)
                       end
                   end),
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
+                          local tag = tags[i]
                           if tag then
                               awful.client.movetotag(tag)
                           end
@@ -400,7 +405,7 @@ for i = 1, 10 do
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = awful.tag.gettags(client.focus.screen)[i]
+                          local tag = tags[i]
                           if tag then
                               awful.client.toggletag(tag)
                           end
