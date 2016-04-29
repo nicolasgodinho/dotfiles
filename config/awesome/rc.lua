@@ -40,6 +40,20 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme/theme.lua")
 
+--- {{{ Naughty (notification library)
+naughty.config.defaults.timeout          = 5
+naughty.config.defaults.screen           = screen.count() or 1
+naughty.config.defaults.position         = "top_right"
+naughty.config.defaults.margin           = 4
+naughty.config.defaults.gap              = 4
+naughty.config.defaults.ontop            = true
+naughty.config.defaults.font             = beautiful.font
+naughty.config.defaults.icon             = nil
+naughty.config.defaults.icon_size        = 80
+naughty.config.defaults.border_width     = 1
+naughty.config.defaults.hover_timeout    = nil
+--- }}}
+
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
 editor = "vim"

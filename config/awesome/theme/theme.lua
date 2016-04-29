@@ -39,7 +39,7 @@ theme.bg_urgent = "#EEEEEE"
 -- {{{ Borders
 theme.border_width  = 2
 theme.border_normal = "#4A4A4A"
-theme.border_focus  = "#20529E"
+theme.border_focus  = "#A0A0A0"
 theme.border_marked = "#FFC600"
 -- }}}
 
@@ -56,7 +56,8 @@ theme.titlebar_bg_normal = "#3F3F3F"
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- Example:
 --theme.taglist_bg_focus = "#CC9393"
-theme.taglist_bg_focus = "#303030"
+theme.taglist_fg_focus = "#DDDDDD"
+theme.taglist_bg_focus = "#3A3A3A"
 theme.tasklist_bg_normal = "#404040"
 -- }}}
 
