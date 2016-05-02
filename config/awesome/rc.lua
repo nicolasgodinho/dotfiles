@@ -15,20 +15,6 @@ local menubar = require("menubar")
 local sharedtags = require("sharedtags")
 -- }}}
 
---- {{{ Naughty (notification library)
-naughty.config.defaults.timeout          = 5
-naughty.config.defaults.screen           = screen.count() or 1
-naughty.config.defaults.position         = "top_right"
-naughty.config.defaults.margin           = 4
-naughty.config.defaults.gap              = 4
-naughty.config.defaults.ontop            = true
-naughty.config.defaults.font             = beautiful.font or "Dina 8"
-naughty.config.defaults.icon             = nil
-naughty.config.defaults.icon_size        = 80
-naughty.config.defaults.border_width     = 1
-naughty.config.defaults.hover_timeout    = nil
---- }}}
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -60,7 +46,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme/theme.lua")
 
 --- {{{ Naughty (notification library)
 naughty.config.defaults.timeout          = 5
-naughty.config.defaults.screen           = screen.count() or 1
+naughty.config.defaults.screen           = 1
 naughty.config.defaults.position         = "top_right"
 naughty.config.defaults.margin           = 4
 naughty.config.defaults.gap              = 4
@@ -228,8 +214,8 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    --if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(wibox.widget.systray())
+    if s == 1 then right_layout:add(wibox.widget.systray()) end
+    --right_layout:add(wibox.widget.systray())
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -256,7 +242,7 @@ globalkeys = awful.util.table.join(
     -- I don't like the vanilla behavior of the arrow keys. Implementing mine:
     --awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     --awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Left",  setìỳ
+    awful.key({ modkey,           }, "Left",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end

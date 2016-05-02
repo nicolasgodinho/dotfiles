@@ -19,33 +19,42 @@ theme.useless_gap_width = 10
 theme.font      = "glisp 8"
 
 -- {{{ Colors
-
 theme.fg_normal = "#BBBBBB"
-theme.bg_normal = "#252525"
-theme.fg_focus  = "#90B9FF"
-theme.bg_focus  = "#111111"
-theme.fg_urgent = "#222222"
-theme.bg_urgent = "#EEEEEE"
-
---theme.fg_normal  = "#DCDCDC"
---theme.fg_focus   = "#F0F0F0"
---theme.fg_urgent  = "#CC3018"
---theme.bg_normal  = "#4A4A4A"
---theme.bg_focus   = "#1B1B1B"
---theme.bg_urgent  = "#B0B0B0"
+theme.bg_normal = "#303030"
+theme.fg_focus  = "#F0F0F0"  -- was "#90B9FF"
+theme.bg_focus  = "#101010"
+theme.fg_urgent = "#000000"
+theme.bg_urgent = "#EE9393"
 --theme.bg_systray = "#202020"
 -- }}}
 
 -- {{{ Borders
 theme.border_width  = 2
-theme.border_normal = "#4A4A4A"
-theme.border_focus  = "#A0A0A0"
+theme.border_normal = "#505050"
+theme.border_focus  = "#80A9DD"  -- was "#DDDDDD"
 theme.border_marked = "#FFC600"
 -- }}}
 
--- {{{ Titlebars
-theme.titlebar_bg_focus  = "#3F3F3F"
-theme.titlebar_bg_normal = "#3F3F3F"
+-- {{{ Tasks
+--theme.tasklist_fg_focus = "#DDDDDD"
+--theme.tasklist_bg_focus  = "#000000"
+
+theme.tasklist_fg_normal = "#999999"
+theme.tasklist_bg_normal = "#505050"
+
+--theme.tasklist_fg_urgent = "#222222"
+--theme.tasklist_bg_urgent = "#CC9393"
+-- }}}
+
+-- {{{ Tags
+theme.taglist_fg_focus = "#101010"
+theme.taglist_bg_focus = "#DDDDDD"
+
+--theme.taglist_fg_normal = "#3A3A3A"
+--theme.taglist_bg_normal = "#999999"
+
+--theme.taglist_fg_urgent = "#222222"
+--theme.taglist_bg_urgent = "#CC9393"
 -- }}}
 
 -- There are other variable sets
@@ -54,11 +63,7 @@ theme.titlebar_bg_normal = "#3F3F3F"
 -- [taglist|tasklist]_[bg|fg]_[focus|urgent]
 -- titlebar_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- Example:
---theme.taglist_bg_focus = "#CC9393"
-theme.taglist_fg_focus = "#DDDDDD"
-theme.taglist_bg_focus = "#3A3A3A"
-theme.tasklist_bg_normal = "#404040"
+
 -- }}}
 
 -- {{{ Widgets
