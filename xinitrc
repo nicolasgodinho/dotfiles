@@ -17,9 +17,12 @@ xset b off
 # Start X compositor daemonized (if existing in PATH)
 command -v compton >/dev/null 2>&1 && compton -b
 
+# Nitrogen restores the background
+command -v nitrogen >/dev/null 2>&1 && nitrogen --restore
+
 # exec gnome-session
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
-exec awesome
+exec cwm
 
