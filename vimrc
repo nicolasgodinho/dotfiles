@@ -34,8 +34,8 @@ set cursorline
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 
-" Colorize the 80th column
-set colorcolumn=80
+" Colorize the 81st column
+set colorcolumn=81
 hi ColorColumn ctermbg=8
 
 " A ruler in the bottom-right corner to localize myself in the file
@@ -71,8 +71,8 @@ set softtabstop=4
 " But displays tabulation as 8 spaces long
 set tabstop=8
 
-" Text width set to 79 chars but without forcing the text wrapping
-set textwidth=79
+" Text width set to 80 chars but without forcing the text wrapping
+set textwidth=80
 set formatoptions-=t
 
 " Easier formatting of paragraphs
