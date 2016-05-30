@@ -1,18 +1,17 @@
 # COMMANDS
-command dualscreen-home-dock "/home/nicolas/.screenlayout/dualscreen_home_1680x1050_on_left.sh"
-
 command term urxvt
 command lock xtrlock
 
 command top "urxvt -e top"
 command htop "urxvt -e htop"
-command irssi irssi
+command irssi "urxvt -e irssi"
+command tmux "urxvt -e tmux"
 
 command firefox firefox
+command vim gvim
 command spotify spotify
 command mail claws-mail
 
-command xfontsel xfontsel
 
 # AUTOGROUPS
 autogroup 1 "Firefox"
@@ -21,9 +20,10 @@ autogroup 9 "claws-mail"
 # APPEARANCE & BEHAVIOUR
 fontname "sans-serif:pixelsize=14:bold"
 borderwidth 2
-sticky no
-snapdist 5
+sticky yes
+snapdist 30
 gap 0 0 0 0
+moveamount 20
 
 # GROUPS
 bind 4-1        grouponly1
@@ -70,7 +70,27 @@ bind 4-slash    search
 bind S4-slash   exec
 bind 4-period   menusearch
 bind M-period   menusearch
-bind 4-space    hide
+bind 4-space    label
+bind C4-space   hide
+
+bind M-Left     unmap
+bind M-Right    unmap
+bind M-Up       unmap
+bind M-Down     unmap
+bind 4-Up       raise
+bind 4-Down     lower
+bind 4-Tab      cycle
+bind S4-Tab     rcycle
+bind S4-x       delete
+
+bind C4-Left     moveleft
+bind SC4-Left    bigmoveleft
+bind C4-Right    moveright
+bind SC4-Right   bigmoveright
+bind C4-Up       moveup
+bind SC4-Up      bigmoveup
+bind C4-Down     movedown
+bind SC4-Down    bigmovedown
 
 # MOUSEBINDINGS
 mousebind 4-1   window_move
