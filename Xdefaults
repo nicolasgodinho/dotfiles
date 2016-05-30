@@ -56,11 +56,11 @@ URxvt*font: xft:Dina:pixelsize=10
 URxvt*boldFont: xft:Dina:bold:pixelsize=10
 !URxvt*letterSpace: -1
 
-! Bind Ctrl+Shift+{H,J,K,L} to change font size easily while urxvt is running:
-URxvt*keysym.C-S-H: command:\033]710;xft:Dina:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=10\007
-URxvt*keysym.C-S-J: command:\033]710;xft:Dina:pixelsize=16\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=16\007
-URxvt*keysym.C-S-K: command:\033]710;xft:Monospace:pixelsize=13\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=13\007
-URxvt*keysym.C-S-L: command:\033]710;xft:Monospace:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=18\007
+! Bind Ctrl+Shift+F{1..4} to change font size easily while urxvt is running:
+URxvt*keysym.C-S-F1: command:\033]710;xft:Dina:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=10\007
+URxvt*keysym.C-S-F2: command:\033]710;xft:Dina:pixelsize=16\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=16\007
+URxvt*keysym.C-S-F3: command:\033]710;xft:Monospace:pixelsize=15\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=15\007
+URxvt*keysym.C-S-F4: command:\033]710;xft:Monospace:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=18\007
 
 ! Raise X11 urgency hint on terminal bell
 URxvt*urgentOnBell: true
@@ -78,7 +78,7 @@ URxvt*url-launcher: firefox
 URxvt*matcher.button: 3
 
 ! URxvt scrolling options and cursor style:
-URxvt*saveLines: 10000
+URxvt*saveLines: 100000
 URxvt*scrollstyle: plain
 URxvt*scrollBar: true
 URxvt*scrollBar_right: true
