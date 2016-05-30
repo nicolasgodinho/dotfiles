@@ -7,9 +7,9 @@
 
 ! Colorscheme inspired from gnome-terminal
 ! Source: http://blog.ezyang.com/2010/01/rxvt-unicode-for-gnome-terminal-refugees/
-Xterm*background: #000000
+XTerm*background: #000000
 URxvt*background: #000000
-Xterm*foreground: #FFFFFF
+XTerm*foreground: #FFFFFF
 URxvt*foreground: #FFFFFF
 ! Black
 *color0  : #2E3436
