@@ -10,14 +10,18 @@ command irssi "urxvt -e irssi"
 command tmux "urxvt -e tmux"
 
 command firefox firefox
+command chromium "chromium --incognito"
 command vim gvim
 command spotify spotify
 command mail claws-mail
 
-
 # AUTOGROUPS
 autogroup 1 "Firefox"
+autogroup 1 "Chromium"
 autogroup 9 "claws-mail"
+autogroup 0 "dzen"
+autogroup 0 "Spotify"
+autogroup 0 "Xystray"
 
 # APPEARANCE & BEHAVIOUR
 fontname "sans-serif:pixelsize=14:bold"
@@ -77,6 +81,7 @@ bind C4M-Delete lockblackscreen
 bind CSM-Delete locksuspend
 bind 4-f        maximize
 bind 4-l        label
+bind 4-s        freeze
 bind 4-slash    search
 bind S4-slash   exec
 bind 4-period   menusearch

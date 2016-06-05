@@ -29,7 +29,7 @@ count_screens() {
 }
 
 # Kill all dzen2 processes in case we run this script twice inadvertently...
-killall dzen2 || :
+killall dzen2 2>&1 >/dev/null || true
 
 if [[ "$(count_screens)" -ge 2 ]]; then
     CONKYPIPE="$(mktemp -p "$HOME" -t ".conkypipe.XXX" -u)"
