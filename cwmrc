@@ -1,6 +1,8 @@
 # COMMANDS
 command term urxvt
 command lock xtrlock
+command lockblackscreen "xtrlock -b"
+command locksuspend "sh -c 'xtrlock -b & sudo pm-suspend'"
 
 command top "urxvt -e top"
 command htop "urxvt -e htop"
@@ -22,8 +24,15 @@ fontname "sans-serif:pixelsize=14:bold"
 borderwidth 2
 sticky yes
 snapdist 30
-gap 0 0 0 0
+gap 14 0 0 0
 moveamount 20
+
+# IGNORE SOME WINDOWS
+ignore dzen
+ignore stalonetray
+ignore xystray
+ignore VLC
+ignore Dunst
 
 # GROUPS
 bind 4-1        grouponly1
@@ -64,6 +73,8 @@ bind 4-k        rcyclegroup
 bind 4-Return   terminal
 bind 4-equal    vmaximize
 bind S4-equal   hmaximize
+bind C4M-Delete lockblackscreen
+bind CSM-Delete locksuspend
 bind 4-f        maximize
 bind 4-l        label
 bind 4-slash    search

@@ -14,13 +14,21 @@ fi
 # Do not beep
 xset b off
 
+# Little utility function to test if program exists on current system and is
+# accessible through the PATH.
+exists() {
+    command -v "${1?}" >/dev/null 2>&1
+}
+
 # Start X compositor daemonized (if existing in PATH)
-command -v compton >/dev/null 2>&1 && compton -b
-#command -v xcompmgr >/dev/null 2>&1 && \
-#    xcompmgr -cCtF -I.1 -O.08 -D10 -t-15 -l-15 -r12 -o.5 &
+exists compton && compton -b
+#exists xcompmgr && xcompmgr -cCtF -I.1 -O.08 -D10 -t-15 -l-15 -r12 -o.5 &
 
 # Nitrogen restores the background
-command -v nitrogen >/dev/null 2>&1 && nitrogen --restore
+exists nitrogen && nitrogen --restore
+
+# Dunst for the desktop notification
+exists dunst && dunst -config ~/.config/dunst/dunstrc &
 
 # exec gnome-session
 # exec startkde
