@@ -18,7 +18,7 @@ dzen_on_screen() {
 count_screens() {
     xrandr | awk '
     BEGIN { nb_screens=0 }
-    /^[A-Z0-9]+ connected/ {
+    /^[A-Za-z0-9]+ connected/ {
         getline;
         while ($0 ~ /^\s+/) {
             if ($2 ~ /[0-9\.]+\*/) nb_screens++;
