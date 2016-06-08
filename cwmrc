@@ -27,8 +27,8 @@ autogroup 0 "Xystray"
 fontname "sans-serif:pixelsize=14:bold"
 borderwidth 2
 sticky yes
-snapdist 30
-gap 14 0 0 0
+snapdist 20
+gap 34 20 20 20
 moveamount 20
 
 # IGNORE SOME WINDOWS
