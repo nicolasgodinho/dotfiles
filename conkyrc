@@ -66,8 +66,7 @@ ${if_match ${battery_percent} <= 20}^bg(\#d00)${else}^bg()${endif} \
 ^bg(\#333)\
 ^ca(4,amixer -q set Master 3dB+ unmute)^ca(5,amixer -q set Master 3dB- unmute)\
 ^ca(1,amixer -q set Master toggle)^ca(2,urxvt -e alsamixer) \
-^i(.xbmicons/spkr_01.xbm) \
-^fg(white)${execi 2 amixer -c 0 get Master | grep Mono: | cut -d ' ' -f6 | tr -d '[]'}^fg()\
+${execi 2 ./.conkyalsahelper.sh '^i(.xbmicons/spkr_01.xbm) ^fg(white)' '^i(.xbmicons/spkr_02.xbm) ^fg(\#f44)' '^fg()'}\
  ^bg()^ca()^ca()^ca()^ca()\
 \
 \
