@@ -19,7 +19,7 @@ xset b off
 xcompmgr -I.1 -O.08 -D10 -t-5 -l-5 -r12 -o.5 -CcFf &
 
 # Launch dzen script if available
-[[ -x .dzen.sh ]] && ./.dzen.sh &
+#[[ -x .dzen.sh ]] && ./.dzen.sh &
 
 # Nitrogen restores the background
 nitrogen --restore &
@@ -27,9 +27,12 @@ nitrogen --restore &
 # Dunst for the desktop notification
 dunst -config ~/.config/dunst/dunstrc &
 
+# Tint2 for Openbox
+tint2 &
+
 # exec gnome-session
 # exec startkde
 # exec startxfce4
 # ...or the Window Manager of your choice
-exec cwm
+exec openbox-session
 
