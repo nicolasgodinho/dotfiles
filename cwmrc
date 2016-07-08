@@ -6,7 +6,7 @@ command locksuspend "sh -c 'xtrlock -b & sudo pm-suspend'"
 
 command top "urxvt -e top"
 command htop "urxvt -e htop"
-command irssi "urxvt -e irssi"
+command irc hexchat
 command tmux "urxvt -e tmux"
 
 command firefox firefox
@@ -21,7 +21,7 @@ autogroup 1 "Chromium"
 autogroup 9 "claws-mail"
 autogroup 0 "dzen"
 autogroup 0 "Spotify"
-autogroup 0 "Xystray"
+autogroup 0 "stalonetray"
 
 # APPEARANCE & BEHAVIOUR
 fontname "sans-serif:pixelsize=14:bold"
