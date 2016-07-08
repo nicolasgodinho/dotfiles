@@ -41,7 +41,7 @@
   </placement>
   <theme>
     <name>Onyx</name>
-    <titleLayout>NDLMC</titleLayout>
+    <titleLayout>NDLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -157,10 +157,10 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>0</top>
+    <top>16</top>
     <bottom>0</bottom>
-    <left>0</left>
-    <right>0</right>
+    <left>2</left>
+    <right>2</right>
   </margins>
   <dock>
     <position>Bottom</position>
@@ -184,59 +184,47 @@
     <chainQuitKey>C-g</chainQuitKey>
     <!-- Keybindings for desktop switching -->
     <keybind key="W-Left">
-      <action name="GoToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
+      <action name="DirectionalTargetWindow">
+        <direction>west</direction>
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Unshade"/>
+        </finalactions>
       </action>
     </keybind>
     <keybind key="W-Right">
-      <action name="GoToDesktop">
-        <to>right</to>
-        <wrap>no</wrap>
+      <action name="DirectionalTargetWindow">
+        <direction>east</direction>
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Unshade"/>
+        </finalactions>
       </action>
     </keybind>
     <keybind key="W-Up">
-      <action name="GoToDesktop">
-        <to>up</to>
-        <wrap>no</wrap>
+      <action name="DirectionalTargetWindow">
+        <direction>north</direction>
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Unshade"/>
+        </finalactions>
       </action>
     </keybind>
     <keybind key="W-Down">
-      <action name="GoToDesktop">
-        <to>down</to>
-        <wrap>no</wrap>
+      <action name="DirectionalTargetWindow">
+        <direction>south</direction>
+        <finalactions>
+          <action name="Focus"/>
+          <action name="Unshade"/>
+        </finalactions>
       </action>
     </keybind>
     <keybind key="S-W-Left">
-      <action name="SendToDesktop">
-        <to>left</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="S-W-Right">
-      <action name="SendToDesktop">
-        <to>right</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="S-W-Up">
-      <action name="SendToDesktop">
-        <to>up</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="S-W-Down">
-      <action name="SendToDesktop">
-        <to>down</to>
-        <wrap>no</wrap>
-      </action>
-    </keybind>
-    <keybind key="C-W-Left">
       <action name="MoveResizeTo">
         <monitor>prev</monitor>
       </action>
     </keybind>
-    <keybind key="C-W-Right">
+    <keybind key="S-W-Right">
       <action name="MoveResizeTo">
         <monitor>next</monitor>
       </action>
@@ -341,9 +329,16 @@
         <to>10</to>
       </action>
     </keybind>
+
     <!-- Perso -->
     <keybind key="W-f">
       <action name="ToggleMaximize"/>
+    </keybind>
+    <keybind key="W-equal">
+      <action name="ToggleMaximize"><direction>vertical</direction></action>
+    </keybind>
+    <keybind key="W-S-equal">
+      <action name="ToggleMaximize"><direction>horizontal</direction></action>
     </keybind>
     <keybind key="W-S-f">
       <action name="ToggleFullscreen"/>
@@ -352,20 +347,42 @@
       <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="W-S-r">
-        <action name="Restart"/>
+      <action name="Restart"/>
     </keybind>
     <keybind key="W-S-e">
-        <action name="Exit"> <prompt>yes</prompt> </action>
+      <action name="Exit"><prompt>yes</prompt></action>
     </keybind>
     <keybind key="W-o">
-        <action name="ToggleOmnipresent"/>
+      <action name="ToggleOmnipresent"/>
     </keybind>
-
-    <!--
-     <keybind key="W-d">
+    <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
--->
+    <keybind key="C-W-Left">
+      <action name="MoveRelative"><x>-40</x><y>0</y></action>
+    </keybind>
+    <keybind key="C-W-Right">
+      <action name="MoveRelative"><x>40</x><y>0</y></action>
+    </keybind>
+    <keybind key="C-W-Up">
+      <action name="MoveRelative"><x>0</x><y>-40</y></action>
+    </keybind>
+    <keybind key="C-W-Down">
+      <action name="MoveRelative"><x>0</x><y>40</y></action>
+    </keybind>
+    <keybind key="C-W-A-Left">
+      <action name="ResizeRelative"><right>-40</right></action>
+    </keybind>
+    <keybind key="C-W-A-Right">
+      <action name="ResizeRelative"><right>40</right></action>
+    </keybind>
+    <keybind key="C-W-A-Up">
+      <action name="ResizeRelative"><bottom>-40</bottom></action>
+    </keybind>
+    <keybind key="C-W-A-Down">
+      <action name="ResizeRelative"><bottom>40</bottom></action>
+    </keybind>
+
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
@@ -422,7 +439,7 @@
         </finalactions>
       </action>
     </keybind>
-    <!--
+<!--
     <keybind key="C-A-Tab">
       <action name="NextWindow">
         <panels>yes</panels>
@@ -436,6 +453,7 @@
     </keybind>
 -->
     <!-- Keybindings for window switching with the arrow keys -->
+<!--
     <keybind key="W-S-Right">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
@@ -456,8 +474,9 @@
         <direction>down</direction>
       </action>
     </keybind>
+-->
     <!-- Keybindings for running applications -->
-    <keybind key="W-e">
+    <keybind key="W-r">
       <action name="Execute">
         <command>gmrun</command>
       </action>
@@ -470,6 +489,11 @@
     <keybind key="W-t">
       <action name="Execute">
         <command>urxvt -e 'tmux'</command>
+      </action>
+    </keybind>
+    <keybind key="W-e">
+      <action name="Execute">
+        <command>pcmanfm</command>
       </action>
     </keybind>
     <keybind key="C-A-Delete">
@@ -559,6 +583,7 @@
       <mousebind button="Left" action="DoubleClick">
         <action name="ToggleMaximize"/>
       </mousebind>
+<!--
       <mousebind button="Up" action="Click">
         <action name="if">
           <shaded>no</shaded>
@@ -579,6 +604,7 @@
           </then>
         </action>
       </mousebind>
+-->
     </context>
     <context name="Titlebar Top Right Bottom Left TLCorner TRCorner BRCorner BLCorner">
       <mousebind button="Left" action="Press">
