@@ -42,6 +42,9 @@ hi ColorColumn ctermbg=8
 set ruler
 set laststatus=2
 
+" Always show the tabline
+set showtabline=2
+
 
 """""""""""""""""
 " VIM USABILITY "
@@ -138,10 +141,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Move around tabs easily
-map <C-n> <ESC>:tabprevious<CR>
-map <C-m> <ESC>:tabnext<CR>
-
 " I prefer to navigate through 'visual' lines than hard lines
 map <silent> <Up> gk
 imap <silent> <Up> <C-o>gk
@@ -189,15 +188,16 @@ nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
 " Alt+Number to move between tabs
-nmap <A-1> :tabnext 1<CR>
-nmap <A-2> :tabnext 2<CR>
-nmap <A-3> :tabnext 3<CR>
-nmap <A-4> :tabnext 4<CR>
-nmap <A-5> :tabnext 5<CR>
-nmap <A-6> :tabnext 6<CR>
-nmap <A-7> :tabnext 7<CR>
-nmap <A-8> :tabnext 8<CR>
-nmap <A-9> :tabnext 9<CR>
+nmap <Leader>1 :tabnext 1<CR>
+nmap <Leader>2 :tabnext 2<CR>
+nmap <Leader>3 :tabnext 3<CR>
+nmap <Leader>4 :tabnext 4<CR>
+nmap <Leader>5 :tabnext 5<CR>
+nmap <Leader>6 :tabnext 6<CR>
+nmap <Leader>7 :tabnext 7<CR>
+nmap <Leader>8 :tabnext 8<CR>
+nmap <Leader>9 :tabnext 9<CR>
+nmap <Leader>0 :tabnext 10<CR>
 
 " Shift+Alt+Arrows to move between tabs
 nmap <S-A-Right> :tabnext<CR>
@@ -240,11 +240,14 @@ execute pathogen#infect()
 " NERDTree <https://github.com/scrooloose/nerdtree>
 " Toggle NERDTree with F1
 nmap <F1> :NERDTreeToggle<CR>
+nmap <Leader>nt :NERDTreeToggle<CR>
 
 " VIM Lightline <https://github.com/itchyny/lightline.vim>
 let g:lightline = {
-    \ 'colorscheme': 'powerline',
-\ }
+    \ 'colorscheme': 'powerline' }
+let g:lightline.tabline = {
+    \ 'left': [ [ 'tabs' ] ],
+    \ 'right': [ [ 'close' ] ] }
 
 " Vim Indent Guides <https://github.com/nathanaelkane/vim-indent-guides>
 
@@ -267,3 +270,7 @@ au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 au FileType go nmap <Leader>e <Plug>(go-rename)
+
+" Tagbar <https://github.com/majutsushi/tagbar>
+nmap <F8> :TagbarToggle<CR>
+nmap <Leader>tb :TagbarToggle<CR>
