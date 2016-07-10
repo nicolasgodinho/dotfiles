@@ -27,8 +27,9 @@ nitrogen --restore &
 # Dunst for the desktop notification
 dunst -config ~/.config/dunst/dunstrc &
 
-# Tint2 for Openbox
+# Tint2 and Conky for Openbox
 tint2 &
+conky &
 
 # exec gnome-session
 # exec startkde
