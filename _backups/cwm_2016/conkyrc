@@ -1,0 +1,75 @@
+background no
+update_interval 1
+total_run_times 0
+override_utf8_locale yes
+short_units yes
+uppercase no
+out_to_console yes
+out_to_x no
+if_up_strictness address
+format_human_readable true
+
+use_spacer left
+
+TEXT
+^bg() \
+^i(.xbmicons/cpu.xbm) ^fg(white)${cpu cpu0}%^fg()\
+ ^bg()\
+\
+^bg(\#333) \
+^i(.xbmicons/mem.xbm) \
+^fg(white)${mem}^fg() (^fg(white)${memperc}%^fg())\
+ ^bg()\
+\
+${if_match ${acpitemp} > 60}^bg(\#a00)${else}^bg()${endif} \
+^i(.xbmicons/temp.xbm)\
+^fg(white)${acpitemp}°C^fg()\
+ ^bg()\
+\
+^bg(\#333) \
+/ ^fg(white)${fs_used_perc /}%^fg()\
+${if_mounted /usr} /usr ^fg(white)${fs_used_perc /usr}%^fg()${endif}\
+${if_mounted /var} /var ^fg(white)${fs_used_perc /var}%^fg()${endif}\
+${if_mounted /home} /home ^fg(white)${fs_used_perc /home}%^fg()${endif}\
+ ^bg()\
+\
+\
+^bg() \
+^i(.xbmicons/wifi_02.xbm) \
+${if_up wlp3s0}\
+^fg(\#9f9)${addr wlp3s0}^fg() on ^fg(\#ff2)${wireless_essid wlp3s0}^fg() <^fg(white)${wireless_link_qual_perc wlp3s0}%^fg()> \
+[^fg(\#9cf)${downspeed wlp3s0}^fg(\#58c)^i(.xbmicons/net_down_03.xbm)^fg()\
+^fg(\#eaa)${upspeed wlp3s0}^fg(\#c77)^i(.xbmicons/net_up_03.xbm)^fg()]\
+${else}\
+^fg(\#f44)down^fg()\
+${endif}\
+ ^bg()\
+\
+\
+^bg(\#333) \
+^i(.xbmicons/net_wired.xbm) \
+${if_up enp0s25}\
+^fg(\#9f9)${addr enp0s25}^fg() \
+[^fg(\#9cf)${downspeed enp0s25}^fg(\#58c)^i(.xbmicons/net_down_03.xbm)^fg()\
+^fg(\#eaa)${upspeed enp0s25}^fg(\#c77)^i(.xbmicons/net_up_03.xbm)^fg()]\
+${else}\
+^fg(\#f44)down^fg()\
+${endif}\
+ ^bg()\
+\
+\
+${if_match ${battery_percent} <= 20}^bg(\#d00)${else}^bg()${endif} \
+^i(.xbmicons/battery90.xbm) ^fg(white)${battery_percent}%^fg()\
+ ^bg()\
+\
+\
+^bg(\#333)\
+^ca(4,amixer -q set Master 3dB+ unmute)^ca(5,amixer -q set Master 3dB- unmute)\
+^ca(1,amixer -q set Master toggle)^ca(2,urxvt -e alsamixer) \
+${execi 2 ./.conkyalsahelper.sh '^i(.xbmicons/spkr_01.xbm) ^fg(white)' '^i(.xbmicons/spkr_02.xbm) ^fg(\#f44)' '^fg()' 2>/dev/null}\
+ ^bg()^ca()^ca()^ca()^ca()\
+\
+\
+^bg() \
+${time %A %-d %B %Y · %H:%M:%S}\
+ ^bg()\
