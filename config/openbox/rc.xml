@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
-    <strength>10</strength>
-    <screen_edge_strength>20</screen_edge_strength>
+    <strength>20</strength>
+    <screen_edge_strength>40</screen_edge_strength>
   </resistance>
   <focus>
     <focusNew>yes</focusNew>
@@ -10,15 +10,15 @@
        apply -->
     <followMouse>no</followMouse>
     <!-- move focus to a window when you move the mouse into it -->
-    <focusLast>yes</focusLast>
+    <focusLast>no</focusLast>
     <!-- focus the last used window when changing desktops, instead of the one
        under the mouse pointer. when followMouse is enabled -->
-    <underMouse>no</underMouse>
+    <underMouse>yes</underMouse>
     <!-- move focus under the mouse, even when the mouse is not moving -->
     <focusDelay>200</focusDelay>
     <!-- when followMouse is enabled, the mouse must be inside the window for
        this many milliseconds (1000 = 1 sec) before moving focus to it -->
-    <raiseOnFocus>no</raiseOnFocus>
+    <raiseOnFocus>yes</raiseOnFocus>
     <!-- when followMouse is enabled, and a window is given focus by moving the
        mouse into it, also raise the window -->
   </focus>
@@ -55,21 +55,21 @@
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
-      <name>sans</name>
+      <name>Sans</name>
       <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="InactiveWindow">
-      <name>sans</name>
+      <name>Sans</name>
       <size>8</size>
       <!-- font size in points -->
-      <weight>bold</weight>
+      <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
-      <slant>normal</slant>
+      <slant>Normal</slant>
       <!-- 'italic' or 'normal' -->
     </font>
     <font place="MenuHeader">
@@ -138,7 +138,7 @@
   </desktops>
   <resize>
     <drawContents>yes</drawContents>
-    <popupShow>Nonpixel</popupShow>
+    <popupShow>NonPixel</popupShow>
     <!-- 'Always', 'Never', or 'Nonpixel' (xterms and such) -->
     <popupPosition>Center</popupPosition>
     <!-- 'Center', 'Top', or 'Fixed' -->
@@ -157,13 +157,13 @@
      Many programs reserve space automatically, but you can use this in other
      cases. -->
   <margins>
-    <top>16</top>
+    <top>0</top>
     <bottom>0</bottom>
-    <left>2</left>
-    <right>2</right>
+    <left>0</left>
+    <right>0</right>
   </margins>
   <dock>
-    <position>Bottom</position>
+    <position>TopLeft</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>0</floatingX>
     <floatingY>0</floatingY>
@@ -329,16 +329,19 @@
         <to>10</to>
       </action>
     </keybind>
-
     <!-- Perso -->
     <keybind key="W-f">
       <action name="ToggleMaximize"/>
     </keybind>
     <keybind key="W-equal">
-      <action name="ToggleMaximize"><direction>vertical</direction></action>
+      <action name="ToggleMaximize">
+        <direction>vertical</direction>
+      </action>
     </keybind>
     <keybind key="W-S-equal">
-      <action name="ToggleMaximize"><direction>horizontal</direction></action>
+      <action name="ToggleMaximize">
+        <direction>horizontal</direction>
+      </action>
     </keybind>
     <keybind key="W-S-f">
       <action name="ToggleFullscreen"/>
@@ -350,7 +353,9 @@
       <action name="Restart"/>
     </keybind>
     <keybind key="W-S-e">
-      <action name="Exit"><prompt>yes</prompt></action>
+      <action name="Exit">
+        <prompt>yes</prompt>
+      </action>
     </keybind>
     <keybind key="W-o">
       <action name="ToggleOmnipresent"/>
@@ -359,30 +364,49 @@
       <action name="ToggleShowDesktop"/>
     </keybind>
     <keybind key="C-W-Left">
-      <action name="MoveRelative"><x>-40</x><y>0</y></action>
+      <action name="MoveRelative">
+        <x>-40</x>
+        <y>0</y>
+      </action>
     </keybind>
     <keybind key="C-W-Right">
-      <action name="MoveRelative"><x>40</x><y>0</y></action>
+      <action name="MoveRelative">
+        <x>40</x>
+        <y>0</y>
+      </action>
     </keybind>
     <keybind key="C-W-Up">
-      <action name="MoveRelative"><x>0</x><y>-40</y></action>
+      <action name="MoveRelative">
+        <x>0</x>
+        <y>-40</y>
+      </action>
     </keybind>
     <keybind key="C-W-Down">
-      <action name="MoveRelative"><x>0</x><y>40</y></action>
+      <action name="MoveRelative">
+        <x>0</x>
+        <y>40</y>
+      </action>
     </keybind>
     <keybind key="C-W-A-Left">
-      <action name="ResizeRelative"><right>-40</right></action>
+      <action name="ResizeRelative">
+        <right>-40</right>
+      </action>
     </keybind>
     <keybind key="C-W-A-Right">
-      <action name="ResizeRelative"><right>40</right></action>
+      <action name="ResizeRelative">
+        <right>40</right>
+      </action>
     </keybind>
     <keybind key="C-W-A-Up">
-      <action name="ResizeRelative"><bottom>-40</bottom></action>
+      <action name="ResizeRelative">
+        <bottom>-40</bottom>
+      </action>
     </keybind>
     <keybind key="C-W-A-Down">
-      <action name="ResizeRelative"><bottom>40</bottom></action>
+      <action name="ResizeRelative">
+        <bottom>40</bottom>
+      </action>
     </keybind>
-
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
@@ -403,6 +427,7 @@
     <!-- Keybindings for window switching -->
     <keybind key="W-Tab">
       <action name="NextWindow">
+        <dialog>icons</dialog>
         <finalactions>
           <action name="Focus"/>
           <action name="Raise"/>
@@ -412,6 +437,7 @@
     </keybind>
     <keybind key="W-S-Tab">
       <action name="PreviousWindow">
+        <dialog>icons</dialog>
         <finalactions>
           <action name="Focus"/>
           <action name="Raise"/>
@@ -439,7 +465,7 @@
         </finalactions>
       </action>
     </keybind>
-<!--
+    <!--
     <keybind key="C-A-Tab">
       <action name="NextWindow">
         <panels>yes</panels>
@@ -453,7 +479,7 @@
     </keybind>
 -->
     <!-- Keybindings for window switching with the arrow keys -->
-<!--
+    <!--
     <keybind key="W-S-Right">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
@@ -583,7 +609,7 @@
       <mousebind button="Left" action="DoubleClick">
         <action name="ToggleMaximize"/>
       </mousebind>
-<!--
+      <!--
       <mousebind button="Up" action="Click">
         <action name="if">
           <shaded>no</shaded>
