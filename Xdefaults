@@ -62,6 +62,12 @@ URxvt*keysym.C-S-F2: command:\033]710;xft:Dina:pixelsize=16\007\033]711;%s%d\007
 URxvt*keysym.C-S-F3: command:\033]710;xft:Monospace:pixelsize=15\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=15\007
 URxvt*keysym.C-S-F4: command:\033]710;xft:Monospace:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=18\007
 
+! URxvt messes up with Alt+arrow keys
+URxvt*keysym.M-Down:        \033[1;3B
+URxvt*keysym.M-Up:          \033[1;3A
+URxvt*keysym.M-Left:        \033[1;3D
+URxvt*keysym.M-Right:       \033[1;3C
+
 ! Raise X11 urgency hint on terminal bell
 URxvt*urgentOnBell: true
 
