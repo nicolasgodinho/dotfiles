@@ -118,9 +118,9 @@ ${if_up eth0}\
 $color1${font Sans:bold:size=7.5}IP address$color\
 ${font Monospace:size=7.5}$alignr${addr eth0}$font
 $color1${font Sans:bold:size=7.5}Uplink$color\
-${font Sans:size=7.5}$alignr$color4${upspeedgraph eth0 8,60 333333 CC7777 1}$color  ${font Monospace:size=7.5}$alignr${upspeed eth0}$font
+${font Monospace:size=7.5}$alignr${upspeed eth0}/s $color4${upspeedgraph eth0 8,60 333333 CC7777 1}$color$font
 $color1${font Sans:bold:size=7.5}Downlink$color\
-${font Sans:size=7.5}$alignr$color4${downspeedgraph eth0 8,60 333333 5588CC 1}$color  ${font Monospace:size=7.5}$alignr${downspeed eth0}$font\
+${font Monospace:size=7.5}$alignr${downspeed eth0}/s $color4${downspeedgraph eth0 8,60 333333 5588CC 1}$color$font\
 $else${font Sans:italic:size=7.5}$alignc- link is down -$endif
 
 ${voffset 10}\
@@ -129,16 +129,16 @@ ${voffset -6}$color2${hr 1}$color
 ${if_up wlan0}\
 $color1${font Sans:bold:size=7.5}IP address$color\
 ${font Monospace:size=7.5}$alignr${addr wlan0}$font
-$color1${font Sans:bold:size=7.5}Access point ESSID$color\
+$color1${font Sans:bold:size=7.5}AP ESSID$color\
 ${font Monospace:size=7.5}$alignr${wireless_essid wlan0}$font
 $color1${font Sans:bold:size=7.5}Wireless link bitrate$color\
 ${font Sans:size=7.5}$alignr${wireless_bitrate wlan0}$font
 $color1${font Sans:bold:size=7.5}Wireless link quality$color\
 ${font Sans:size=7.5}$alignr${wireless_link_qual_perc wlan0}%  $color3${wireless_link_bar 4,30 wlan0}$color$font
 $color1${font Sans:bold:size=7.5}Uplink$color\
-${font Sans:size=7.5}$alignr$color4${upspeedgraph wlan0 8,60 333333 CC7777 1}$color  ${font Monospace:size=7.5}$alignr${upspeed wlan0}$font
+${font Monospace:size=7.5}$alignr${upspeed wlan0}/s $color4${upspeedgraph wlan0 8,60 333333 CC7777 1}$color$font
 $color1${font Sans:bold:size=7.5}Downlink$color\
-${font Sans:size=7.5}$alignr$color4${downspeedgraph wlan0 8,60 333333 5588CC 1}$color  ${font Monospace:size=7.5}$alignr${downspeed wlan0}$font\
+${font Monospace:size=7.5}$alignr${downspeed wlan0}/s $color4${downspeedgraph wlan0 8,60 333333 5588CC 1}$color$font\
 $else${font Sans:italic:size=7.5}$alignc- link is down -$endif
 
 ${voffset 10}\
