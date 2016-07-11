@@ -274,3 +274,28 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 " Tagbar <https://github.com/majutsushi/tagbar>
 nmap <F8> :TagbarToggle<CR>
 nmap <Leader>tb :TagbarToggle<CR>
+
+" CtrlP.vim <https://github.com/ctrlpvim/ctrlp.vim>
+let g:ctrlp_working_path_mode = 'ra'
+"" ctrlp_working_path_mode codes reminder:
+""
+"" 'c' - the directory of the current file.
+"" 'a' - the directory of the current file, unless it is a subdirectory of the
+""       cwd
+"" 'r' - the nearest ancestor of the current file that contains one of these
+""       directories or files: .git .hg .svn .bzr _darcs
+"" 'w' - modifier to "r": start search from the cwd instead of the current
+""       file's directory
+"" 0 or '' (empty string) - disable this feature.
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
