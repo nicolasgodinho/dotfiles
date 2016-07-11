@@ -522,6 +522,21 @@
         <command>pcmanfm</command>
       </action>
     </keybind>
+    <keybind key="W-F10">
+      <action name="Execute">
+        <command>amixer -q set Master toggle</command>
+      </action>
+    </keybind>
+    <keybind key="W-F11">
+      <action name="Execute">
+        <command>amixer -q set Master 3dB- unmute</command>
+      </action>
+    </keybind>
+    <keybind key="W-F12">
+      <action name="Execute">
+        <command>amixer -q set Master 3dB+ unmute</command>
+      </action>
+    </keybind>
     <keybind key="C-A-Delete">
       <action name="Execute">
         <command>xtrlock</command>
