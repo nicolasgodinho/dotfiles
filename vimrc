@@ -239,7 +239,7 @@ execute pathogen#infect()
 
 " NERDTree <https://github.com/scrooloose/nerdtree>
 " Toggle NERDTree with F1
-nmap <F1> :NERDTreeToggle<CR>
+nmap <F1> :NERDTreeFocus<CR>
 nmap <Leader>nt :NERDTreeToggle<CR>
 
 " VIM Lightline <https://github.com/itchyny/lightline.vim>
