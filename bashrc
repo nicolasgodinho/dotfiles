@@ -133,12 +133,13 @@ else
 fi
 
 # Function to display the exit code
-__exitcode_ps1()
-{
+__exitcode_ps1() {
     local exit_code="$?"
     if [[ "$exit_code" != 0 && -n "$1" ]]; then
         printf "$1" "$exit_code"
     fi
+    return "$exit_code"  # propagate the error code from previous command
+}
 }
 
 # Setting the prompt.
