@@ -140,15 +140,24 @@ __exitcode_ps1() {
     fi
     return "$exit_code"  # propagate the error code from previous command
 }
+
+__viassh_ps1() {
+    local exit_code="$?"
+    if [[ ! -z "${SSH_CONNECTION:-}" ]]; then
+        local ssh_connection_array=($SSH_CONNECTION)
+        local ssh_client_ip="${ssh_connection_array[0]}"
+        printf "$1" "$ssh_client_ip"
+    fi
+    return "$exit_code"  # propagate the error code from previous command
 }
 
 # Setting the prompt.
 case "$color_prompt:$git_prompt" in
     y:y)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     y:n)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht in $bldcyn\w$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     n:y)
         PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\$(__git_ps1 ' (%s)')\\$ "
