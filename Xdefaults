@@ -49,7 +49,7 @@ URxvt*termName: rxvt-unicode-256color
 !URxvt*shading: 20
 ! True transparency (only works if an X compositor is running (e.g. Compton)):
 URxvt*depth: 32
-URxvt*background: rgba:0000/0000/0000/d000
+URxvt*background: rgba:0000/0000/0000/e000
 
 ! Fonts:
 URxvt*font: xft:Dina:pixelsize=10
