@@ -539,12 +539,12 @@
     </keybind>
     <keybind key="C-A-Delete">
       <action name="Execute">
-        <command>xtrlock</command>
+        <command>slock</command>
       </action>
     </keybind>
     <keybind key="C-S-A-Delete">
       <action name="Execute">
-        <command>sh -c 'xtrlock -b &amp; sudo pm-suspend'</command>
+        <command>slock sudo pm-suspend</command>
       </action>
     </keybind>
   </keyboard>
