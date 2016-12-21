@@ -20,3 +20,12 @@ dunst -config ~/.config/dunst/dunstrc &
 tint2 &
 conky &
 
+# Volume icon
+volumeicon &
+
+# Network Manager applet
+nm-applet &
+
+# XFCE Power manager daemon
+xfce4-power-manager &
+
