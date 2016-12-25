@@ -504,7 +504,7 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-r">
       <action name="Execute">
-        <command>gmrun</command>
+        <command>~/.config/openbox/my_dmenu.sh</command>
       </action>
     </keybind>
     <keybind key="W-Return">
