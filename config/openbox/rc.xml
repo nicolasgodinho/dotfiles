@@ -537,6 +537,11 @@
         <command>amixer -q set Master 3dB+ unmute</command>
       </action>
     </keybind>
+    <keybind key="W-A-Delete">
+      <action name="Execute">
+        <command>xtrlock</command>
+      </action>
+    </keybind>
     <keybind key="C-A-Delete">
       <action name="Execute">
         <command>slock</command>
