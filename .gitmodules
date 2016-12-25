@@ -19,7 +19,3 @@
 [submodule "vim-plugins/tagbar"]
 	path = vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
-
-[submodule "awesomewm-plugins/sharedtags"]
-	path = config/awesome/sharedtags
-	url = https://github.com/Drauthius/awesome-sharedtags
