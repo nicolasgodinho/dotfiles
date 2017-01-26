@@ -264,6 +264,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+" Fugitive <https://github.com/tpope/vim-fugitive>
+
 " Vim-Go <https://github.com/fatih/vim-go>
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
