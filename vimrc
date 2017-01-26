@@ -256,6 +256,14 @@ nmap <Leader>ig :IndentGuidesToggle<CR>
 nmap <Leader>gg :GitGutterToggle<CR>
 nmap <Leader>GG :GitGutterLineHighlightsToggle<CR>
 
+" Syntastic <https://github.com/vim-syntastic/syntastic>
+nmap <Leader>cs :SyntasticCheck<CR>
+nmap <Leader>ccs :SyntasticReset<CR>
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
 " Vim-Go <https://github.com/fatih/vim-go>
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
