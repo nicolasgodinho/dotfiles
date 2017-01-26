@@ -250,8 +250,11 @@ let g:lightline.tabline = {
     \ 'right': [ [ 'close' ] ] }
 
 " Vim Indent Guides <https://github.com/nathanaelkane/vim-indent-guides>
+nmap <Leader>ig :IndentGuidesToggle<CR>
 
 " Vim-GitGutter <https://github.com/airblade/vim-gitgutter>
+nmap <Leader>gg :GitGutterToggle<CR>
+nmap <Leader>GG :GitGutterLineHighlightsToggle<CR>
 
 " Vim-Go <https://github.com/fatih/vim-go>
 au FileType go nmap <Leader>s <Plug>(go-implements)
@@ -301,3 +304,4 @@ let g:ctrlp_custom_ignore = {
 "let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 
 " BufExplorer <https://github.com/jlanzarotta/bufexplorer>
+nmap <Leader>be :BufExplorer<CR>
