@@ -270,8 +270,12 @@ nmap <Leader>gg :GitGutterToggle<CR>
 nmap <Leader>GG :GitGutterLineHighlightsToggle<CR>
 
 " Syntastic <https://github.com/vim-syntastic/syntastic>
-nmap <Leader>cs :SyntasticCheck<CR>
-nmap <Leader>ccs :SyntasticReset<CR>
+nmap <Leader>cs :SyntasticCheck<CR>:let b:syntastic_mode="active"<CR>
+nmap <Leader>ccs :SyntasticReset<CR>:let b:syntastic_mode="passive"<CR>
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": [] }
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
