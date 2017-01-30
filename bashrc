@@ -170,9 +170,9 @@ esac
 # Unsetting the different variables used in this bashrc, since we don't want
 # them polluting every Bash shell.
 unset kernel distro git_prompt_sh aliasls color_prompt
-unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht bldblik bldred \
-      bldgrn bldylw bldblu bldpur bldcyn bldwht unkblk undred undgrn undylw  \
-      undblu undpur undcyn undwht bakblk bakred bakgrn bakylw bakblu bakpur  \
+unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht bldblk bldred \
+      bldgrn bldylw bldblu bldpur bldcyn bldwht unkblk undred undgrn undylw \
+      undblu undpur undcyn undwht bakblk bakred bakgrn bakylw bakblu bakpur \
       bakcyn bakwht txtrst
 
 # Tmux in 256 colors
