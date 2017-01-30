@@ -190,6 +190,11 @@ alias tmux="tmux -2"
 bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
 
+# It is often a bad idea to set LC_ALL since it comes to override all the other
+# locale defining variables such as LC_* and LANG. These other variables should
+# only be defined by /etc/locale.conf. Resetting LC_ALL.
+export LC_ALL=''
+
 # The basic requirements for Golang development
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
