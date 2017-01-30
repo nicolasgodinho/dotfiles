@@ -266,6 +266,8 @@ let g:syntastic_check_on_wq = 0
 
 " Fugitive <https://github.com/tpope/vim-fugitive>
 
+" WindowSwap.vim <https://github.com/wesQ3/vim-windowswap>
+
 " Vim-Go <https://github.com/fatih/vim-go>
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)

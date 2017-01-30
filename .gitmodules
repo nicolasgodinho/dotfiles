@@ -28,3 +28,6 @@
 [submodule "vim-plugins/fugitive"]
 	path = vim/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "vim-plugins/windowswap"]
+	path = vim/bundle/windowswap
+	url = https://github.com/wesQ3/vim-windowswap
