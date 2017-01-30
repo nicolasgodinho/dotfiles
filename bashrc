@@ -151,13 +151,21 @@ __viassh_ps1() {
     return "$exit_code"  # propagate the error code from previous command
 }
 
+__jobs_ps1() {
+    local exit_code="$?" # save error code from previous command in shell
+    if [[ ! -z "$(jobs -p)" ]]; then
+        echo -ne "$1"
+    fi
+    return "$exit_code"  # propagate the error code from previous command
+}
+
 # Setting the prompt.
 case "$color_prompt:$git_prompt" in
     y:y)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtwht\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     y:n)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w$txtrst\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     n:y)
         PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\$(__git_ps1 ' (%s)')\\$ "
