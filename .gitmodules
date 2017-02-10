@@ -31,3 +31,6 @@
 [submodule "vim-plugins/windowswap"]
 	path = vim/bundle/windowswap
 	url = https://github.com/wesQ3/vim-windowswap
+[submodule "vim-plugins/lightline-bufferline"]
+	path = vim/bundle/lightline-bufferline
+	url = https://github.com/mgee/lightline-bufferline
