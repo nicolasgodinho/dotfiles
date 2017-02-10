@@ -162,7 +162,7 @@ __jobs_ps1() {
 # Setting the prompt.
 case "$color_prompt:$git_prompt" in
     y:y)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtwht\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht') in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtwht\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     y:n)
         PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w$txtrst\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
