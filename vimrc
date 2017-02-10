@@ -42,7 +42,7 @@ hi ColorColumn ctermbg=8
 set ruler
 set laststatus=2
 
-" Always show the tabline
+" Always show the tabline (which is heavily modified by lightline-bufferline)
 set showtabline=2
 
 
@@ -131,6 +131,10 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 " Replace in all opened buffers (neither asking for replace nor saving buffers)
 vnoremap <C-A-r> "hy:bufdo! %s/<C-r>h//ge<left><left><left>
 
+" Cycle around buffers easily with Tab in normal mode
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
 " More intuitive new split placing
 set splitbelow
 set splitright
@@ -200,7 +204,8 @@ nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
-" Alt+Number to move between tabs
+" To move between tabs
+nmap <Leader>t :tabs<CR>
 nmap <Leader>1 :tabnext 1<CR>
 nmap <Leader>2 :tabnext 2<CR>
 nmap <Leader>3 :tabnext 3<CR>
@@ -247,29 +252,129 @@ endif
 " VIM PLUGINS "
 """""""""""""""
 
+"
 " Pathogen <https://github.com/tpope/vim-pathogen>
+"
 execute pathogen#infect()
 
+
+"
 " NERDTree <https://github.com/scrooloose/nerdtree>
-" Toggle NERDTree with F1
+"
 nmap <F1> :NERDTreeFocus<CR>
 nmap <Leader>nt :NERDTreeToggle<CR>
 
-" VIM Lightline <https://github.com/itchyny/lightline.vim>
-let g:lightline = {
-    \ 'colorscheme': 'powerline' }
-let g:lightline.tabline = {
-    \ 'left': [ [ 'tabs' ] ],
-    \ 'right': [ [ 'close' ] ] }
 
+"
+" Lightline <https://github.com/itchyny/lightline.vim>
+"
+let g:lightline = {
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified', 'spell', 'syntastic' ],
+    \             [ 'fugitive' ] ],
+    \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \ },
+    \ 'colorscheme': 'powerline',
+    \ 'component_function': {
+        \ 'mode': 'LightlineMode',
+        \ 'readonly': 'LightlineReadonly',
+        \ 'fugitive': 'LightlineFugitive',
+        \ 'filename': 'LightlineFilename',
+        \ 'fileformat': 'LightlineFileformat',
+        \ 'fileencoding': 'LightlineFileencoding',
+        \ 'filetype': 'LightlineFiletype',
+        \ },
+    \ }
+
+function! LightlineModified()
+    return &ft =~ 'help\|vimfiler\|nerdtree' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+    return &ft !~? 'help\|vimfiler\|nerdtree' && &readonly ? 'RO' : ''
+endfunction
+
+function! LightlineFileformat()
+    return winwidth(0) > 60 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+    return winwidth(0) > 60 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+    return winwidth(0) > 60 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineFilename()
+    let fname = expand('%:~:.')
+    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+                \ fname == '__Tagbar__' ? g:lightline.fname :
+                \ fname =~ '__Gundo\|NERD_tree' ? '' :
+                \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+                \ &ft == 'unite' ? unite#get_status_string() :
+                \ &ft == 'vimshell' ? vimshell#get_status_string() :
+                \ ('' != fname ? fname : '[No Name]')
+endfunction
+
+function! LightlineFugitive()
+    " display Git branch only when window is wide
+    if (winwidth(0) < 100)
+        return ''
+    endif
+    if &ft !~? 'vimfiler' && exists('*fugitive#head')
+        let branch = fugitive#head()
+        return ('' != l:branch ? '┢ ' . branch : '')
+    endif
+    return ''
+endfunction
+
+function! LightlineMode()
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+            \ fname == 'ControlP' ? 'CtrlP' :
+            \ fname == '__Gundo__' ? 'Gundo' :
+            \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+            \ fname =~ 'NERD_tree' ? 'NERDTree' :
+            \ &ft == 'unite' ? 'Unite' :
+            \ &ft == 'vimfiler' ? 'VimFiler' :
+            \ &ft == 'vimshell' ? 'VimShell' :
+            \ winwidth(0) > 50 ? lightline#mode() : ''
+endfunction
+
+"
+" Lightline-bufferline <https://github.com/mgee/lightline-bufferline>
+"
+let g:lightline.tabline = {
+    \ 'left': [['buffers']],
+    \ 'right': [[]],
+    \ }
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type = {'buffers': 'tabsel'}
+let g:lightline#bufferline#filename_modifier = ':~:.'
+let g:lightline#bufferline#modified = ' +'
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#unnamed = '[No Name]'
+
+
+"
 " Vim Indent Guides <https://github.com/nathanaelkane/vim-indent-guides>
+"
 nmap <Leader>ig :IndentGuidesToggle<CR>
 
+
+"
 " Vim-GitGutter <https://github.com/airblade/vim-gitgutter>
+"
 nmap <Leader>gg :GitGutterToggle<CR>
 nmap <Leader>GG :GitGutterLineHighlightsToggle<CR>
 
+
+"
 " Syntastic <https://github.com/vim-syntastic/syntastic>
+"
 nmap <Leader>cs :SyntasticCheck<CR>:let b:syntastic_mode="active"<CR>
 nmap <Leader>ccs :SyntasticReset<CR>:let b:syntastic_mode="passive"<CR>
 let g:syntastic_mode_map = {
@@ -281,11 +386,22 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+
+"
 " Fugitive <https://github.com/tpope/vim-fugitive>
+"
+"nothing
 
+
+"
 " WindowSwap.vim <https://github.com/wesQ3/vim-windowswap>
+"
+"nothing
 
+
+"
 " Vim-Go <https://github.com/fatih/vim-go>
+"
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
@@ -303,11 +419,22 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
-" Tagbar <https://github.com/majutsushi/tagbar>
-nmap <F8> :TagbarToggle<CR>
-nmap <Leader>tb :TagbarToggle<CR>
 
+"
+" Tagbar <https://github.com/majutsushi/tagbar>
+"
+nmap <F8> :TagbarToggle<CR>
+" o is for "objects"
+nmap <Leader>o :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+" never sort symbols because the declaration order in the file is way often
+" more important than the alphabetical order
+let g:tagbar_sort = 0
+
+
+"
 " CtrlP.vim <https://github.com/ctrlpvim/ctrlp.vim>
+"
 let g:ctrlp_working_path_mode = 'ra'
 "" ctrlp_working_path_mode codes reminder:
 ""
@@ -332,5 +459,9 @@ let g:ctrlp_custom_ignore = {
 "let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 "let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 
+
+"
 " BufExplorer <https://github.com/jlanzarotta/bufexplorer>
-nmap <Leader>be :BufExplorer<CR>
+"
+nmap <Leader>b :BufExplorer<CR>
+
