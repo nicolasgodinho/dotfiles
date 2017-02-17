@@ -13,16 +13,13 @@ syntax on
 set syntax=on
 
 " Colorscheme
-if &term =~ "256color" || &term == "builtin_gui" || &term == "rxvt-256color"
-    set t_Co=256
+set background=dark
+if &t_Co == 256
     " Molokai <https://github.com/tomasr/molokai>
     colorscheme molokai
 else
-    colorscheme torte
+    colorscheme elflord
 endif
-" No color for the background, I like my terminal transparency.
-hi Normal ctermbg=None
-set background=dark
 
 " Line numbers
 set number
@@ -36,7 +33,6 @@ set list
 
 " Colorize the 80th column
 set colorcolumn=80
-hi ColorColumn ctermbg=8
 
 " A ruler in the bottom-right corner to localize myself in the file
 set ruler
@@ -226,12 +222,6 @@ nmap <S-Up> V
 nmap <S-Down> V
 nmap <S-Left> v
 nmap <S-Right> v
-
-" Change GVim appearance easily to adapt screen or context
-nmap <F11> :set guifont=Dina\ 6<CR>:colorscheme molokai<CR>
-nmap <S-F11> :set guifont=Dina\ 8<CR>:colorscheme molokai<CR>
-nmap <F12> :set guifont=Dina\ 10<CR>:colorscheme molokai<CR>
-nmap <S-F12> :set guifont=Inconsolata\ 14<CR>:colorscheme molokai<CR>
 
 
 """""""""""""
