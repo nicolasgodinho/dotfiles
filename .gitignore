@@ -7,3 +7,7 @@
 gnupg/*
 !gnupg/gpg.conf
 !gnupg/gpg-agent.conf
+
+# Only commit autostart file for LXDE's lxsession
+config/lxsession
+!config/lxsession/LXDE/autostart

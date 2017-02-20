@@ -1,0 +1,11 @@
+# LXDE DEFAULTS:
+@lxpanel --profile LXDE
+@pcmanfm --desktop --profile LXDE
+@xscreensaver -no-splash
+
+# Do not beep
+@xset b off
+
+# Start X compositor daemonized (if existing in PATH)
+@xcompmgr -I.1 -O.08 -D10 -t-5 -l-5 -r12 -o.5 -CcFf &
+
