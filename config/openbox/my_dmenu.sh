@@ -11,5 +11,5 @@ my_dmenu_path() {
     done
 }
 
-my_dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} &
+exec "$(my_dmenu_path | dmenu "$@")"
 
