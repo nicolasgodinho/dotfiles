@@ -435,3 +435,8 @@ let g:ctrlp_custom_ignore = {
 "
 nmap <Leader>b :BufExplorer<CR>
 
+"
+" VimCompletesMe <https://github.com/ajh17/VimCompletesMe>
+"
+"nothing
+

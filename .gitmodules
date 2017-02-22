@@ -31,3 +31,6 @@
 [submodule "vim-plugins/lightline-bufferline"]
 	path = vim/bundle/lightline-bufferline
 	url = https://github.com/mgee/lightline-bufferline
+[submodule "vim-plugins/VimCompletesMe"]
+	path = vim/bundle/VimCompletesMe
+	url = https://github.com/ajh17/VimCompletesMe
