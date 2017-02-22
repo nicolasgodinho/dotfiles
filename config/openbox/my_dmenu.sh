@@ -11,5 +11,5 @@ my_dmenu_path() {
     done
 }
 
-exec "$(my_dmenu_path | dmenu "$@")"
+exec $(my_dmenu_path | dmenu "$@")
 
