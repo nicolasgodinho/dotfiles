@@ -34,3 +34,6 @@
 [submodule "vim-plugins/VimCompletesMe"]
 	path = vim/bundle/VimCompletesMe
 	url = https://github.com/ajh17/VimCompletesMe
+[submodule "vim-plugins/gutentags"]
+	path = vim/bundle/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags

@@ -440,3 +440,8 @@ nmap <Leader>b :BufExplorer<CR>
 "
 "nothing
 
+"
+" Gutentags <https://github.com/ludovicchabant/vim-gutentags>
+"
+"nothing
+
