@@ -189,6 +189,7 @@
         <finalactions>
           <action name="Focus"/>
           <action name="Unshade"/>
+          <action name="Raise"/>
         </finalactions>
       </action>
     </keybind>
@@ -198,6 +199,7 @@
         <finalactions>
           <action name="Focus"/>
           <action name="Unshade"/>
+          <action name="Raise"/>
         </finalactions>
       </action>
     </keybind>
@@ -207,6 +209,7 @@
         <finalactions>
           <action name="Focus"/>
           <action name="Unshade"/>
+          <action name="Raise"/>
         </finalactions>
       </action>
     </keybind>
@@ -216,6 +219,7 @@
         <finalactions>
           <action name="Focus"/>
           <action name="Unshade"/>
+          <action name="Raise"/>
         </finalactions>
       </action>
     </keybind>
