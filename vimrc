@@ -248,6 +248,11 @@ endif
 "
 execute pathogen#infect()
 
+"
+" Vim-Abolish <https://github.com/tpope/vim-abolish>
+"
+"nothing
+
 
 "
 " NERDTree <https://github.com/scrooloose/nerdtree>
