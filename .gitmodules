@@ -37,6 +37,12 @@
 [submodule "vim-plugins/gutentags"]
 	path = vim/bundle/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags
+[submodule "vim-plugins/neosnippets"]
+	path = vim/bundle/neosnippet.vim
+	url = https://github.com/Shougo/neosnippet.vim
+[submodule "vim-plugins/neosnippet-snippets"]
+	path = vim/bundle/neosnippet-snippets
+	url = https://github.com/Shougo/neosnippet-snippets
 [submodule "vim-plugins/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
