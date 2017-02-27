@@ -308,6 +308,12 @@
     <keybind key="W-o">
       <action name="ToggleOmnipresent"/>
     </keybind>
+    <keybind key="C-W-S-Prior">
+      <action name="ToggleAlwaysOnTop"/>
+    </keybind>
+    <keybind key="C-W-S-Next">
+      <action name="ToggleAlwaysOnBottom"/>
+    </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
