@@ -28,7 +28,7 @@ set number
 set cursorline
 
 " Show shady characters : spaces, tabs
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:\u2022,extends:\uBB,precedes:\uAB"
 set list
 
 " Colorize the 80th column
@@ -136,10 +136,10 @@ set splitbelow
 set splitright
 
 " Move around splits easily
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " I prefer to navigate through 'visual' lines than hard lines
 map <silent> <Up> gk
