@@ -319,48 +319,56 @@
     </keybind>
 
     <keybind key="C-W-Up">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>0</y>
         <width>100%</width><height>50%</height>
       </action>
     </keybind>
     <keybind key="C-W-Down">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>-0</y>
         <width>100%</width><height>50%</height>
       </action>
     </keybind>
     <keybind key="C-W-Left">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>0</y>
         <width>50%</width><height>100%</height>
       </action>
     </keybind>
     <keybind key="C-W-Right">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>-0</x><y>0</y>
         <width>50%</width><height>100%</height>
       </action>
     </keybind>
     <keybind key="C-W-Prior">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>-0</x><y>0</y>
         <width>50%</width><height>50%</height>
       </action>
     </keybind>
     <keybind key="C-W-Next">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>-0</x><y>-0</y>
         <width>50%</width><height>50%</height>
       </action>
     </keybind>
     <keybind key="C-W-Home">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>0</y>
         <width>50%</width><height>50%</height>
       </action>
     </keybind>
     <keybind key="C-W-End">
+      <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>-0</y>
         <width>50%</width><height>50%</height>
