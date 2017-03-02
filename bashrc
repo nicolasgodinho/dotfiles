@@ -30,7 +30,7 @@ case "$kernel" in
         aliasls="ls --color=auto --group-directories-first"
         case "${distro:-}" in
             'ubuntu') git_prompt_sh="/usr/lib/git-core/git-sh-prompt" ;;
-            'debian') git_prompt_sh="/etc/bash_completion.d/git" ;;
+            'debian') git_prompt_sh="/etc/bash_completion.d/git-prompt" ;;
             *)        git_prompt_sh="/usr/share/git/git-prompt.sh" ;;
         esac
         ;;
@@ -41,7 +41,7 @@ case "$kernel" in
         ;;
 
     'OpenBSD')
-        if (command -v colorls &>/dev/null); then
+        if command -v colorls &>/dev/null; then
             aliasls="colorls"
         else
             aliasls="ls"
@@ -102,7 +102,7 @@ txtrst='\[\e[0m\]'    # Text Reset
 # Probe the capability to display colors in the shell (seems to work only in
 # Linux and Mac OS X)...
 # Source: the Debian's default bashrc file.
-if (command -v tput &>/dev/null) && (tput setaf 1 &>/dev/null); then
+if command -v tput &>/dev/null && tput setaf 1 &>/dev/null; then
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
@@ -113,16 +113,15 @@ elif [[ $kernel =~ .*BSD ]]; then
     # FIXME: Investigate the appropriate code for probing the terminal
     # capabilities on *BSDs.
     color_prompt=y
-else
-    color_prompt=n
 fi
 
 # Source the git bash helper function for __git_ps1
-if [[ -e "$git_prompt_sh" ]]; then
-    source $git_prompt_sh
+if [[ "$(type -t __git_ps1)" == 'function' ]]; then
     git_prompt=y
-else
-    git_prompt=n
+elif [[ -e "$git_prompt_sh" ]]; then
+    source "$git_prompt_sh" \
+        && [[ "$(type -t __git_ps1)" == 'function' ]] \
+        && git_prompt=y
 fi
 
 # Display the username underlined and in red if I am root.
@@ -160,12 +159,12 @@ __jobs_ps1() {
 }
 
 # Setting the prompt.
-case "$color_prompt:$git_prompt" in
+case "${color_prompt:-n}:${git_prompt:-n}" in
     y:y)
         PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht') in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtwht\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     y:n)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via ${bldpur}SSH$txtwht') in $bldcyn\w$txtrst\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
+        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht') in $bldcyn\w$txtrst\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
         ;;
     n:y)
         PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\$(__git_ps1 ' (%s)')\\$ "
