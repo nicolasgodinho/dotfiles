@@ -1,7 +1,3 @@
-" Magic trick: automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
-
-
 """"""""""""""""""
 " VIM APPEARANCE "
 """"""""""""""""""
@@ -14,7 +10,7 @@ set syntax=on
 
 " Colorscheme
 set background=dark
-if &t_Co == 256
+if &t_Co == 256 || has("gui_running")
     " Molokai <https://github.com/tomasr/molokai>
     colorscheme molokai
 else
@@ -33,6 +29,7 @@ set list
 
 " Colorize the 80th column
 set colorcolumn=80
+let &colorcolumn="80,".join(range(120,999),",")
 
 " A ruler in the bottom-right corner to localize myself in the file
 set ruler
@@ -85,7 +82,10 @@ vnoremap > >gv
 " I still like to use my mouse sometimes.
 set mouse=a
 
-" A better menu
+" Search down into subfolders
+set path+=**
+
+" Display all matching items/files when tab completing
 set wildmenu
 
 " Longer history
@@ -102,8 +102,7 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Highlight search
-set hlsearch
-
+"set hlsearch
 " Press F3 to toggle highlighting on/off, and show current value.
 noremap <F3> :set hlsearch! hlsearch?<CR>
 
@@ -359,6 +358,12 @@ let g:lightline#bufferline#unnamed = '[No Name]'
 " Vim Indent Guides <https://github.com/nathanaelkane/vim-indent-guides>
 "
 nmap <Leader>ig :IndentGuidesToggle<CR>
+if g:colors_name == 'molokai'
+    let g:indent_guides_auto_colors=0
+    hi IndentGuidesEven ctermbg=234
+    hi IndentGuidesOdd ctermbg=235
+endif
+let g:indent_guides_enable_on_vim_startup=1
 
 
 "
