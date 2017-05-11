@@ -150,18 +150,22 @@ imap <silent> <home> <C-o>g<home>
 map <silent> <End> g<End>
 imap <silent> <End> <C-o>g<End>
 
-" Useful keybindings to create splits where I want. Shamelessly grabbed from:
+" Useful keybindings to create splits where I want. Shamelessly stolen from:
 " https://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
-" window
+"window
 nmap <leader>sw<left>  :topleft  vnew<CR>
 nmap <leader>sw<right> :botright vnew<CR>
 nmap <leader>sw<up>    :topleft  new<CR>
 nmap <leader>sw<down>  :botright new<CR>
-" buffer
+"buffer
 nmap <leader>s<left>   :leftabove  vnew<CR>
 nmap <leader>s<right>  :rightbelow vnew<CR>
 nmap <leader>s<up>     :leftabove  new<CR>
 nmap <leader>s<down>   :rightbelow new<CR>
+
+" Special cases for some file types (git commit messages, emails, etc.)
+au FileType gitcommit set textwidth=70 colorcolumn=71
+au FileType mail set textwidth=71 colorcolumn=72
 
 
 """"""""""""""
@@ -212,16 +216,6 @@ nmap <Leader>7 :tabnext 7<CR>
 nmap <Leader>8 :tabnext 8<CR>
 nmap <Leader>9 :tabnext 9<CR>
 nmap <Leader>0 :tabnext 10<CR>
-
-" Shift+Alt+Arrows to move between tabs
-nmap <S-A-Right> :tabnext<CR>
-nmap <S-A-Left> :tabprevious<CR>
-
-" Activate visual mode in normal mode
-nmap <S-Up> V
-nmap <S-Down> V
-nmap <S-Left> v
-nmap <S-Right> v
 
 
 """""""""""""
@@ -445,10 +439,6 @@ let g:ctrlp_custom_ignore = {
 "
 nmap <Leader>b :BufExplorer<CR>
 
-"
-" VimCompletesMe <https://github.com/ajh17/VimCompletesMe>
-"
-"nothing
 
 "
 " Gutentags <https://github.com/ludovicchabant/vim-gutentags>
