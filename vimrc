@@ -85,8 +85,13 @@ set mouse=a
 " Search down into subfolders
 set path+=**
 
+" Vim-native CtrlP plugin alternative
+exec "nnoremap <C-p> :find "
+
 " Display all matching items/files when tab completing
 set wildmenu
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 " Longer history
 set history=500
@@ -357,7 +362,8 @@ if g:colors_name == 'molokai'
     hi IndentGuidesEven ctermbg=234
     hi IndentGuidesOdd ctermbg=235
 endif
-let g:indent_guides_enable_on_vim_startup=1
+"let g:indent_guides_enable_on_vim_startup=1
+autocmd FileType python IndentGuidesEnable
 
 
 "
@@ -407,34 +413,6 @@ let g:tagbar_sort = 0
 
 
 "
-" CtrlP.vim <https://github.com/ctrlpvim/ctrlp.vim>
-"
-let g:ctrlp_working_path_mode = 'ra'
-"" ctrlp_working_path_mode codes reminder:
-""
-"" 'c' - the directory of the current file.
-"" 'a' - the directory of the current file, unless it is a subdirectory of the
-""       cwd
-"" 'r' - the nearest ancestor of the current file that contains one of these
-""       directories or files: .git .hg .svn .bzr _darcs
-"" 'w' - modifier to "r": start search from the cwd instead of the current
-""       file's directory
-"" 0 or '' (empty string) - disable this feature.
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-
-"let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-
-
-"
 " BufExplorer <https://github.com/jlanzarotta/bufexplorer>
 "
 nmap <Leader>b :BufExplorer<CR>
@@ -445,34 +423,3 @@ nmap <Leader>b :BufExplorer<CR>
 "
 "nothing
 
-
-"
-" Neosnippet <https://github.com/Shougo/neosnippet.vim>
-" and its snippets <https://github.com/Shougo/neosnippet-snippets>
-"
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=n
-endif
-
-" Enable snipMate compatibility feature.
-"let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-"let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
