@@ -214,3 +214,10 @@ fi
 
 # Vim is my favourite editor
 export EDITOR="vim"
+
+# X Terminal titles
+case "$TERM" in
+xterm*|rxvt*)
+        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+        ;;
+esac
