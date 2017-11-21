@@ -423,3 +423,9 @@ nmap <Leader>b :BufExplorer<CR>
 "
 "nothing
 
+
+"
+" Vim-TOML <https://github.com/cespare/vim-toml>
+"
+"nothing
+

@@ -34,3 +34,6 @@
 [submodule "vim-plugins/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
+[submodule "vim-plugins/vim-toml"]
+	path = vim/bundle/toml
+	url = https://github.com/cespare/vim-toml
