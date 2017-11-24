@@ -221,3 +221,18 @@ xterm*|rxvt*)
         PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
         ;;
 esac
+
+__prettyprint_json_with_jq() {
+    if [[ "$#" -gt 1 ]]; then
+        echo "function '${FUNCNAME[0]}': bad usage" >&2
+        return 1
+    elif [[ "$#" -eq 0 || "${1:-}" == '-' ]]; then
+        jq -C .
+    else
+        jq -C . < "$1"
+    fi
+}
+
+if command -v jq &>/dev/null; then
+    alias jsonpp=__prettyprint_json_with_jq
+fi
