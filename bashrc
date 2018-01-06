@@ -205,7 +205,7 @@ fi
 
 # Include Gem user in PATH
 if command -v ruby &>/dev/null && command -v gem &>/dev/null; then
-    gembinpath="$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+    gembinpath="$(ruby -e 'puts Gem.user_dir')/bin"
     if [[ -n "$gembinpath" ]]; then
         export PATH="$PATH:$gembinpath"
     fi
