@@ -24,7 +24,7 @@ set number
 set cursorline
 
 " Show shady characters : spaces, tabs
-exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:\u2022,extends:\uBB,precedes:\uAB"
+exec "set listchars=tab:\uBB\uA0,trail:\uB7,nbsp:\u2022,extends:\uBB,precedes:\uAB"
 set list
 
 " Colorize the 80th column
