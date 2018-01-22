@@ -233,8 +233,13 @@ if command -v ruby &>/dev/null && command -v gem &>/dev/null; then
     unset gembinpath
 fi
 
-# Vim is my favourite editor
+# My favourite editor
 export EDITOR="vim"
+if command -v nvim &>/dev/null; then
+    alias vi=nvim
+    alias vim=nvim
+    export EDITOR=nvim
+fi
 
 # X Terminal titles
 case "$TERM" in
