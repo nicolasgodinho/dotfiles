@@ -140,6 +140,26 @@ __exitcode_ps1() {
     return "$exit_code"  # propagate the error code from previous command
 }
 
+# Function to display a warning message before prompt when a mountpoint lacks
+# too much free space
+__df_warning_ps1() {
+    local exit_code="$?"
+    if command -v df &>/dev/null && command -v awk &>/dev/null; then
+        local status="$(LC_ALL=C df -k -P 2>/dev/null | awk '
+            BEGIN { first=1; }
+            (NR == 1) { next; }  # skip the header line
+            ($1 ~ /^\/dev/) {   # consider only mount points to devices in /dev
+                percentage=substr($5, 1, index($5, "%")-1)+1-1;
+                if (percentage >= 90) {
+                    if (first) first=0; else printf(" ");
+                    printf("%s @ %d%%", $6, percentage);
+                }
+            }')"
+        [[ "${status:-}" ]] && printf "$1 $2" "${status}"
+    fi
+    return "$exit_code"  # propagate the error code from previous command
+}
+
 __viassh_ps1() {
     local exit_code="$?"
     if [[ ! -z "${SSH_CONNECTION:-}" ]]; then
@@ -159,20 +179,21 @@ __jobs_ps1() {
 }
 
 # Setting the prompt.
-case "${color_prompt:-n}:${git_prompt:-n}" in
-    y:y)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht') in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtwht\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
-        ;;
-    y:n)
-        PS1="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht') in $bldcyn\w$txtrst\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')\n\$(__exitcode_ps1 '$bldred%d$txtrst ')\\$ "
-        ;;
-    n:y)
-        PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\$(__git_ps1 ' (%s)')\\$ "
-        ;;
-    n:n)
-        PS1="\$(__exitcode_ps1 '{%d} ')\u@\h:\w\\$ "
-        ;;
-esac
+PS1=''
+if [[ "${color_prompt:-}" ]]; then
+    PS1+="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht"
+    PS1+="\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht')"
+    [[ "${git_prompt:-}" ]] \
+        && PS1+=" in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtwht"
+    PS1+="\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst"
+    #PS1+="\$(__df_warning_ps1 ' $bakred$bldylw[!]$txtrst' '$bldred%s$txtrst')"
+    PS1+="\n"
+    PS1+="\$(__exitcode_ps1 '$bldred%d$txtrst ')"
+else
+    PS1+="\$(__exitcode_ps1 '{%d} ')\u@\h:\w"
+    [[ "${git_prompt:-}" ]] && PS1+="\$(__git_ps1 ' (%s)')"
+fi
+PS1+='\\$ '   # the final prompt sign ($ or #)
 
 # Unsetting the different variables used in this bashrc, since we don't want
 # them polluting every Bash shell.
