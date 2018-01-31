@@ -31,3 +31,6 @@
 [submodule "vim-plugins/vim-toml"]
 	path = vim/bundle/toml
 	url = https://github.com/cespare/vim-toml
+[submodule "vim-plugings/vim-boxdraw"]
+	path = vim/bundle/vim-boxdraw
+	url = https://github.com/gyim/vim-boxdraw
