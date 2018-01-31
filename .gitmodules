@@ -28,9 +28,6 @@
 [submodule "vim-plugins/lightline-bufferline"]
 	path = vim/bundle/lightline-bufferline
 	url = https://github.com/mgee/lightline-bufferline
-[submodule "vim-plugins/gutentags"]
-	path = vim/bundle/vim-gutentags
-	url = https://github.com/ludovicchabant/vim-gutentags
 [submodule "vim-plugins/vim-abolish"]
 	path = vim/bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish
