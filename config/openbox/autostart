@@ -18,7 +18,7 @@ dunst -config ~/.config/dunst/dunstrc &
 
 # Tint2 and Conky for Openbox
 tint2 &
-conky &
+#conky &
 
 # Volume icon
 volumeicon &

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- vim: set ts=2 sts=2 sw=2 et ft=xml: -->
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
   <resistance>
     <strength>20</strength>
@@ -51,7 +52,7 @@
       C: close
       S: shade (roll up/down)
       D: omnipresent (on all desktops).
-  -->
+    -->
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
@@ -118,7 +119,7 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>10</number>
+    <number>5</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>1</name>
@@ -163,7 +164,7 @@
     <right>0</right>
   </margins>
   <dock>
-    <position>TopLeft</position>
+    <position>Bottom</position>
     <!-- (Top|Bottom)(Left|Right|)|Top|Bottom|Left|Right|Floating -->
     <floatingX>0</floatingX>
     <floatingY>0</floatingY>
@@ -183,6 +184,7 @@
   <keyboard>
     <chainQuitKey>C-g</chainQuitKey>
     <!-- Keybindings for desktop switching -->
+<!--
     <keybind key="W-Left">
       <action name="DirectionalTargetWindow">
         <direction>west</direction>
@@ -223,6 +225,7 @@
         </finalactions>
       </action>
     </keybind>
+-->
     <keybind key="S-W-Left">
       <action name="MoveResizeTo">
         <monitor>prev</monitor>
@@ -233,106 +236,28 @@
         <monitor>next</monitor>
       </action>
     </keybind>
-    <keybind key="W-1">
-      <action name="GoToDesktop">
-        <to>1</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-1">
-      <action name="SendToDesktop">
-        <to>1</to>
-      </action>
-    </keybind>
-    <keybind key="W-2">
-      <action name="GoToDesktop">
-        <to>2</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-2">
-      <action name="SendToDesktop">
-        <to>2</to>
-      </action>
-    </keybind>
-    <keybind key="W-3">
-      <action name="GoToDesktop">
-        <to>3</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-3">
-      <action name="SendToDesktop">
-        <to>3</to>
-      </action>
-    </keybind>
-    <keybind key="W-4">
-      <action name="GoToDesktop">
-        <to>4</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-4">
-      <action name="SendToDesktop">
-        <to>4</to>
-      </action>
-    </keybind>
-    <keybind key="W-5">
-      <action name="GoToDesktop">
-        <to>5</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-5">
-      <action name="SendToDesktop">
-        <to>5</to>
-      </action>
-    </keybind>
-    <keybind key="W-6">
-      <action name="GoToDesktop">
-        <to>6</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-6">
-      <action name="SendToDesktop">
-        <to>6</to>
-      </action>
-    </keybind>
-    <keybind key="W-7">
-      <action name="GoToDesktop">
-        <to>7</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-7">
-      <action name="SendToDesktop">
-        <to>7</to>
-      </action>
-    </keybind>
-    <keybind key="W-8">
-      <action name="GoToDesktop">
-        <to>8</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-8">
-      <action name="SendToDesktop">
-        <to>8</to>
-      </action>
-    </keybind>
-    <keybind key="W-9">
-      <action name="GoToDesktop">
-        <to>9</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-9">
-      <action name="SendToDesktop">
-        <to>9</to>
-      </action>
-    </keybind>
-    <keybind key="W-0">
-      <action name="GoToDesktop">
-        <to>10</to>
-      </action>
-    </keybind>
-    <keybind key="W-S-0">
-      <action name="SendToDesktop">
-        <to>10</to>
-      </action>
-    </keybind>
+
+    <keybind key="W-1"><action name="GoToDesktop"><to>1</to></action></keybind>
+    <keybind key="W-2"><action name="GoToDesktop"><to>2</to></action></keybind>
+    <keybind key="W-3"><action name="GoToDesktop"><to>3</to></action></keybind>
+    <keybind key="W-4"><action name="GoToDesktop"><to>4</to></action></keybind>
+    <keybind key="W-5"><action name="GoToDesktop"><to>5</to></action></keybind>
+    <keybind key="W-6"><action name="GoToDesktop"><to>6</to></action></keybind>
+    <keybind key="W-7"><action name="GoToDesktop"><to>7</to></action></keybind>
+    <keybind key="W-8"><action name="GoToDesktop"><to>8</to></action></keybind>
+    <keybind key="W-9"><action name="GoToDesktop"><to>9</to></action></keybind>
+    <keybind key="W-0"><action name="GoToDesktop"><to>10</to></action></keybind>
+    <keybind key="W-S-1"><action name="SendToDesktop"><to>1</to></action></keybind>
+    <keybind key="W-S-2"><action name="SendToDesktop"><to>2</to></action></keybind>
+    <keybind key="W-S-3"><action name="SendToDesktop"><to>3</to></action></keybind>
+    <keybind key="W-S-4"><action name="SendToDesktop"><to>4</to></action></keybind>
+    <keybind key="W-S-5"><action name="SendToDesktop"><to>5</to></action></keybind>
+    <keybind key="W-S-6"><action name="SendToDesktop"><to>6</to></action></keybind>
+    <keybind key="W-S-7"><action name="SendToDesktop"><to>7</to></action></keybind>
+    <keybind key="W-S-8"><action name="SendToDesktop"><to>8</to></action></keybind>
+    <keybind key="W-S-9"><action name="SendToDesktop"><to>9</to></action></keybind>
+    <keybind key="W-S-0"><action name="SendToDesktop"><to>10</to></action></keybind>
+
     <!-- Perso -->
     <keybind key="W-f">
       <action name="ToggleMaximize"/>
@@ -364,53 +289,100 @@
     <keybind key="W-o">
       <action name="ToggleOmnipresent"/>
     </keybind>
+    <keybind key="C-W-S-Prior">
+      <action name="ToggleAlwaysOnTop"/>
+    </keybind>
+    <keybind key="C-W-S-Next">
+      <action name="ToggleAlwaysOnBottom"/>
+    </keybind>
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
     </keybind>
+
+
+    <keybind key="C-W-Up">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>0</x><y>0</y>
+        <width>100%</width><height>50%</height>
+      </action>
+    </keybind>
+    <keybind key="C-W-Down">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>0</x><y>-0</y>
+        <width>100%</width><height>50%</height>
+      </action>
+    </keybind>
     <keybind key="C-W-Left">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>0</x><y>0</y>
+        <width>50%</width><height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="C-W-Right">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>-0</x><y>0</y>
+        <width>50%</width><height>100%</height>
+      </action>
+    </keybind>
+    <keybind key="C-W-Prior">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>-0</x><y>0</y>
+        <width>50%</width><height>50%</height>
+      </action>
+    </keybind>
+    <keybind key="C-W-Next">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>-0</x><y>-0</y>
+        <width>50%</width><height>50%</height>
+      </action>
+    </keybind>
+    <keybind key="C-W-Home">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>0</x><y>0</y>
+        <width>50%</width><height>50%</height>
+      </action>
+    </keybind>
+    <keybind key="C-W-End">
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>0</x><y>-0</y>
+        <width>50%</width><height>50%</height>
+      </action>
+    </keybind>
+
+
+    <keybind key="W-Left">
       <action name="MoveRelative">
         <x>-40</x>
         <y>0</y>
       </action>
     </keybind>
-    <keybind key="C-W-Right">
+    <keybind key="W-Right">
       <action name="MoveRelative">
         <x>40</x>
         <y>0</y>
       </action>
     </keybind>
-    <keybind key="C-W-Up">
+    <keybind key="W-Up">
       <action name="MoveRelative">
         <x>0</x>
         <y>-40</y>
       </action>
     </keybind>
-    <keybind key="C-W-Down">
+    <keybind key="W-Down">
       <action name="MoveRelative">
         <x>0</x>
         <y>40</y>
       </action>
     </keybind>
-    <keybind key="C-W-A-Left">
-      <action name="ResizeRelative">
-        <right>-40</right>
-      </action>
-    </keybind>
-    <keybind key="C-W-A-Right">
-      <action name="ResizeRelative">
-        <right>40</right>
-      </action>
-    </keybind>
-    <keybind key="C-W-A-Up">
-      <action name="ResizeRelative">
-        <bottom>-40</bottom>
-      </action>
-    </keybind>
-    <keybind key="C-W-A-Down">
-      <action name="ResizeRelative">
-        <bottom>40</bottom>
-      </action>
-    </keybind>
+
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
@@ -431,7 +403,6 @@
     <!-- Keybindings for window switching -->
     <keybind key="W-Tab">
       <action name="NextWindow">
-        <dialog>icons</dialog>
         <finalactions>
           <action name="Focus"/>
           <action name="Raise"/>
@@ -441,7 +412,6 @@
     </keybind>
     <keybind key="W-S-Tab">
       <action name="PreviousWindow">
-        <dialog>icons</dialog>
         <finalactions>
           <action name="Focus"/>
           <action name="Raise"/>
@@ -469,21 +439,7 @@
         </finalactions>
       </action>
     </keybind>
-    <!--
-    <keybind key="C-A-Tab">
-      <action name="NextWindow">
-        <panels>yes</panels>
-        <desktop>yes</desktop>
-        <finalactions>
-          <action name="Focus"/>
-          <action name="Raise"/>
-          <action name="Unshade"/>
-        </finalactions>
-      </action>
-    </keybind>
--->
     <!-- Keybindings for window switching with the arrow keys -->
-    <!--
     <keybind key="W-S-Right">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
@@ -504,11 +460,10 @@
         <direction>down</direction>
       </action>
     </keybind>
--->
     <!-- Keybindings for running applications -->
     <keybind key="W-r">
       <action name="Execute">
-        <command>~/.config/openbox/my_dmenu.sh</command>
+        <command>rofi -show run</command>
       </action>
     </keybind>
     <keybind key="W-Return">
@@ -593,38 +548,6 @@
         <action name="FocusToBottom"/>
         <action name="Unfocus"/>
       </mousebind>
-      <!--
-      <mousebind button="A-Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="A-Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="GoToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
-        <action name="GoToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
-      <mousebind button="A-S-Up" action="Click">
-        <action name="SendToDesktop">
-          <to>previous</to>
-        </action>
-      </mousebind>
-      <mousebind button="A-S-Down" action="Click">
-        <action name="SendToDesktop">
-          <to>next</to>
-        </action>
-      </mousebind>
--->
     </context>
     <context name="Titlebar">
       <mousebind button="Left" action="Drag">
@@ -633,28 +556,6 @@
       <mousebind button="Left" action="DoubleClick">
         <action name="ToggleMaximize"/>
       </mousebind>
-      <!--
-      <mousebind button="Up" action="Click">
-        <action name="if">
-          <shaded>no</shaded>
-          <then>
-            <action name="Shade"/>
-            <action name="FocusToBottom"/>
-            <action name="Unfocus"/>
-            <action name="Lower"/>
-          </then>
-        </action>
-      </mousebind>
-      <mousebind button="Down" action="Click">
-        <action name="if">
-          <shaded>yes</shaded>
-          <then>
-            <action name="Unshade"/>
-            <action name="Raise"/>
-          </then>
-        </action>
-      </mousebind>
--->
     </context>
     <context name="Titlebar Top Right Bottom Left TLCorner TRCorner BRCorner BLCorner">
       <mousebind button="Left" action="Press">
@@ -867,9 +768,12 @@
         </action>
       </mousebind>
       <mousebind button="Right" action="Press">
-        <action name="ShowMenu">
-          <menu>root-menu</menu>
+        <action name="Execute">
+            <command>jgmenu_run</command>
         </action>
+        <!--<action name="ShowMenu">-->
+            <!--  <menu>root-menu</menu>-->
+            <!--</action>-->
       </mousebind>
     </context>
     <context name="MoveResize">
@@ -895,31 +799,33 @@
       </mousebind>
     </context>
   </mouse>
+<!--
   <menu>
-    <!-- You can specify more than one menu file in here and they are all loaded,
-       just don't make menu ids clash or, well, it'll be kind of pointless -->
-    <!-- default menu file (or custom one in $HOME/.config/openbox/) -->
+    # You can specify more than one menu file in here and they are all loaded,
+       just don't make menu ids clash or, well, it'll be kind of pointless
+    # default menu file (or custom one in $HOME/.config/openbox/)
     <file>menu.xml</file>
     <hideDelay>200</hideDelay>
-    <!-- if a press-release lasts longer than this setting (in milliseconds), the
-       menu is hidden again -->
+    # if a press-release lasts longer than this setting (in milliseconds), the
+       menu is hidden again
     <middle>no</middle>
-    <!-- center submenus vertically about the parent entry -->
+    # center submenus vertically about the parent entry
     <submenuShowDelay>100</submenuShowDelay>
-    <!-- time to delay before showing a submenu after hovering over the parent
+    # time to delay before showing a submenu after hovering over the parent
        entry.
        if this is a negative value, then the delay is infinite and the
-       submenu will not be shown until it is clicked on -->
+       submenu will not be shown until it is clicked on
     <submenuHideDelay>400</submenuHideDelay>
-    <!-- time to delay before hiding a submenu when selecting another
+    # time to delay before hiding a submenu when selecting another
        entry in parent menu
        if this is a negative value, then the delay is infinite and the
-       submenu will not be hidden until a different submenu is opened -->
+       submenu will not be hidden until a different submenu is opened
     <showIcons>yes</showIcons>
-    <!-- controls if icons appear in the client-list-(combined-)menu -->
+    # controls if icons appear in the client-list-(combined-)menu
     <manageDesktops>yes</manageDesktops>
-    <!-- show the manage desktops section in the client-list-(combined-)menu -->
-  </menu>
+    # show the manage desktops section in the client-list-(combined-)menu
+</menu>
+-->
   <applications>
     <!--
   # this is an example with comments through out. use these to make your
@@ -1014,6 +920,26 @@
   </application>
 
   # end of the example
+-->
+<!--
+    <application name="RootTerm">
+      <decor>no</decor>
+      <skip_taskbar>yes</skip_taskbar>
+      <skip_pager>yes</skip_pager>
+      <layer>below</layer>
+      <position force="yes">
+        <x>0</x>
+        <y>0</y>
+        <monitor>1</monitor>
+      </position>
+      <size force="yes">
+        <width>450</width>
+        <height>100%</height>
+      </size>
+      <maximized>Vertical</maximized>
+      <focus>no</focus>
+      <desktop>all</desktop>
+    </application>
 -->
   </applications>
 </openbox_config>
