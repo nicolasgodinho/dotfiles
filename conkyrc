@@ -1,162 +1,57 @@
-# General settings
-alignment top_left
-update_interval 2
-gap_x 10
-gap_y 20
-maximum_width 200
-minimum_size 200 10
+conky.config = {
+    alignment = 'top_left',
+    background = false,
+    border_width = 1,
+    cpu_avg_samples = 2,
+	default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'DejaVu Sans:pixelsize=10',
+    gap_x = 5,
+    gap_y = 60,
+    minimum_height = 5,
+	minimum_width = 5,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    show_graph_scale = false,
+    show_graph_range = false
+}
 
-# Should conky be launch as daemonized?
-background no
+conky.text = [[
+${scroll 16 $nodename - $sysname $kernel on $machine | }
+$hr
+${color grey}Uptime:$color $uptime
+${color grey}Frequency (in MHz):$color $freq
+${color grey}Frequency (in GHz):$color $freq_g
+${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
+${color grey}CPU Usage:$color $cpu% ${cpubar 4}
+${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
+$hr
+${color grey}File systems:
+ / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+${color grey}Networking:
+Up:$color ${upspeed eth0} ${color grey} - Down:$color ${downspeed eth0}
+$hr
+${color grey}Name              PID   CPU%   MEM%
+${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+]]
 
-# Appearance
-border_width 0
-cpu_avg_samples 5
-default_outline_color FF0000
-default_shade_color 00FF00
-draw_borders no
-draw_graph_borders no
-draw_outline no
-draw_shades no
-stippled_borders 5
-# Pad on left to align text on the right
-use_spacer left
-# Fonts stuff
-use_xft yes
-xftfont Sans:size=7.5
-xftalpha 0.9
-# create a separate XWindow over the one from Xfdesktop
-own_window yes
-own_window_class Conky
-# the window cannot be moved or resized
-own_window_type desktop
-# make it behave like it belongs to the desktop
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-# true transparency, a compositor has to be active
-own_window_argb_visual yes
-# make the background semi-transparent
-own_window_argb_value 128
-own_window_transparent yes
-# avoid flickering
-double_buffer yes
-
-# Misc
-max_port_monitor_connections 64
-max_specials 512
-max_user_text 16384
-net_avg_samples 1
-out_to_console no
-short_units yes
-
-# My colors
-default_color EEEEEE
-color1  D0D0D0
-color2  666666
-color3  AAAAAA
-color4  333333
-color5  DD6666
-
-# My templates
-template1 ${if_empty ${cpu cpu\1}}$else$color1${font Sans:bold:size=7.5}CPU \1$color${font Sans:size=7.5}$alignr${cpu cpu\1}% $color3${cpubar cpu\1 4,80}$color$font\n$endif
-template2 ${if_mounted \1}$color1${font Monospace:bold:size=7.5}\1$color${font Sans:size=7.5}$alignr${fs_used_perc \1}%  $color3${fs_bar 4,50 \1}$color  $alignr${fs_size \1}$font\n$endif
-
-
-TEXT
-${font Sans:bold:size=7.5}SYSTEM INFO$font
-${voffset -6}$color2${hr 1}$color
-$color1${font Sans:bold:size=7.5}Hostname$color\
-${font Monospace:size=7.5}$alignr$nodename$font
-$color1${font Sans:bold:size=7.5}Kernel$color\
-${font Monospace:size=7.5}$alignr$kernel$font
-$color1${font Sans:bold:size=7.5}Uptime$color\
-${font Sans:size=7.5}$alignr$uptime$font
-$color1${font Sans:bold:size=7.5}Battery$color\
-${font Sans:size=7.5}$alignr${if_empty $battery_time}$battery_percent%$else$battery_percent% ($battery_time)$endif$font
-$color1${font Sans:bold:size=7.5}ACPI Temperature$color\
-${font Sans:size=7.5}$alignr$acpitemp°C$font
-
-${voffset 10}\
-${font Sans:bold:size=7.5}CPU$font
-${voffset -6}$color2${hr 1}$color
-${template1 1}\
-${template1 2}\
-${template1 3}\
-${template1 4}\
-${template1 5}\
-${template1 6}\
-${template1 7}\
-${template1 8}\
-${voffset -3}$color2${stippled_hr 1}$color
-$color1${font Sans:bold:size=7.5}All cores$color${font Sans:size=7.5}$alignr${cpu cpu0}% $color3${cpubar cpu0 4,80}$color$font
-$color1${font Sans:bold:size=7.5}Load average$color${font Monospace:size=7.5}$alignr$loadavg$font
-
-${voffset 10}\
-${font Sans:bold:size=7.5}MEMORY$font
-${voffset -6}$color2${hr 1}$color
-$color1${font Sans:bold:size=7.5}RAM Usage$color\
-${font Sans:size=7.5}$alignr$memperc%  $color3${membar 4,50}$color  $memmax$font
-$color1${font Sans:bold:size=7.5}Swap Usage$color\
-${font Sans:size=7.5}$alignr$swapperc%  $color3${swapbar 4,50}$color  $swapmax$font
-
-${voffset 10}\
-${font Sans:bold:size=7.5}DISKS$font
-${voffset -6}$color2${hr 1}$color
-${template2 /}\
-${template2 /usr}\
-${template2 /opt}\
-${template2 /var}\
-${template2 /tmp}\
-${template2 /home}\
-${voffset -3}$color2${stippled_hr 1}$color
-$color1${font Sans:bold:size=7.5}Total I/O$color\
-${font Sans:size=7.5}$alignr$diskio_read ${color3}read$color    $diskio_write ${color3}written$color$font
-
-${voffset 10}\
-${font Sans:bold:size=7.5}ETHERNET ${font Monospace:size=7.5}${alignr}eth0$font
-${voffset -6}$color2${hr 1}$color
-${if_up eth0}\
-$color1${font Sans:bold:size=7.5}IP address$color\
-${font Monospace:size=7.5}$alignr${addr eth0}$font
-$color1${font Sans:bold:size=7.5}Uplink$color\
-${font Monospace:size=7.5}$alignr${upspeed eth0}/s $color4${upspeedgraph eth0 8,60 333333 CC7777 1}$color$font
-$color1${font Sans:bold:size=7.5}Downlink$color\
-${font Monospace:size=7.5}$alignr${downspeed eth0}/s $color4${downspeedgraph eth0 8,60 333333 5588CC 1}$color$font\
-$else${font Sans:italic:size=7.5}$alignc- link is down -$endif
-
-${voffset 10}\
-${font Sans:bold:size=7.5}WIRELESS ${font Monospace:size=7.5}${alignr}wlan0$font
-${voffset -6}$color2${hr 1}$color
-${if_up wlan0}\
-$color1${font Sans:bold:size=7.5}IP address$color\
-${font Monospace:size=7.5}$alignr${addr wlan0}$font
-$color1${font Sans:bold:size=7.5}AP ESSID$color\
-${font Monospace:size=7.5}$alignr${wireless_essid wlan0}$font
-$color1${font Sans:bold:size=7.5}Wireless link bitrate$color\
-${font Sans:size=7.5}$alignr${wireless_bitrate wlan0}$font
-$color1${font Sans:bold:size=7.5}Wireless link quality$color\
-${font Sans:size=7.5}$alignr${wireless_link_qual_perc wlan0}%  $color3${wireless_link_bar 4,30 wlan0}$color$font
-$color1${font Sans:bold:size=7.5}Uplink$color\
-${font Monospace:size=7.5}$alignr${upspeed wlan0}/s $color4${upspeedgraph wlan0 8,60 333333 CC7777 1}$color$font
-$color1${font Sans:bold:size=7.5}Downlink$color\
-${font Monospace:size=7.5}$alignr${downspeed wlan0}/s $color4${downspeedgraph wlan0 8,60 333333 5588CC 1}$color$font\
-$else${font Sans:italic:size=7.5}$alignc- link is down -$endif
-
-${voffset 10}\
-${font Sans:bold:size=7.5}TOP PROCESSES (CPU)$font
-${voffset -6}$color2${hr 1}$color
-${font Monospace:size=7.5}\
-${top name 1}    ${top pid 1} ${top cpu 1}%
-${top name 2}    ${top pid 2} ${top cpu 2}%
-${top name 3}    ${top pid 3} ${top cpu 3}%
-${top name 4}    ${top pid 4} ${top cpu 4}%
-${top name 5}    ${top pid 5} ${top cpu 5}%$font
-
-${voffset 10}\
-${font Sans:bold:size=7.5}TOP PROCESSES (MEMORY)$font
-${voffset -6}$color2${hr 1}$color
-${font Monospace:size=7.5}\
-${top_mem name 1}    ${top_mem pid 1} ${top_mem mem 1}%
-${top_mem name 2}    ${top_mem pid 2} ${top_mem mem 2}%
-${top_mem name 3}    ${top_mem pid 3} ${top_mem mem 3}%
-${top_mem name 4}    ${top_mem pid 4} ${top_mem mem 4}%
-${top_mem name 5}    ${top_mem pid 5} ${top_mem mem 5}%$font
