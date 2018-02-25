@@ -181,10 +181,11 @@ __jobs_ps1() {
 # Setting the prompt.
 PS1=''
 if [[ "${color_prompt:-}" ]]; then
-    PS1+="$bldblk[\t] $user_color\u$txtwht at $bldblu\h$txtwht"
+    PS1+="$bldblk[ $user_color\u$txtwht at $bldblu\h$txtwht"
+    #PS1+="$user_color\u$txtwht at $bldblu\h$txtwht"
     PS1+="\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht')"
     [[ "${git_prompt:-}" ]] \
-        && PS1+=" in $bldcyn\w\$(__git_ps1 '$txtwht in branch $bldylw%s')$txtwht"
+        && PS1+=" in $bldcyn\w\$(__git_ps1 '$txtwht on $bldylw┢ %s')$bldblk ]$txtwht"
     PS1+="\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst"
     #PS1+="\$(__df_warning_ps1 ' $bakred$bldylw[!]$txtrst' '$bldred%s$txtrst')"
     PS1+="\n"
@@ -238,6 +239,7 @@ export EDITOR="vim"
 if command -v nvim &>/dev/null; then
     alias vi=nvim
     alias vim=nvim
+    alias vimdiff='nvim -d'
     export EDITOR=nvim
 fi
 
