@@ -218,7 +218,8 @@ export LC_ALL=''
 
 # The basic requirements for Golang development
 export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
+export CARGOBINPATH="$HOME/.cargo/bin"
+export PATH="$PATH:$GOPATH/bin:$CARGOBINPATH"
 
 # Include Luarocks local environment
 if command -v luarocks &>/dev/null; then
