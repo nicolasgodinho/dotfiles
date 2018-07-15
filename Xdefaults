@@ -1,16 +1,19 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  X11 terminals common settings (xterm, *rxvt)  !
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  X11 terminals common settings (xterm, rxvt-unicode)  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ! Terminal name enforced (to enable the 256 colors):
-*termName: xterm-256color
+XTerm*termName: xterm-256color
+URxvt*termName: rxvt-unicode-256color
+
+! Sets defaults terminals to be white on black:
+XTerm*background: black
+XTerm*foreground: white
+URxvt*background: black
+URxvt*foreground: white
 
 ! Colorscheme inspired from gnome-terminal
 ! Source: http://blog.ezyang.com/2010/01/rxvt-unicode-for-gnome-terminal-refugees/
-XTerm*background: #000000
-URxvt*background: #000000
-XTerm*foreground: #FFFFFF
-URxvt*foreground: #FFFFFF
 ! Black
 *color0  : #2E3436
 *color8  : #555753
@@ -37,19 +40,23 @@ URxvt*foreground: #FFFFFF
 *color15 : #EEEEEC
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  RXVT-Unicode (urxvt) settings  !
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  xterm special settings  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Terminal name enforced (for the 256 colors):
-URxvt*termName: rxvt-unicode-256color
+XTerm*faceName: Dina:size=8
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  RXVT-Unicode (urxvt) special settings  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ! Terminal transparency (false transparency, does not need an X compositor):
 !URxvt*transparent: true
 !URxvt*shading: 20
 ! True transparency (only works if an X compositor is running (e.g. Compton)):
 URxvt*depth: 32
-URxvt*background: rgba:0000/0000/0000/d000
+URxvt*background: rgba:0000/0000/0000/da00
 
 ! Fonts:
 URxvt*font: xft:Dina:pixelsize=10
@@ -65,9 +72,9 @@ URxvt*keysym.C-S-F5: command:\033]710;xft:Iosevka:pixelsize=25\007\033]711;%s%d\
 URxvt*keysym.C-S-F6: command:\033]710;xft:Ubuntu Mono:pixelsize=14\007\033]711;%s%d\007\033]711;xft:Ubuntu Mono:bold:pixelsize=14\007
 URxvt*keysym.C-S-F7: command:\033]710;xft:Ubuntu Mono:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Ubuntu Mono:bold:pixelsize=18\007
 URxvt*keysym.C-S-F8: command:\033]710;xft:Ubuntu Mono:pixelsize=24\007\033]711;%s%d\007\033]711;xft:Ubuntu Mono:bold:pixelsize=24\007
-#URxvt*keysym.C-S-F6: command:\033]710;xft:Monospace:pixelsize=13\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=13\007
-#URxvt*keysym.C-S-F7: command:\033]710;xft:Monospace:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=18\007
-#URxvt*keysym.C-S-F8: command:\033]710;xft:Monospace:pixelsize=24\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=24\007
+!URxvt*keysym.C-S-F6: command:\033]710;xft:Monospace:pixelsize=13\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=13\007
+!URxvt*keysym.C-S-F7: command:\033]710;xft:Monospace:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=18\007
+!URxvt*keysym.C-S-F8: command:\033]710;xft:Monospace:pixelsize=24\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=24\007
 
 ! URxvt messes everything up with the keycodes... WTF?!
 URxvt*keysym.M-Down:        \033[1;3B
