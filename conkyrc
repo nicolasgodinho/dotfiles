@@ -1,57 +1,138 @@
+-- vim: set ts=2 sts=2 sw=2 et ft=lua:
+
 conky.config = {
-    alignment = 'top_left',
+    use_xft = true,
+    xftalpha = 0.6,
+    update_interval = 1.0,
+    total_run_times = 0,
+    own_window = true,
+    own_window_argb_visual = true,
+    own_window_argb_value = 35,  -- own_window_transparent = true,
+    own_window_type = 'desktop',
+    own_window_class = 'conky-semi',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
     background = false,
-    border_width = 1,
+    double_buffer = true,
+    imlib_cache_size = 0,
+    no_buffers = true,
+    uppercase = false,
     cpu_avg_samples = 2,
-	default_color = 'white',
-    default_outline_color = 'white',
-    default_shade_color = 'white',
+    override_utf8_locale = true,
+
+    -- placement
+    alignment = 'top_left',
+    gap_x = 20,
+    gap_y = 20,
+    border_inner_margin = 20,
+    minimum_height = 1500,   -- fill vertically all the screen
+    minimum_width = 50,
+
+    -- default drawing
+    draw_shades = false,
+    draw_outline = false,
     draw_borders = false,
     draw_graph_borders = true,
-    draw_outline = false,
-    draw_shades = false,
-    use_xft = true,
-    font = 'DejaVu Sans:pixelsize=10',
-    gap_x = 5,
-    gap_y = 60,
-    minimum_height = 5,
-	minimum_width = 5,
-    net_avg_samples = 2,
-    no_buffers = true,
-    out_to_console = false,
-    out_to_stderr = false,
-    extra_newline = false,
-    own_window = true,
-    own_window_class = 'Conky',
-    own_window_type = 'desktop',
-    stippled_borders = 0,
-    update_interval = 1.0,
-    uppercase = false,
-    use_spacer = 'none',
-    show_graph_scale = false,
-    show_graph_range = false
+    default_bar_width = 100, default_bar_height = 5,
+    default_graph_width = 150, default_graph_height = 10,
+    default_gauge_width = 20, default_gauge_height = 20,
+
+    show_graph_range = true,
+    show_graph_scale = true,
+
+    -- colors
+    font = 'sans:pixelsize=10',
+    --font = 'Dina:pixelsize=10',
+    default_color = 'EEEEEE',
+    color1 = 'AAAAAA',
+    color2 = 'AABBD5',
+    color3 = '222222',
+
+    -- layouting
+    template0 = [[${font sans:italic:pixelsize=12}${color2}\1 ${color3}${hr 1}${voffset 2}${font}]],
+    template1 = [[${color1}\1:]],
+    template2 = [[${goto 90}${color}]],
+    template3 = [[${goto 100}${color}]],
+    template9 = [[${goto 120}${color}${alignr}]],
 }
 
+-- Header line with current date and  ime
 conky.text = [[
-${scroll 16 $nodename - $sysname $kernel on $machine | }
-$hr
-${color grey}Uptime:$color $uptime
-${color grey}Frequency (in MHz):$color $freq
-${color grey}Frequency (in GHz):$color $freq_g
-${color grey}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
-${color grey}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
-${color grey}CPU Usage:$color $cpu% ${cpubar 4}
-${color grey}Processes:$color $processes  ${color grey}Running:$color $running_processes
-$hr
-${color grey}File systems:
- / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
-${color grey}Networking:
-Up:$color ${upspeed eth0} ${color grey} - Down:$color ${downspeed eth0}
-$hr
-${color grey}Name              PID   CPU%   MEM%
-${color lightgrey} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
-${color lightgrey} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
-${color lightgrey} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
-${color lightgrey} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}
+${font sans:pixelsize=12}${color #888}${time %a, %e %B %G}         ${template9}${color #DDD}${time %T}${voffset 5}
 ]]
 
+-- General information on system:
+conky.text = conky.text .. [[
+
+${template0 System}
+${template1 Hostname}                 ${template9}${nodename}
+${template1 ${sysname}}               ${template9}${kernel}  (${machine})
+${template1 Uptime}                   ${template9}${uptime_short}
+${template1 CPU}                      ${template9}${freq_g}GHz
+${template1 CPU\ Temperature}         ${template9}${acpitemp}°C
+]]
+
+-- Processes:
+--${template1 Load}        ${template2}${loadavg 1}       ${template9}${loadgraph}
+--${template1 CPU\ total}                                  ${template2}${cpugraph}
+conky.text = conky.text .. [[
+
+${template0 Processes}
+${color1}${cpugraph 25,130 666666 AAAAAA} ${alignr}${loadgraph 25,130 666666 AAAAAA}
+${voffset -8}${goto 65}${color1}CPU total${goto 188}${color1}Average load:${color} ${loadavg 1}
+${voffset 5}${template1 Top\ 3}      ${template2}${top name 1}      ${template9}${top cpu 1}%
+                         ${template2}${top name 2}      ${template9}${top cpu 2}%
+                         ${template2}${top name 3}      ${template9}${top cpu 3}%
+]]
+
+-- Memory:
+conky.text = conky.text .. [[
+
+${template0 Memory}
+${template1 Memory}    ${template3}${memperc}%  ${membar 5,60}   ${template9}${mem} / ${memmax}
+${voffset 2}${template1 Top\ 3}    ${template2}${top_mem name 1}      ${template9}${top_mem mem_vsize 1}
+                       ${template2}${top_mem name 2}      ${template9}${top_mem mem_vsize 2}
+                       ${template2}${top_mem name 3}      ${template9}${top_mem mem_vsize 3}
+]]
+
+-- Disk IO:
+conky.text = conky.text .. [[
+
+${template0 Disk\ I\/O}
+${color1}${diskiograph_read 25,130 666666 AAAAAA} ${alignr}${diskiograph_write 25,130 666666 AAAAAA}
+${voffset -8}${goto 65}${color1}Read:${color} ${diskio_read}${goto 200}${color1}Write:${color} ${diskio_write}
+${voffset 5}${template1 Top\ 3}     ${template2}${top_io name 1}     ${template9}${top_io io_perc 1}%
+                        ${template2}${top_io name 2}     ${template9}${top_io io_perc 2}%
+                        ${template2}${top_io name 3}     ${template9}${top_io io_perc 3}%
+]]
+
+-- Filesystems:
+conky.text = conky.text .. [[
+
+${template0 Filesystems}
+${template1 /}       ${template3}${fs_bar 5,50 /}   ${fs_free /} free ${template9}${fs_size /}
+${template1 /boot}       ${template3}${fs_bar 5,50 /boot}   ${fs_free /boot} free ${template9}${fs_size /boot}
+${template1 /var}       ${template3}${fs_bar 5,50 /var}   ${fs_free /var} free ${template9}${fs_size /var}
+${template1 /home}       ${template3}${fs_bar 5,50 /home}   ${fs_free /home} free ${template9}${fs_size /home}
+${template1 /tmp}       ${template3}${fs_bar 5,50 /tmp}   ${fs_free /tmp} free ${template9}${fs_size /tmp}
+]]
+
+-- Networking:
+conky.text = conky.text .. [[
+
+${template0 Networking}
+${if_existing /proc/net/route wlp3s0}\
+${template1 IP}                                                             ${template9}${addr wlp3s0}
+${template1 AP}                                                             ${template9}${wireless_essid wlp3s0}
+${template1 Signal}             ${template2}${wireless_link_qual_perc wlp3s0} ${template9}${wireless_link_bar wlp3s0}
+${template1 Download}           ${template2}${downspeed wlp3s0}              ${template9}${downspeedgraph wlp3s0}
+${template1 Upload}             ${template2}${upspeed wlp3s0}                ${template9}${upspeedgraph wlp3s0}
+${template1 Total\ Down/Up}                                                  ${template9}${totaldown wlp3s0}↓ / ${totalup wlp3s0}↑
+${endif}${if_existing /proc/net/route enp0s25}\
+${template1 Ip}                                                             ${template9}${addr enp0s25}
+${template1 Download}           ${template2}${downspeed enp0s25}               ${template9}${downspeedgraph enp0s25}
+${template1 Upload}             ${template2}${upspeed enp0s25}                 ${template9}${upspeedgraph enp0s25}
+${template1 Total\ Down/Up}                                                  ${template9}${totaldown enp0s25}↓ / ${totalup enp0s25}↑
+${endif}\
+
+
+]];
