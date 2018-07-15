@@ -768,12 +768,12 @@
         </action>
       </mousebind>
       <mousebind button="Right" action="Press">
-        <action name="Execute">
+        <!--<action name="Execute">
             <command>jgmenu_run</command>
-        </action>
-        <!--<action name="ShowMenu">-->
-            <!--  <menu>root-menu</menu>-->
-            <!--</action>-->
+          </action>-->
+        <action name="ShowMenu">
+          <menu>root-menu</menu>
+         </action>
       </mousebind>
     </context>
     <context name="MoveResize">
@@ -826,6 +826,15 @@
     # show the manage desktops section in the client-list-(combined-)menu
 </menu>
 -->
+  <menu>
+    <file>menu.xml</file>
+    <hideDelay>200</hideDelay>
+    <middle>no</middle>
+    <submenuShowDelay>100</submenuShowDelay>
+    <submenuHideDelay>400</submenuHideDelay>
+    <showIcons>yes</showIcons>
+    <manageDesktops>yes</manageDesktops>
+</menu>
   <applications>
     <!--
   # this is an example with comments through out. use these to make your
