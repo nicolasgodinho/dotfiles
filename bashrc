@@ -119,9 +119,9 @@ fi
 if [[ "$(type -t __git_ps1)" == 'function' ]]; then
     git_prompt=y
 elif [[ -e "$git_prompt_sh" ]]; then
-    source "$git_prompt_sh" \
-        && [[ "$(type -t __git_ps1)" == 'function' ]] \
-        && git_prompt=y
+    source "$git_prompt_sh" &&\
+        [[ "$(type -t __git_ps1)" == 'function' ]] &&\
+        git_prompt=y
 fi
 
 # Display the username underlined and in red if I am root.
@@ -146,15 +146,15 @@ __df_warning_ps1() {
     local exit_code="$?"
     if command -v df &>/dev/null && command -v awk &>/dev/null; then
         local status="$(LC_ALL=C df -k -P 2>/dev/null | awk '
-            BEGIN { first=1; }
-            (NR == 1) { next; }  # skip the header line
-            ($1 ~ /^\/dev/) {   # consider only mount points to devices in /dev
-                percentage=substr($5, 1, index($5, "%")-1)+1-1;
-                if (percentage >= 90) {
-                    if (first) first=0; else printf(" ");
-                    printf("%s @ %d%%", $6, percentage);
-                }
-            }')"
+        BEGIN { first=1; }
+        (NR == 1) { next; }  # skip the header line
+        ($1 ~ /^\/dev/) {   # consider only mount points to devices in /dev
+        percentage=substr($5, 1, index($5, "%")-1)+1-1;
+        if (percentage >= 90) {
+            if (first) first=0; else printf(" ");
+                printf("%s @ %d%%", $6, percentage);
+            }
+        }')"
         [[ "${status:-}" ]] && printf "$1 $2" "${status}"
     fi
     return "$exit_code"  # propagate the error code from previous command
@@ -179,6 +179,7 @@ __jobs_ps1() {
 }
 
 # Setting the prompt.
+PROMPT_COMMAND=''
 PS1=''
 if [[ "${color_prompt:-}" ]]; then
     PS1+="$bldblk[ $user_color\u$txtwht at $bldblu\h$txtwht"
@@ -187,7 +188,6 @@ if [[ "${color_prompt:-}" ]]; then
     [[ "${git_prompt:-}" ]] \
         && PS1+=" in $bldcyn\w\$(__git_ps1 '$txtwht on $bldylw┢ %s')$bldblk ]$txtwht"
     PS1+="\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst"
-    #PS1+="\$(__df_warning_ps1 ' $bakred$bldylw[!]$txtrst' '$bldred%s$txtrst')"
     PS1+="\n"
     PS1+="\$(__exitcode_ps1 '$bldred%d$txtrst ')"
 else
@@ -210,6 +210,10 @@ alias tmux="tmux -2"
 # Search history with PgUp/PgDown
 bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
+
+# Flush history file after every command in an interactive session. This
+# enables to share history commands from multiple terminals.
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
 
 # It is often a bad idea to set LC_ALL since it comes to override all the other
 # locale defining variables such as LC_* and LANG. These other variables should
@@ -245,11 +249,21 @@ if command -v nvim &>/dev/null; then
 fi
 
 # X Terminal titles
-case "$TERM" in
-xterm*|rxvt*)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-        ;;
-esac
+__fancy_window_title() {
+    local prefix=''
+    if [[ -n "${SSH_CONNECTION:-}" ]]; then
+        prefix+="$USER@$HOSTNAME: "
+    elif [[ "$USER" == 'root' ]]; then
+        prefix+="(root) "
+    fi
+    echo -ne "\033]0;${prefix}$*\007"
+}
+__fancy_window_title_during_prompt() { __fancy_window_title "$PWD"; }
+__fancy_window_title_during_cmd() { __fancy_window_title "$BASH_COMMAND"; }
+if [[ "$TERM" =~ ^(xterm|rxvt)(-.*)?$ ]]; then
+    export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__fancy_window_title_during_prompt"
+    trap __fancy_window_title_during_cmd DEBUG
+fi
 
 __prettyprint_json_with_jq() {
     if [[ "$#" -gt 1 ]]; then
@@ -265,3 +279,5 @@ __prettyprint_json_with_jq() {
 if command -v jq &>/dev/null; then
     alias jsonpp=__prettyprint_json_with_jq
 fi
+
+# vim: set ts=4 sts=4 sw=4 et:
