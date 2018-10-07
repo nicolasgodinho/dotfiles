@@ -11,3 +11,6 @@ gnupg/*
 # Only commit autostart file for LXDE's lxsession
 config/lxsession
 !config/lxsession/LXDE/autostart
+
+# Exhuberant ctags generated file by Syntastic Vim plugin
+/tags
