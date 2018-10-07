@@ -226,12 +226,12 @@
       </action>
     </keybind>
 -->
-    <keybind key="S-W-Left">
+    <keybind key="W-C-Left">
       <action name="MoveResizeTo">
         <monitor>prev</monitor>
       </action>
     </keybind>
-    <keybind key="S-W-Right">
+    <keybind key="W-C-Right">
       <action name="MoveResizeTo">
         <monitor>next</monitor>
       </action>
@@ -289,10 +289,10 @@
     <keybind key="W-o">
       <action name="ToggleOmnipresent"/>
     </keybind>
-    <keybind key="C-W-S-Prior">
+    <keybind key="W-C-S-Prior">
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
-    <keybind key="C-W-S-Next">
+    <keybind key="W-C-S-Next">
       <action name="ToggleAlwaysOnBottom"/>
     </keybind>
     <keybind key="W-d">
@@ -300,56 +300,56 @@
     </keybind>
 
 
-    <keybind key="C-W-Up">
+    <keybind key="W-S-Up">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>0</y>
         <width>100%</width><height>50%</height>
       </action>
     </keybind>
-    <keybind key="C-W-Down">
+    <keybind key="W-S-Down">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>-0</y>
         <width>100%</width><height>50%</height>
       </action>
     </keybind>
-    <keybind key="C-W-Left">
+    <keybind key="W-S-Left">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>0</y>
         <width>50%</width><height>100%</height>
       </action>
     </keybind>
-    <keybind key="C-W-Right">
+    <keybind key="W-S-Right">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>-0</x><y>0</y>
         <width>50%</width><height>100%</height>
       </action>
     </keybind>
-    <keybind key="C-W-Prior">
+    <keybind key="W-S-Prior">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>-0</x><y>0</y>
         <width>50%</width><height>50%</height>
       </action>
     </keybind>
-    <keybind key="C-W-Next">
+    <keybind key="W-S-Next">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>-0</x><y>-0</y>
         <width>50%</width><height>50%</height>
       </action>
     </keybind>
-    <keybind key="C-W-Home">
+    <keybind key="W-S-Home">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>0</y>
         <width>50%</width><height>50%</height>
       </action>
     </keybind>
-    <keybind key="C-W-End">
+    <keybind key="W-S-End">
       <action name="Unmaximize"/>
       <action name="MoveResizeTo">
         <x>0</x><y>-0</y>
@@ -358,6 +358,8 @@
     </keybind>
 
 
+    <!-- Keybindings to resize windows per X pixels steps -->
+    <!--
     <keybind key="W-Left">
       <action name="MoveRelative">
         <x>-40</x>
@@ -382,6 +384,7 @@
         <y>40</y>
       </action>
     </keybind>
+    -->
 
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
@@ -419,7 +422,7 @@
         </finalactions>
       </action>
     </keybind>
-    <keybind key="C-W-Tab">
+    <keybind key="W-C-Tab">
       <action name="NextWindow">
         <allDesktops>yes</allDesktops>
         <finalactions>
@@ -429,7 +432,7 @@
         </finalactions>
       </action>
     </keybind>
-    <keybind key="C-W-S-Tab">
+    <keybind key="W-C-S-Tab">
       <action name="PreviousWindow">
         <allDesktops>yes</allDesktops>
         <finalactions>
@@ -440,22 +443,22 @@
       </action>
     </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-S-Right">
+    <keybind key="W-Right">
       <action name="DirectionalCycleWindows">
         <direction>right</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Left">
+    <keybind key="W-Left">
       <action name="DirectionalCycleWindows">
         <direction>left</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Up">
+    <keybind key="W-Up">
       <action name="DirectionalCycleWindows">
         <direction>up</direction>
       </action>
     </keybind>
-    <keybind key="W-S-Down">
+    <keybind key="W-Down">
       <action name="DirectionalCycleWindows">
         <direction>down</direction>
       </action>
@@ -463,7 +466,7 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-r">
       <action name="Execute">
-        <command>rofi -show run</command>
+        <command>dmenu_run</command>
       </action>
     </keybind>
     <keybind key="W-Return">
