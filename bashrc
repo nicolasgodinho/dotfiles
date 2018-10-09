@@ -213,7 +213,7 @@ bind '"\e[6~": history-search-forward'
 
 # Flush history file after every command in an interactive session. This
 # enables to share history commands from multiple terminals.
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
 
 # It is often a bad idea to set LC_ALL since it comes to override all the other
 # locale defining variables such as LC_* and LANG. These other variables should
@@ -261,7 +261,7 @@ __fancy_window_title() {
 __fancy_window_title_during_prompt() { __fancy_window_title "$PWD"; }
 __fancy_window_title_during_cmd() { __fancy_window_title "$BASH_COMMAND"; }
 if [[ "$TERM" =~ ^(xterm|rxvt)(-.*)?$ ]]; then
-    export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__fancy_window_title_during_prompt"
+    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__fancy_window_title_during_prompt"
     trap __fancy_window_title_during_cmd DEBUG
 fi
 
