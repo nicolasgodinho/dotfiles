@@ -211,6 +211,10 @@ alias tmux="tmux -2"
 bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
 
+# Do not log into the history commands with leading whitespace
+# TODO? Enable ignoredups to ignore duplicate commands?
+HISTCONTROL='ignorespace'
+
 # Flush history file after every command in an interactive session. This
 # enables to share history commands from multiple terminals.
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
