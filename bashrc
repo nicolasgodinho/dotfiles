@@ -207,6 +207,9 @@ unset txtblk txtred txtgrn txtylw txtblu txtpur txtcyn txtwht bldblk bldred \
 # Tmux in 256 colors
 alias tmux="tmux -2"
 
+# List directories first with tree
+alias tree="tree --dirsfirst"
+
 # Search history with PgUp/PgDown
 bind '"\e[5~": history-search-backward'
 bind '"\e[6~": history-search-forward'
