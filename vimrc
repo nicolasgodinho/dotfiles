@@ -322,7 +322,7 @@ function! LightlineFugitive()
     endif
     if &ft !~? 'vimfiler' && exists('*fugitive#head')
         let branch = fugitive#head()
-        return ('' != l:branch ? '┢ ' . branch : '')
+        return ('' != l:branch ? '⎇ ' . branch : '')
     endif
     return ''
 endfunction

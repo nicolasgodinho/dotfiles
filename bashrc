@@ -186,7 +186,7 @@ if [[ "${color_prompt:-}" ]]; then
     #PS1+="$user_color\u$txtwht at $bldblu\h$txtwht"
     PS1+="\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht')"
     [[ "${git_prompt:-}" ]] \
-        && PS1+=" in $bldcyn\w\$(__git_ps1 '$txtwht on $bldylw┢ %s')$bldblk ]$txtwht"
+        && PS1+=" in $bldcyn\w\$(__git_ps1 '$txtwht on $bldylw⎇ %s')$bldblk ]$txtwht"
     PS1+="\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst"
     PS1+="\n"
     PS1+="\$(__exitcode_ps1 '$bldred%d$txtrst ')"
