@@ -1,16 +1,20 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  X11 terminals common settings (xterm, rxvt-unicode)  !
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!
+!  Xft settings  !
+!!!!!!!!!!!!!!!!!!
 
-! Terminal name enforced (to enable the 256 colors):
-XTerm*termName: xterm-256color
-URxvt*termName: rxvt-unicode-256color
+Xft.antialias:  1
+Xft.autohint:   0
+Xft.dpi:        96
+!Xft.dpi:        192
+Xft.hinting:    1
+Xft.hintstyle:  hintfull
+Xft.lcdfilter:  lcddefault
+Xft.rgba:       rgb
 
-! Sets defaults terminals to be white on black:
-XTerm*background: black
-XTerm*foreground: white
-URxvt*background: black
-URxvt*foreground: white
+
+!!!!!!!!!!!!!!!!!!!!!!!!!
+!  X11 colors settings  !
+!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ! Colorscheme inspired from gnome-terminal
 ! Source: http://blog.ezyang.com/2010/01/rxvt-unicode-for-gnome-terminal-refugees/
@@ -40,41 +44,64 @@ URxvt*foreground: white
 *color15 : #EEEEEC
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  xterm special settings  !
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!
+!  Xterm settings  !
+!!!!!!!!!!!!!!!!!!!!
 
-XTerm*faceName: Dina:size=8
+XTerm*faceName: xft:Monospace:size=8
+
+! Terminal name enforced (to enable the 256 colors):
+XTerm*termName: xterm-256color
+
+! Always set terminals to be white foreground on black background:
+XTerm*foreground: white
+XTerm*background: black
+Xterm*transparent: true
+Xterm*shading: 20
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!  RXVT-Unicode (urxvt) special settings  !
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  RXVT-Unicode (urxvt) settings  !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Terminal transparency (false transparency, does not need an X compositor):
+! Always set terminals to be white foreground on black background (disable
+! background setting to black if true transparency background is set below):
+URxvt*foreground: white
+!URxvt*background: black
+
+!!! Terminal transparency:
+! False transparency (X compositor unneeded):
 !URxvt*transparent: true
 !URxvt*shading: 20
-! True transparency (only works if an X compositor is running (e.g. Compton)):
+! True transparency (requires a running X compositor (e.g. xcompmgr)):
 URxvt*depth: 32
 URxvt*background: rgba:0000/0000/0000/da00
 
-! Fonts:
-URxvt*font: xft:Dina:pixelsize=10
-URxvt*boldFont: xft:Dina:bold:pixelsize=10
-!URxvt*letterSpace: -1
+! Terminal name enforced (to enable the 256 colors):
+URxvt*termName: rxvt-unicode-256color
 
-! Bind Ctrl+Shift+F{1..8} to change font size easily while urxvt is running:
-URxvt*keysym.C-S-F1: command:\033]710;xft:Dina:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=10\007
-URxvt*keysym.C-S-F2: command:\033]710;xft:Dina:pixelsize=16\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=16\007
-URxvt*keysym.C-S-F3: command:\033]710;xft:Iosevka:pixelsize=14\007\033]711;%s%d\007\033]711;xft:Iosevka:bold:pixelsize=14\007
-URxvt*keysym.C-S-F4: command:\033]710;xft:Iosevka:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Iosevka:bold:pixelsize=18\007
-URxvt*keysym.C-S-F5: command:\033]710;xft:Iosevka:pixelsize=25\007\033]711;%s%d\007\033]711;xft:Iosevka:bold:pixelsize=25\007
-URxvt*keysym.C-S-F6: command:\033]710;xft:Ubuntu Mono:pixelsize=14\007\033]711;%s%d\007\033]711;xft:Ubuntu Mono:bold:pixelsize=14\007
-URxvt*keysym.C-S-F7: command:\033]710;xft:Ubuntu Mono:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Ubuntu Mono:bold:pixelsize=18\007
-URxvt*keysym.C-S-F8: command:\033]710;xft:Ubuntu Mono:pixelsize=24\007\033]711;%s%d\007\033]711;xft:Ubuntu Mono:bold:pixelsize=24\007
-!URxvt*keysym.C-S-F6: command:\033]710;xft:Monospace:pixelsize=13\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=13\007
-!URxvt*keysym.C-S-F7: command:\033]710;xft:Monospace:pixelsize=18\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=18\007
-!URxvt*keysym.C-S-F8: command:\033]710;xft:Monospace:pixelsize=24\007\033]711;%s%d\007\033]711;xft:Monospace:bold:pixelsize=24\007
+!!! Fonts:
+URxvt*font: xft:Dina:pixelsize=10
+URxvt*boldFont: xft:Dina:Bold:pixelsize=10
+!URxvt*font: xft:Fira Mono:size=9
+!URxvt*boldFont: xft:Fira Mono:Bold:size=9
+! Bind Ctrl+Shift+Fx to change font size easily while urxvt is running:
+URxvt*keysym.C-S-F1:  command:\033]710;xft:Fira Mono:size=5\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=5\007
+URxvt*keysym.C-S-F2:  command:\033]710;xft:Fira Mono:size=6\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=6\007
+URxvt*keysym.C-S-F3:  command:\033]710;xft:Fira Mono:size=7\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=7\007
+URxvt*keysym.C-S-F4:  command:\033]710;xft:Fira Mono:size=7.5\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=7.5\007
+URxvt*keysym.C-S-F5:  command:\033]710;xft:Fira Mono:size=8\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=8\007
+URxvt*keysym.C-S-F6:  command:\033]710;xft:Fira Mono:size=9\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=9\007
+URxvt*keysym.C-S-F7:  command:\033]710;xft:Fira Mono:size=10\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=10\007
+URxvt*keysym.C-S-F8:  command:\033]710;xft:Fira Mono:size=12\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=12\007
+URxvt*keysym.C-S-F9:  command:\033]710;xft:Fira Mono:size=15\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=15\007
+URxvt*keysym.C-S-F10: command:\033]710;xft:Fira Mono:size=18\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=18\007
+! Tiny bitmap font (Dina):
+URxvt*keysym.C-S-F11: command:\033]710;xft:Dina:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=10\007
+URxvt*keysym.C-S-F12: command:\033]710;xft:Dina:pixelsize=16\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=16\007
+
+! Potential and optional typographic fixes:
+!URxvt*letterSpace: -1
 
 ! URxvt messes everything up with the keycodes... WTF?!
 URxvt*keysym.M-Down:        \033[1;3B
@@ -114,3 +141,4 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
 
+! vim: set ft=xdefaults ts=2 sts=2 sw=2 et:
