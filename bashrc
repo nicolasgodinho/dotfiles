@@ -263,10 +263,10 @@ __fancy_window_title() {
     elif [[ "$USER" == 'root' ]]; then
         prefix+="(root) "
     fi
-    echo -ne "\033]0;${prefix}$*\007"
+    echo -ne "\033]0;${prefix}$(printf '%q ' "$@")\007"
 }
-__fancy_window_title_during_prompt() { __fancy_window_title "$PWD"; }
-__fancy_window_title_during_cmd() { __fancy_window_title "$BASH_COMMAND"; }
+__fancy_window_title_during_prompt() { __fancy_window_title $PWD; }
+__fancy_window_title_during_cmd() { __fancy_window_title $BASH_COMMAND; }
 if [[ "$TERM" =~ ^(xterm|rxvt)(-.*)?$ ]]; then
     PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__fancy_window_title_during_prompt"
     trap __fancy_window_title_during_cmd DEBUG
