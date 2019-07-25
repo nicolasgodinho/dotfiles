@@ -78,6 +78,9 @@ set formatoptions-=t
 vmap Q gq
 nmap Q gqap
 
+" Disable folding
+set nofoldenable
+
 " Easier re-indenting paragraph in visual mode
 vnoremap < <gv
 vnoremap > >gv
