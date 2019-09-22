@@ -4,10 +4,10 @@
 
 if [[ "$(tty)" == '/dev/tty1' && "$-" =~ i ]]; then
     turn_into_graphical_session() {
-        exec sh -c 'startx; read -p ">>> Press return to get back to login invite."; exit'
+        exec -l -a 'graphical-session-wrapper' sh -c 'startx; read -p " >>> Press return to get back to login invite."; exit'
     }
     while true; do
-        read -n 1 -s -p "Turn this into a graphical session? [y|n] " _ans
+        read -n 1 -s -p " >>> Turn this into a graphical session? [y|n] " _ans
         echo >&2  # line break
         case "${_ans}" in
             y|Y)  turn_into_graphical_session ;;
