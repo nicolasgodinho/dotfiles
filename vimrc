@@ -161,6 +161,11 @@ imap <silent> <home> <C-o>g<home>
 map <silent> <End> g<End>
 imap <silent> <End> <C-o>g<End>
 
+" A quick shortcut with the leader key to make disappear all the other splits
+" than the current one (useful when the screen is cluttered with non-relevant
+" splits anymore):
+nmap <Leader>o :only<CR>
+
 " Useful keybindings to create splits where I want. Shamelessly stolen from:
 " https://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
 "window
@@ -411,8 +416,6 @@ let g:syntastic_check_on_wq = 0
 " Tagbar <https://github.com/majutsushi/tagbar>
 "
 nmap <F8> :TagbarToggle<CR>
-" o is for "objects"
-nmap <Leader>o :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 " never sort symbols because the declaration order in the file is way often
 " more important than the alphabetical order
