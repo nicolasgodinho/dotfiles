@@ -83,19 +83,19 @@ URxvt*termName: rxvt-unicode-256color
 !!! Fonts:
 URxvt*font: xft:Dina:pixelsize=10
 URxvt*boldFont: xft:Dina:Bold:pixelsize=10
-!URxvt*font: xft:Fira Mono:size=9
-!URxvt*boldFont: xft:Fira Mono:Bold:size=9
+!URxvt*font: xft:Monaco:size=9
+!URxvt*boldFont: xft:Monaco:Bold:size=9
 ! Bind Ctrl+Shift+Fx to change font size easily while urxvt is running:
-URxvt*keysym.C-S-F1:  command:\033]710;xft:Fira Mono:size=5\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=5\007
-URxvt*keysym.C-S-F2:  command:\033]710;xft:Fira Mono:size=6\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=6\007
-URxvt*keysym.C-S-F3:  command:\033]710;xft:Fira Mono:size=7\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=7\007
-URxvt*keysym.C-S-F4:  command:\033]710;xft:Fira Mono:size=7.5\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=7.5\007
-URxvt*keysym.C-S-F5:  command:\033]710;xft:Fira Mono:size=8\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=8\007
-URxvt*keysym.C-S-F6:  command:\033]710;xft:Fira Mono:size=9\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=9\007
-URxvt*keysym.C-S-F7:  command:\033]710;xft:Fira Mono:size=10\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=10\007
-URxvt*keysym.C-S-F8:  command:\033]710;xft:Fira Mono:size=12\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=12\007
-URxvt*keysym.C-S-F9:  command:\033]710;xft:Fira Mono:size=15\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=15\007
-URxvt*keysym.C-S-F10: command:\033]710;xft:Fira Mono:size=18\007\033]711;%s%d\007\033]711;xft:Fira Mono:bold:size=18\007
+URxvt*keysym.C-S-F1:  command:\033]710;xft:Monaco:size=5\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=5\007
+URxvt*keysym.C-S-F2:  command:\033]710;xft:Monaco:size=6\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=6\007
+URxvt*keysym.C-S-F3:  command:\033]710;xft:Monaco:size=7\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=7\007
+URxvt*keysym.C-S-F4:  command:\033]710;xft:Monaco:size=7.5\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=7.5\007
+URxvt*keysym.C-S-F5:  command:\033]710;xft:Monaco:size=8\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=8\007
+URxvt*keysym.C-S-F6:  command:\033]710;xft:Monaco:size=9\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=9\007
+URxvt*keysym.C-S-F7:  command:\033]710;xft:Monaco:size=10\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=10\007
+URxvt*keysym.C-S-F8:  command:\033]710;xft:Monaco:size=12\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=12\007
+URxvt*keysym.C-S-F9:  command:\033]710;xft:Monaco:size=15\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=15\007
+URxvt*keysym.C-S-F10: command:\033]710;xft:Monaco:size=18\007\033]711;%s%d\007\033]711;xft:Monaco:bold:size=18\007
 ! Tiny bitmap font (Dina):
 URxvt*keysym.C-S-F11: command:\033]710;xft:Dina:pixelsize=10\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=10\007
 URxvt*keysym.C-S-F12: command:\033]710;xft:Dina:pixelsize=16\007\033]711;%s%d\007\033]711;xft:Dina:bold:pixelsize=16\007
