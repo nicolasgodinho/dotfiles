@@ -185,8 +185,10 @@ if [[ "${color_prompt:-}" ]]; then
     PS1+="$bldblk[ $user_color\u$txtwht at $bldblu\h$txtwht"
     #PS1+="$user_color\u$txtwht at $bldblu\h$txtwht"
     PS1+="\$(__viassh_ps1 ' via $bakpur$bldwht SSH $txtrst$txtwht')"
+    PS1+=" in $bldcyn\w$txtrst"
     [[ "${git_prompt:-}" ]] \
-        && PS1+=" in $bldcyn\w\$(__git_ps1 '$txtwht on $bldylw⎇ %s')$bldblk ]$txtwht"
+        && PS1+="\$(__git_ps1 '$txtwht on $bldylw⎇ %s')$txtrst"
+    PS1+="$bldblk ]$txtwht"
     PS1+="\$(__jobs_ps1 ' with $bldred\j$txtwht jobs')$txtrst"
     PS1+="\n"
     PS1+="\$(__exitcode_ps1 '$bldred%d$txtrst ')"
@@ -217,6 +219,8 @@ bind '"\e[6~": history-search-forward'
 # Do not log into the history commands with leading whitespace
 # TODO? Enable ignoredups to ignore duplicate commands?
 HISTCONTROL='ignorespace'
+HISTSIZE=1000
+HISTFILESIZE=10000
 
 # Flush history file after every command in an interactive session. This
 # enables to share history commands from multiple terminals.
