@@ -381,6 +381,17 @@ autocmd FileType python IndentGuidesEnable
 "
 " Vim-GitGutter <https://github.com/airblade/vim-gitgutter>
 "
+set updatetime=2000
+let g:gitgutter_max_signs = 500
+" No mapping
+let g:gitgutter_map_keys = 0
+" Colors
+let g:gitgutter_override_sign_column_highlight = 0
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=2 ctermbg=234
+highlight GitGutterChange ctermfg=3 ctermbg=234
+highlight GitGutterDelete ctermfg=1 ctermbg=234
+highlight GitGutterChangeDelete ctermfg=4 ctermbg=234
 nmap <Leader>gg :GitGutterToggle<CR>
 nmap <Leader>GG :GitGutterLineHighlightsToggle<CR>
 
