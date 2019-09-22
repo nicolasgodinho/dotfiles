@@ -177,6 +177,7 @@ nmap <leader>s<down>   :rightbelow new<CR>
 " Special cases for some file types (git commit messages, emails, etc.)
 au FileType gitcommit set textwidth=70 colorcolumn=71
 au FileType mail set textwidth=71 colorcolumn=72
+au FileType go set noexpandtab shiftwidth=8 tabstop=8 softtabstop=8
 
 
 """"""""""""""

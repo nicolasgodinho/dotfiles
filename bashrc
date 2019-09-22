@@ -227,10 +227,15 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }history -a"
 # only be defined by /etc/locale.conf. Resetting LC_ALL.
 export LC_ALL=''
 
-# The basic requirements for Golang development
+# Golang development related settings and stuff:
 export GOPATH="$HOME/go"
+# /tmp is usually noexec'ed on my system
+export GOTMPDIR="$GOPATH/tmp"
+export PATH="$PATH:$GOPATH/bin"
+
+# Rust development related settings and stuff:
 export CARGOBINPATH="$HOME/.cargo/bin"
-export PATH="$PATH:$GOPATH/bin:$CARGOBINPATH"
+export PATH="$PATH:$CARGOBINPATH"
 
 # Include Luarocks local environment
 if command -v luarocks &>/dev/null; then
