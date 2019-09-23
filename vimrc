@@ -85,6 +85,9 @@ set nofoldenable
 vnoremap < <gv
 vnoremap > >gv
 
+" Set X11 window title
+set title
+
 " I still like to use my mouse sometimes.
 set mouse=a
 
