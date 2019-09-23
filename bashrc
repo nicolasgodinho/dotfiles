@@ -266,19 +266,14 @@ fi
 
 # X Terminal titles
 __fancy_window_title() {
-    local prefix=''
-    if [[ -n "${SSH_CONNECTION:-}" ]]; then
-        prefix+="$USER@$HOSTNAME: "
-    elif [[ "$USER" == 'root' ]]; then
-        prefix+="(root) "
-    fi
-    echo -ne "\033]0;${prefix}$(printf '%q ' "$@")\007"
+    local wintitle="${PWD/#${HOME:-unknown}/\~} - ${USER:-unknown}@${HOSTNAME:-unknown}"
+    [[ -n "${SSH_CONNECTION:-}" ]] && wintitle="[SSH] $wintitle"
+    [[ "$USER" == 'root' || "$EUID" -eq 0 ]] && wintitle="⚠ $wintitle"  # warning sign when root
+    wintitle="${wintitle//[^[:print:]]/�}"  # replace unprintable chars
+    printf '%s' $'\e]0;'"$wintitle"$'\a'
 }
-__fancy_window_title_during_prompt() { __fancy_window_title $PWD; }
-__fancy_window_title_during_cmd() { __fancy_window_title $BASH_COMMAND; }
 if [[ "$TERM" =~ ^(xterm|rxvt)(-.*)?$ ]]; then
-    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__fancy_window_title_during_prompt"
-    trap __fancy_window_title_during_cmd DEBUG
+    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__fancy_window_title"
 fi
 
 __prettyprint_json_with_jq() {
