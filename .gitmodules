@@ -45,3 +45,7 @@
 	path = vim/bundle/Vim-Jinja2-Syntax
 	url = https://github.com/Glench/Vim-Jinja2-Syntax
 	branch = master
+[submodule "vim-plugins/vim-jsonnet"]
+	path = vim/bundle/vim-jsonnet
+	url = https://github.com/google/vim-jsonnet
+	branch = master
