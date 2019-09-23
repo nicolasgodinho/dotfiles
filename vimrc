@@ -391,10 +391,10 @@ let g:gitgutter_map_keys = 0
 " Colors
 let g:gitgutter_override_sign_column_highlight = 0
 highlight clear SignColumn
-highlight GitGutterAdd ctermfg=2 ctermbg=234
-highlight GitGutterChange ctermfg=3 ctermbg=234
-highlight GitGutterDelete ctermfg=1 ctermbg=234
-highlight GitGutterChangeDelete ctermfg=4 ctermbg=234
+highlight GitGutterAdd ctermfg=10 ctermbg=234
+highlight GitGutterChange ctermfg=11 ctermbg=234
+highlight GitGutterDelete ctermfg=9 ctermbg=234
+highlight GitGutterChangeDelete ctermfg=208 ctermbg=234
 nmap <Leader>gg :GitGutterToggle<CR>
 nmap <Leader>GG :GitGutterLineHighlightsToggle<CR>
 
