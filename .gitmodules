@@ -49,3 +49,7 @@
 	path = vim/bundle/vim-jsonnet
 	url = https://github.com/google/vim-jsonnet
 	branch = master
+[submodule "vim-plugins/securemodelines"]
+	path = vim/bundle/securemodelines
+	url = https://github.com/ciaranm/securemodelines
+	branch = master

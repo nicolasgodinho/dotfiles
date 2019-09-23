@@ -450,3 +450,24 @@ nmap <Leader>b :BufExplorer<CR>
 "
 "nothing
 
+
+"
+" securemodelines <https://www.vim.org/scripts/script.php?script_id=1876>
+"
+let g:secure_modelines_allowed_items = [
+    \ "textwidth",   "tw",
+    \ "softtabstop", "sts",
+    \ "tabstop",     "ts",
+    \ "shiftwidth",  "sw",
+    \ "expandtab",   "et",   "noexpandtab", "noet",
+    \ "filetype",    "ft",
+    \ "foldmethod",  "fdm",
+    \ "readonly",    "ro",   "noreadonly", "noro",
+    \ "rightleft",   "rl",   "norightleft", "norl",
+    \ 'cindent', 'cin', 'nocindent', 'nocin',
+    \ 'smartindent', 'si', 'nosmartindent', 'nosi',
+    \ 'autoindent', 'ai', 'noautoindent', 'noai',
+    \ 'spell', 'nospell', 'spelllang'
+    \ ]
+
+" vim: set ts=4 sts=4 sw=4 et ai ft=vim:
