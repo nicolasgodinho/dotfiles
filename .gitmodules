@@ -41,3 +41,7 @@
 	path = vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go
 	branch = master
+[submodule "vim-plugins/vim-jinja2-syntax"]
+	path = vim/bundle/Vim-Jinja2-Syntax
+	url = https://github.com/Glench/Vim-Jinja2-Syntax
+	branch = master
