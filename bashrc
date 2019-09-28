@@ -272,7 +272,7 @@ __fancy_window_title() {
     wintitle="${wintitle//[^[:print:]]/�}"  # replace unprintable chars
     printf '%s' $'\e]0;'"$wintitle"$'\a'
 }
-if [[ "$TERM" =~ ^(xterm|rxvt)(-.*)?$ ]]; then
+if [[ "$TERM" =~ ^(xterm|rxvt|screen|tmux)(-.*)?$ ]]; then
     PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }__fancy_window_title"
 fi
 
